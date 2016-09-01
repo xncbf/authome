@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="로그인" />
+<input type="submit" value="가입" onclick="window.location='/accounts/join';" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <span style="padding-right:30px">{{ user.username }}님 하이</span>
+    <a href="/accounts/logout/">로그아웃</a> <br/>
+    가입일: {{ user.date_joined }}<br/>
+    최종로그인: {{ user.last_login }}
+{% endblock %}
