@@ -31,4 +31,6 @@ urlpatterns = [
     url(r'^auth/(?P<macro_id>\d+)/$', views.UserPage_detail.as_view()),
     url(r'^auth/', views.UserPage_list.as_view()),
     url(r'^mypage/', views.mypage),
+    url(r'^dev/$', include('dev.urls', namespace='dev'),),
+    url(r'^', include('board.urls', namespace='board'),),
 ]

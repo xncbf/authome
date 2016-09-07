@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'dev',
+    'board',
     'rest_framework',
     'subdomains',
 ]
