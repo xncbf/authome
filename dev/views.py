@@ -91,6 +91,13 @@ def index(request):
     return render(request, 'authome/index.html', {})
 
 
+def dev_index(request):
+    """
+     dev 인덱스페이지
+    """
+    return render(request, 'authome/index.html', {})
+
+
 def userlogout(request):
     logout(request)
     return redirect(index)

@@ -15,22 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf.urls import url, include
-from django.contrib import admin
 from dev import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', views.index, name='index'),
     url(r'^accounts/login/', views.userlogin, name='login'),
     url(r'^accounts/logout/', views.userlogout, name='logout'),
     url(r'^accounts/join/', views.userjoin, name='join'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^today/', views.today),
-    url(r'^auth/(?P<macro_id>\d+)/$', views.UserPage_detail.as_view()),
-    url(r'^auth/', views.UserPage_list.as_view()),
     url(r'^mypage/', views.mypage),
-    url(r'^dev/$', include('dev.urls', namespace='dev'),),
-    url(r'^', include('board.urls', namespace='board'),),
+    url(r'^dev/', include('dev.urls', namespace='dev'),),
+    url(r'^$', views.index, name='index'),
 ]
