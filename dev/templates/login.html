@@ -1,21 +1,27 @@
 {% extends 'layout.html' %}
 {% block content %}
-
-<form method="post" action="{% url 'login' %}">
+<div class="container">
+<form id="login_form" method="post" action="{% url 'login' %}">
 {% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+<br><br>
+<span class="hide-on-small-only">
+    <br><br><br><br><br><br>
+</span>
 
-<input type="submit" value="로그인" />
-<input type="submit" value="가입" onclick="window.location='/accounts/join';" />
+    <div>{{ form.username.label_tag }}</div>
+    <div class="">{{ form.username }}</div>
+    <div>{{ form.password.label_tag }}</div>
+    <div>{{ form.password }}</div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">로그인
+        <i class="material-icons right">send</i>
+    </button>
+    <a onclick="window.location='/accounts/join'" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>회원가입</a>
+
+<br><br>
+<span class="hide-on-small-only">
+    <br><br><br><br><br><br>
+</span>
 </form>
+</div>
 
 {% endblock %}

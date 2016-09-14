@@ -80,11 +80,13 @@ def user_logout(request):
 
 
 def user_join(request):
-    form = UserCreationForm(request.POST)
+    form = UserCreationForm()
     if form.is_valid():
         user = form.save()
         login(request, user)
         return redirect(index)
+    else:
+        form = UserCreationForm(initial={'username': request.POST.get('username')})
     return render(request, 'join.html', {
         'form': form,
     })
