@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body style="background-color: azure">
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">AUTHOME</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">연습하기</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">연습하기</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">쉽고 빠른 인증시스템</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">매크로 또는 프로그램에 쉽고 빠르게 인증시스템을 도입해 보세요</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">바로 시작</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">쉽고 빠른 도입</h5>
+
+            <p class="light">인증시스템을 만드는데 시간을 낭비하지 마세요. 유료로 판매하고 싶은 오토핫키같은 매크로나 잘 만들어진 프로그램에 쉽고 빠르게 인증시스템을 도입할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">편리한 사용자 관리</h5>
+
+            <p class="light">구매자들을 한눈에 관리해보세요. 지금 사용하고 있는 사람이 몇명인지, 언제 어디서나 확인할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">자동 판매</h5>
+
+            <p class="light">무통장입금으로 결제를 받던 개인 판매자들은 이제 상품을 올려놓고 판매할 수 있습니다. 사용자가 구매시 설정된 날짜만큼 자동으로 연장됩니다.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l9 s12">
+          <h5 class="white-text">AUTHOME</h5>
+          <p class="grey-text text-lighten-4">AUTHOME is AWESONE</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">버그리포트</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:xncbf@naver.com">xncbf@naver.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="https://www.facebook.com/xncbf">J.H</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
+  </body>
+</html>

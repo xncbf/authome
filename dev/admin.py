@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Macro, MacroFeeLog, MacroLog, UserPage ,User
+from .models import Macro, MacroFeeLog, MacroLog, UserPage
 
 
 # Register your models here.

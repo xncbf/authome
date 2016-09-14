@@ -1,7 +1,5 @@
-from django.forms import widgets
 from rest_framework import serializers
-from .models import MacroFeeLog, MacroLog, Macro, UserPage
-from datetime import datetime, timedelta
+from .models import MacroFeeLog, UserPage
 
 
 class UserPageSerializer(serializers.ModelSerializer):

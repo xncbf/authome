@@ -19,10 +19,9 @@ from dev import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/login/', views.userlogin, name='login'),
-    url(r'^accounts/logout/', views.userlogout, name='logout'),
-    url(r'^accounts/join/', views.userjoin, name='join'),
-    url(r'^mypage/', views.mypage),
+    url(r'^accounts/login/', views.user_login, name='login'),
+    url(r'^accounts/logout/', views.user_logout, name='logout'),
+    url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^dev/', include('dev.urls', namespace='dev'),),
     url(r'^$', views.index, name='index'),
 ]

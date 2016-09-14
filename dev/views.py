@@ -13,7 +13,7 @@ from .serializers import UserPageSerializer
 import datetime
 
 
-class UserPage_list(APIView):
+class UserPageList(APIView):
     """
     코드 조각을 모두 보여주거나 새 코드 조각을 만듭니다.
     """
@@ -23,7 +23,7 @@ class UserPage_list(APIView):
         return Response(serializer.data)
 
 
-class UserPage_detail(APIView):
+class UserPageDetail(APIView):
     """
     코드 조각 조회, 업데이트, 삭제
     """
@@ -52,7 +52,7 @@ class UserPage_detail(APIView):
     #     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def userlogin(request):
+def user_login(request):
     form = LoginForm()
     username = request.POST.get('username', False)
     password = request.POST.get('password', False)
@@ -74,7 +74,12 @@ def userlogin(request):
     })
 
 
-def userjoin(request):
+def user_logout(request):
+    logout(request)
+    return redirect(index)
+
+
+def user_join(request):
     form = UserCreationForm(request.POST)
     if form.is_valid():
         user = form.save()
@@ -83,7 +88,6 @@ def userjoin(request):
     return render(request, 'join.html', {
         'form': form,
     })
-
 
 
 @login_required(login_url='/accounts/login/')
@@ -95,12 +99,7 @@ def dev_index(request):
     """
      dev 인덱스페이지
     """
-    return render(request, 'authome/index.html', {})
-
-
-def userlogout(request):
-    logout(request)
-    return redirect(index)
+    return render(request, 'dev/index.html', {})
 
 
 def today(request):
@@ -109,7 +108,7 @@ def today(request):
     })
 
 
-def mypage(request):
+def my_page(request):
     return render(request, 'authome/mypage.html', {
     })
 

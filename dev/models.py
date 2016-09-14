@@ -50,4 +50,4 @@ class UserPage(models.Model):
         unique_together = (("user", "macro"), )
 
     def __str__(self):
-        return "%s" % (self.user)
+        return "%s" % self.user
