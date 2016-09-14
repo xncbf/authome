@@ -1,13 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from .forms import LoginForm
+from .forms import LoginForm, UserCreationForm
 from .models import UserPage
 from .serializers import UserPageSerializer
 import datetime
@@ -80,13 +77,21 @@ def user_logout(request):
 
 
 def user_join(request):
-    form = UserCreationForm()
+    form = UserCreationForm(request.POST)
     if form.is_valid():
         user = form.save()
-        login(request, user)
+        password = request.POST.get('password1', False)
+        user = authenticate(username=user.username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # 로그인성공
+                return HttpResponseRedirect("/")
+            else:
+                # Return a 'disabled account' error message
+                pass
+
         return redirect(index)
-    else:
-        form = UserCreationForm(initial={'username': request.POST.get('username')})
     return render(request, 'join.html', {
         'form': form,
     })

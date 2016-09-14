@@ -20,7 +20,7 @@ class LoginForm(AuthenticationForm):
 class UserCreateForm(UserCreationForm):
 
     username = forms.CharField(
-        max_length=254,
+        max_length=70,
         widget=forms.TextInput(attrs={
             'class': 'form-control', 'placeholder': 'ID', 'required': 'True',
         })
@@ -31,12 +31,19 @@ class UserCreateForm(UserCreationForm):
         })
     )
 
+    email = forms.EmailField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control', 'placeholder': 'email', 'required': 'True',
+        })
+    )
+
     class Meta:
         model = User
-        fields = ("username", "password1", "password2")
+        fields = ("username", "email", "password1", "password2")
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
         if commit:
             user.save()
         return user
