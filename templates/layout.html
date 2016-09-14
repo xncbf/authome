@@ -1,12 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>AUTHOME</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
+  <script>
+      Materialize.fadeInImage($());
+  </script>
+
+</head>
+<body class="opacity-background">
+  <nav class="grey lighten-5" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="" class="brand-logo"><span class="teal-text">AUTH</span><span class="grey-text">OME</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" class="waves-effect waves-teal teal-text">API 소개</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">API 소개</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 {% block content %}
 {% endblock %}
-</body>
+{% block footer %}
+  <footer class="page-footer grey lighten-5">
+    <div class="container">
+      <div class="row">
+        <div class="col l9 s12">
+          <h5 class="teal-text">AUTH<span class="grey-text">OME</span></h5>
+          <p class="teal-text text-lighten-3">is AWESONE</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="grey-text text-darken-2">버그리포트</h5>
+          <ul id="staggered-test">
+            <li><a class="grey-text text-darken-2" href="mailto:xncbf@naver.com">xncbf@naver.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      <span class="grey-text">Made by</span> <a class="orange-text" href="https://github.com/xncbf">J.H</a>
+      </div>
+    </div>
+  </footer>
+{% endblock %}
+  </body>
 </html>

@@ -1,19 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 
 # Create your models here.
 class Macro(models.Model):
     class Meta:
         verbose_name_plural = '매크로'
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField('매크로명', max_length=50)
     user = models.ForeignKey(User)
     fee = models.IntegerField('가격', default=0)
     auth_date = models.IntegerField('추가일자', default=30)
 
     def __str__(self):
-        return "%s %s" % (self.id, self.title)
+        return "%s" % (self.title)
 
 
 class MacroFeeLog(models.Model):

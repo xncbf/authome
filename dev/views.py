@@ -15,7 +15,7 @@ import datetime
 
 class UserPageList(APIView):
     """
-    코드 조각을 모두 보여주거나 새 코드 조각을 만듭니다.
+    테스트
     """
     def get(self, request, format=None):
         userPage = UserPage.objects.filter(user__username=self.request.user).order_by('-end_date')

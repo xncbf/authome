@@ -12,3 +12,21 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+/*백그라운드 이미지 투명하게만들기*/
+.opacity-background {
+    position: relative;
+    z-index: 1;
+}
+
+.opacity-background:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background: url('/images/test.jpg') center center;*/
+    opacity: .4;
+}

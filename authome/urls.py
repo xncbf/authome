@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from dev import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -23,5 +25,8 @@ urlpatterns = [
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^dev/', include('dev.urls', namespace='dev'),),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^auth/(?P<macro_id>\d+)/$', views.UserPageDetail.as_view()),
+    url(r'^auth/', views.UserPageList.as_view()),
     url(r'^$', views.index, name='index'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
