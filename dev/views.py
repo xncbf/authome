@@ -1,10 +1,11 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .forms import LoginForm, UserCreationForm
+from .forms import LoginForm
 from .models import UserPage
 from .serializers import UserPageSerializer
 import datetime
