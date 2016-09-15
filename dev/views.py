@@ -6,9 +6,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .forms import LoginForm
-from .models import UserPage
+from .models import UserPage, Macro
 from .serializers import UserPageSerializer
-import datetime
 
 
 class UserPageList(APIView):
@@ -98,9 +97,12 @@ def user_join(request):
     })
 
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def index(request):
-    return render(request, 'authome/index.html', {})
+    macro = Macro.objects.all()
+    return render(request, 'authome/index.html', {
+        'macro': macro[0],
+    })
 
 
 def dev_index(request):
@@ -108,12 +110,6 @@ def dev_index(request):
      dev 인덱스페이지
     """
     return render(request, 'dev/index.html', {})
-
-
-def today(request):
-    return render(request, 'today.html', {
-        'datetime': datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-    })
 
 
 def my_page(request):

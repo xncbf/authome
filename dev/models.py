@@ -5,6 +5,9 @@ import uuid
 
 # Create your models here.
 class Macro(models.Model):
+    """
+    등록된 매크로 정보를 저장
+    """
     class Meta:
         verbose_name_plural = '매크로'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -18,6 +21,9 @@ class Macro(models.Model):
 
 
 class MacroFeeLog(models.Model):
+    """
+    유저의 매크로 결제 내역을 저장
+    """
     class Meta:
         verbose_name_plural = '결제로그'
     id = models.AutoField(primary_key=True)
@@ -30,6 +36,9 @@ class MacroFeeLog(models.Model):
 
 
 class MacroLog(models.Model):
+    """
+    매크로 사용 로그를 저장
+    """
     class Meta:
         verbose_name_plural = '사용로그'
     user = models.ForeignKey(User)
@@ -42,6 +51,9 @@ class MacroLog(models.Model):
 
 
 class UserPage(models.Model):
+    """
+    유저의 인증정보를 저장
+    """
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
     end_date = models.DateTimeField('종료일')

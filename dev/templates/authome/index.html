@@ -3,7 +3,30 @@
 
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            여기에 뭔가를 넣을거야 뭘넣지?
+            {{ macro.title }}
+            <br>
+            {{ macro.fee }}원
+            <!-- PayPal Logo -->
+            <table border="0" cellpadding="10" cellspacing="0" align="center">
+                <tr>
+                    <td align="center"></td>
+                </tr>
+                <tr>
+                    <td align="center"><a href="https://www.paypal.com/webapps/webapps/mpp/paypal-popup"
+                                          title="How PayPal Works"
+                                          onclick="javascript:window.open('https://www.paypal.com/webapps/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
+                            src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-large.png"
+                            alt="Buy now with PayPal"/></a></td>
+                </tr>
+            </table>
+            <!-- PayPal Logo -->
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="CZRDXKN8QBP9N">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0"
+                       name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
 
         </div>
     </div>
