@@ -35,7 +35,7 @@
                     <div class="userView">
                         <img class="background" src="/images/test.jpg">
                         {% if user.is_authenticated %}
-                            <a href="!user"><img class="circle" src="/images/test.jpg"></a>
+                            <a href=""><img class="circle" src="/images/test.jpg"></a>
                         {% else %}
                             <a href="/accounts/login"><img class="circle" src="/images/test.jpg"></a>
                         {% endif %}
@@ -47,16 +47,14 @@
                         {% endif %}
                     </div>
                 </li>
-                <li><a href="/dev/"><i class="material-icons">vpn_key</i>API 소개</a></li>
-                <li><a href="#!"><i class="material-icons">perm_identity</i>마이페이지</a></li>
+                <li><a class="waves-effect" href="/dev/"><i class="material-icons">vpn_key</i>API 소개</a></li>
+                <li><a class="waves-effect" href="#!"><i class="material-icons">perm_identity</i>마이페이지</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
                 {% if user.is_authenticated %}
                     <li><a href="/accounts/logout" class="waves-effect">로그아웃</a></li>
                 {% endif %}
-                <li><a class="subheader">Subheader</a></li>
-                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>
         </div>
