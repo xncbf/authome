@@ -30,3 +30,17 @@
     /*background: url('/images/test.jpg') center center;*/
     opacity: .4;
 }
+
+#nav-mobile > li > a > i{
+    height: 45px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}

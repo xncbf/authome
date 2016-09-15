@@ -2,62 +2,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>AUTHOME</title>
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>AUTHOME</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{% static 'js/materialize.js' %}"></script>
-  <script src="{% static 'js/init.js' %}"></script>
-
-  <script>
-      Materialize.fadeInImage($());
-  </script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
 
 </head>
 <body class="opacity-background">
-  <nav class="grey lighten-5" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><span class="teal-text">AUTH</span><span class="grey-text">OME</span></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/dev/" class="waves-effect waves-teal teal-text">API 소개</a></li>
-        <li><a href="#" class="waves-effect waves-teal teal-text">마이페이지</a></li>
-      </ul>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="/dev/" class="teal-text">API 소개</a></li>
-        <li><a href="#" class="teal-text">마이페이지</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>
-    </div>
-  </nav>
-{% block content %}
-{% endblock %}
+<header>
+    <nav class="grey lighten-5" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><span class="teal-text">AUTH</span><span
+                class="grey-text">OME</span></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dev/" class="waves-effect waves-teal teal-text">API 소개</a></li>
+                <li><a href="#" class="waves-effect waves-teal teal-text">마이페이지</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/accounts/logout" class="waves-effect waves-teal teal-text">로그아웃</a></li>
+                {% else %}
+                    <li><a href="/accounts/login" class="waves-effect waves-teal teal-text">로그인</a></li>
+                {% endif %}
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li>
+                    <div class="userView">
+                        <img class="background" src="/images/test.jpg">
+                        {% if user.is_authenticated %}
+                            <a href="!user"><img class="circle" src="/images/test.jpg"></a>
+                        {% else %}
+                            <a href="/accounts/login"><img class="circle" src="/images/test.jpg"></a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <a href="#!name"><span class="white-text name">{{ user.get_username }}</span></a>
+                            <a href="#!email"><span class="white-text email">xncbf@gmail.com</span></a>
+                        {% else %}
+                            <p><a href="/accounts/login" class="white-text">로그인해주세요</a></p>
+                        {% endif %}
+                    </div>
+                </li>
+                <li><a href="/dev/"><i class="material-icons">vpn_key</i>API 소개</a></li>
+                <li><a href="#!"><i class="material-icons">perm_identity</i>마이페이지</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                {% if user.is_authenticated %}
+                    <li><a href="/accounts/logout" class="waves-effect">로그아웃</a></li>
+                {% endif %}
+                <li><a class="subheader">Subheader</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>
+        </div>
+    </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 {% block footer %}
-  <footer class="page-footer grey lighten-5">
-    <div class="container">
-      <div class="row">
-        <div class="col l9 s12">
-          <h5 class="teal-text">AUTH<span class="grey-text">OME</span></h5>
-          <p class="teal-text text-lighten-3">is AWESONE</p>
+    <footer class="page-footer grey lighten-5">
+        <div class="container">
+            <div class="row">
+                <div class="col l9 s12">
+                    <h5 class="teal-text">AUTH<span class="grey-text">OME</span></h5>
+                    <p class="teal-text text-lighten-3">is AWESOME</p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="grey-text text-darken-2">버그리포트</h5>
+                    <ul id="staggered-test">
+                        <li><a class="grey-text text-darken-2" href="mailto:xncbf@naver.com">xncbf@naver.com</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col l3 s12">
-          <h5 class="grey-text text-darken-2">버그리포트</h5>
-          <ul id="staggered-test">
-            <li><a class="grey-text text-darken-2" href="mailto:xncbf@naver.com">xncbf@naver.com</a></li>
-          </ul>
+        <div class="footer-copyright">
+            <div class="container">
+                <span class="grey-text">Made by</span> <a class="orange-text" href="https://github.com/xncbf">J.H</a>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      <span class="grey-text">Made by</span> <a class="orange-text" href="https://github.com/xncbf">J.H</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
 {% endblock %}
-  </body>
+</body>
 </html>
