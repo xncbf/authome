@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from rest_framework.views import APIView
@@ -8,6 +10,8 @@ from rest_framework.response import Response
 from .forms import LoginForm
 from .models import UserPage, Macro
 from .serializers import UserPageSerializer
+from django.views.generic.list import ListView
+
 
 
 class UserPageList(APIView):
@@ -73,7 +77,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect(index)
+    return HttpResponseRedirect("/")
 
 
 def user_join(request):
@@ -91,18 +95,24 @@ def user_join(request):
                 # Return a 'disabled account' error message
                 pass
 
-        return redirect(index)
+        return HttpResponseRedirect("/")
     return render(request, 'join.html', {
         'form': form,
     })
 
 
-#@login_required(login_url='/accounts/login/')
-def index(request):
-    macro = Macro.objects.all()
-    return render(request, 'authome/index.html', {
-        'macro': macro[0],
-    })
+class Index(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    #redirect_field_name = 'index'
+    model = Macro
+    template_name = 'authome/index.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(Index, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['macro_list'] = Macro.objects.filter(user=self.request.user)
+        return context
 
 
 def dev_index(request):
@@ -116,3 +126,15 @@ def my_page(request):
     return render(request, 'authome/mypage.html', {
     })
 
+
+@login_required(login_url='/accounts/login/')
+def macro_register(request):
+    macro_name = request.POST.get('macro_name', False)
+    macro_detail = request.POST.get('macro_detail', False)
+    if macro_name and macro_detail:
+        macro = Macro(title=macro_name, detail=macro_detail, user=request.user)
+        macro.save()
+        return HttpResponseRedirect("/")
+    return render(request, 'authome/macro_register.html', {
+
+    })

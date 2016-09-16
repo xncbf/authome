@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/(?P<macro_id>\d+)/$', views.UserPageDetail.as_view()),
     url(r'^auth/', views.UserPageList.as_view()),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.Index.as_view(), name='index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
