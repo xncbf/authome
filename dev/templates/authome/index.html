@@ -2,15 +2,22 @@
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            <ul class="collapsible popout" data-collapsible="accordion">
+            <ul class="collapsible" data-collapsible="accordion">
                 {% for macro in macro_list %}
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ macro.title }}</div>
+                        <div class="collapsible-header">
+                            <span><i class="material-icons">filter_drama</i>{{ macro.title }}</span>
+                            <span class="grey-text text-lighten-1 tooltipped"
+                                  data-position="right" data-tooltip="copy" style="float: right">
+                                {{ macro.id }}
+                            </span>
+                        </div>
                         <div class="collapsible-body"><p>{{ macro.detail }}</p></div>
                     </li>
                 {% endfor %}
             </ul>
-            <a href="/dev/macro" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>매크로 등록</a>
+            <a href="{% url 'macro_register' %}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>매크로
+                등록</a>
         </div>
     </div>
 {% endblock %}
