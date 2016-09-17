@@ -54,7 +54,7 @@
                     <div class="divider"></div>
                 </li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url logout %}" class="waves-effect">로그아웃</a></li>
+                    <li><a href="{% url 'logout' %}" class="waves-effect">로그아웃</a></li>
                 {% endif %}
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>

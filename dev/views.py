@@ -119,7 +119,7 @@ def intro(request):
     """
      dev 인덱스페이지
     """
-    return render(request, 'dev/index.html', {})
+    return render(request, 'dev/intro.html', {})
 
 
 def my_page(request):
