@@ -115,7 +115,7 @@ class Index(LoginRequiredMixin, ListView):
         return context
 
 
-def dev_index(request):
+def intro(request):
     """
      dev 인덱스페이지
     """
@@ -134,7 +134,23 @@ def macro_register(request):
     if macro_name and macro_detail:
         macro = Macro(title=macro_name, detail=macro_detail, user=request.user)
         macro.save()
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/dev/")
     return render(request, 'authome/macro_register.html', {
 
+    })
+
+
+@login_required(login_url='/accounts/login/')
+def macro_manage(request, macro_id):
+    macro = Macro.objects.get(id=macro_id)
+    return render(request, 'authome/macro_manager.html', {
+        'macro': macro,
+    })
+
+
+@login_required(login_url='/accounts/login/')
+def auth_register(request, macro_id):
+    macro = Macro.objects.get(id=macro_id)
+    return render(request, 'authome/auth_register.html', {
+        'macro': macro,
     })

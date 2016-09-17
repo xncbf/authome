@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
+            <span id="macro_uuid{{ forloop.counter }}" class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+                  data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
+                  onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">
+                                {{ macro.id }}
+                            </span>
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th data-field="id">아이디</th>
+                    <th data-field="name">결제일</th>
+                    <th data-field="price">종료일</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>$7.00</td>
+                </tr>
+                </tbody>
+            </table>
+        <br>
+            <a href="{% url 'dev:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn tooltipped" data-position="left" data-tooltip="결제 기능 연동 전까지는<br> 수동입니다ㅜㅜ" style="float: right">
+                <i class="material-icons left">cloud</i>유저 등록
+            </a>
+        </div>
+    </div>
+{% endblock %}
