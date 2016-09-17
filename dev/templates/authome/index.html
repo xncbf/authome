@@ -28,10 +28,32 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <a href="{% url 'dev:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
+                    <i class="material-icons left">cloud</i>매크로 등록
+                </a>
+            {% else %}
+                {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
+{#                <!-- Modal Structure -->#}
+{#                <div id="modal1" class="modal modal-fixed-footer">#}
+{#                    <div class="modal-content">#}
+{#                        <h4><span class="teal-text">AUTH</span><span class="grey-text">OME</span> 매크로 등록</h4>#}
+{#                        <p></p>#}
+{#                    </div>#}
+{#                    <div class="modal-footer">#}
+{#                        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">거절</a>#}
+{#                        <a onclick="window.location='/accounts/join'"#}
+{#                           class="modal-action modal-close waves-effect waves-green btn-flat ">동의</a>#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="row">
+                    <div style="text-align: center; width:100%">
+                        <br><br><br>
+                        <a href="{% url 'dev:macro_register' %}" class="waves-effect waves-light btn-large">
+                            <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
+                        </a>
+                    </div>
+                </div>
             {% endif %}
-            <a href="{% url 'dev:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
-                <i class="material-icons left">cloud</i>매크로 등록
-            </a>
         </div>
     </div>
 {% endblock %}
