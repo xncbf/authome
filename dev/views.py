@@ -14,6 +14,7 @@ from django.views.generic.list import ListView
 
 
 
+
 class UserPageList(APIView):
     """
     테스트
@@ -150,6 +151,20 @@ def macro_manage(request, macro_id):
 
 @login_required(login_url='/accounts/login/')
 def auth_register(request, macro_id):
+    user_id = request.POST.get('user_id', False)
+    end_date = request.POST.get('end_date', False)
+    if user_id and end_date:
+        try:
+            user = User.objects.get(username=user_id)
+            macro = Macro.objects.get(id=macro_id)
+            if user:
+                user_page = UserPage(user=user, macro=macro, end_date=end_date)
+                user_page.save()
+                # return HttpResponseRedirect("/dev/macro_manager/" % macro_id)
+                return redirect(macro_manage(request, macro_id))
+        except:
+            pass
+
     macro = Macro.objects.get(id=macro_id)
     return render(request, 'authome/auth_register.html', {
         'macro': macro,
