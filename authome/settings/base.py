@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from unipath import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = Path(__file__).ancestor(3)
 
 
 # Quick-start development settings - unsuitable for production
@@ -75,7 +76,7 @@ SUBDOMAIN_URLCONFS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
+        'DIRS': [BASE_DIR.child('templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
