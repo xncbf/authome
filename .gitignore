@@ -19,5 +19,4 @@ build/
 tests/report/
 .idea/
 db.sqlite3
-board/migrations/
 authome/settings/local.py
