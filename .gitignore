@@ -20,3 +20,5 @@ tests/report/
 .idea/
 db.sqlite3
 board/migrations/
+settings/local.py
+authome/settings/local.py
