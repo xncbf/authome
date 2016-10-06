@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -21,8 +22,8 @@
 <header>
     <nav class="grey lighten-5" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="{% url 'intro' %}" class="brand-logo"><span class="teal-text">AUTH</span><span
-                class="grey-text">OME</span></a>
-            <ul class="right hide-on-med-and-down">
+                class="grey-text">O<span class="domain">ME</span></span></a>
+            <ul class="right hide-on-med-and-down animated fadeInDown">
                 <li><a href="{% url 'intro' %}" class="waves-effect waves-teal teal-text">소개</a></li>
                 <li><a href="{% url 'dev:index' %}" class="waves-effect waves-teal teal-text">마이페이지</a></li>
                 {% if user.is_authenticated %}
