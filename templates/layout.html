@@ -21,9 +21,9 @@
 <body class="opacity-background">
 <header>
     <nav class="grey lighten-5" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="{% url 'intro' %}" class="brand-logo"><span class="teal-text">AUTH</span><span
+        <div class="nav-wrapper container"><a id="logo-container" href="{% url 'index' %}" class="brand-logo"><span class="teal-text">AUTH</span><span
                 class="grey-text">O<span class="domain">ME</span></span></a>
-            <ul class="right hide-on-med-and-down animated fadeInDown">
+            <ul class="right hide-on-med-and-down animated fadeIn">
                 <li><a href="{% url 'intro' %}" class="waves-effect waves-teal teal-text">소개</a></li>
                 <li><a href="{% url 'dev:index' %}" class="waves-effect waves-teal teal-text">마이페이지</a></li>
                 {% if user.is_authenticated %}

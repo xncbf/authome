@@ -8,27 +8,30 @@
                   onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">
                                 {{ macro.id }}
                             </span>
-            <table class="bordered">
+            <table class="bordered highlight">
                 <thead>
                 <tr>
-                    <th data-field="id">아이디</th>
-                    <th data-field="name">결제일</th>
-                    <th data-field="price">종료일</th>
+                    <th>아이디</th>
+                    <th>결제일</th>
+                    <th>종료일</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
                         <td>{{ user.user }}</td>
-                        <td>{{ user.macro }}</td>
+                        <td>{{ user.created }}</td>
                         <td>{{ user.end_date }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">검색결과가 없습니다</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
             <br>
-            <a href="{% url 'dev:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn tooltipped"
-               data-position="left" data-tooltip="결제 기능 연동 전까지는<br> 수동입니다ㅜㅜ" style="float: right">
+            <a href="{% url 'dev:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
                 <i class="material-icons left">cloud</i>유저 등록
             </a>
         </div>

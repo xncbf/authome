@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load humanize %}
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -17,12 +18,12 @@
                                       onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">
                                 {{ macro.id }}
                             </span>
-
                             </div>
                             <div class="collapsible-body">
                                 <p>
-                                    {{ macro.detail|linebreaksbr }}
-
+                                    <span>기간: {{ macro.auth_date }}일</span><br>
+                                    <span>가격: {{ macro.fee|intcomma }}원</span><br>
+                                    <span>설명: {{ macro.detail|linebreaksbr }}</span>
                                 </p>
                             </div>
                         </li>
@@ -33,18 +34,6 @@
                 </a>
             {% else %}
                 {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
-{#                <!-- Modal Structure -->#}
-{#                <div id="modal1" class="modal modal-fixed-footer">#}
-{#                    <div class="modal-content">#}
-{#                        <h4><span class="teal-text">AUTH</span><span class="grey-text">OME</span> 매크로 등록</h4>#}
-{#                        <p></p>#}
-{#                    </div>#}
-{#                    <div class="modal-footer">#}
-{#                        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">거절</a>#}
-{#                        <a onclick="window.location='/accounts/join'"#}
-{#                           class="modal-action modal-close waves-effect waves-green btn-flat ">동의</a>#}
-{#                    </div>#}
-{#                </div>#}
                 <div class="row">
                     <div style="text-align: center; width:100%">
                         <br><br><br>

@@ -13,11 +13,9 @@ from .serializers import UserPageSerializer
 from django.views.generic.list import ListView
 
 
-
-
 class UserPageList(APIView):
     """
-    테스트
+    여기에 설명을 쓸수있다 api 문서다
     """
     def get(self, request, format=None):
         userPage = UserPage.objects.filter(user__username=self.request.user).order_by('-end_date')
@@ -104,7 +102,7 @@ def user_join(request):
 
 class Index(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
-    #redirect_field_name = 'index'
+    # redirect_field_name = 'index'
     model = Macro
     template_name = 'authome/index.html'
 
@@ -123,17 +121,20 @@ def intro(request):
     return render(request, 'dev/intro.html', {})
 
 
-def my_page(request):
-    return render(request, 'authome/mypage.html', {
-    })
-
-
 @login_required(login_url='/accounts/login/')
 def macro_register(request):
     macro_name = request.POST.get('macro_name', False)
     macro_detail = request.POST.get('macro_detail', False)
+    macro_payment = request.POST.get('macro_payment', False)
+    macro_auth_date = request.POST.get('macro_auth_date', False)
     if macro_name and macro_detail:
-        macro = Macro(title=macro_name, detail=macro_detail, user=request.user)
+        macro = Macro(
+            title=macro_name,
+            detail=macro_detail,
+            fee=macro_payment,
+            user=request.user,
+            auth_date=macro_auth_date
+        )
         macro.save()
         return HttpResponseRedirect("/dev/")
     return render(request, 'authome/macro_register.html', {
@@ -166,10 +167,9 @@ def auth_register(request, macro_id):
             if user:
                 user_page = UserPage(user=user, macro=macro, end_date=end_date)
                 user_page.save()
-                # return HttpResponseRedirect("/dev/macro_manager/" % macro_id)
-                return redirect(macro_manage(request, macro_id))
-        except:
-            pass
+                return HttpResponseRedirect("/dev/manager/{0}/".format(macro_id))
+        except Exception as e:
+            print(e)
 
     macro = Macro.objects.get(id=macro_id)
     return render(request, 'authome/auth_register.html', {
