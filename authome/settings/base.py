@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.humanize',
-    'dev',
+    'mypage',
     'rest_framework',
     'subdomains',
 ]
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'authome.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
-    'api': 'dev.urls',
+    'api': 'mypage.urls',
 }
 
 TEMPLATES = [

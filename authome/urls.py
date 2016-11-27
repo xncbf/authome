@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from dev import views
+from mypage import views
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^accounts/login/', views.user_login, name='login'),
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
+    url(r'^mypage/', include('mypage.urls', namespace='mypage'), ),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^auth/(?P<macro_id>[0-9a-z-]+)/$', views.UserPageDetail.as_view()),
     url(r'^auth/', views.UserPageList.as_view()),

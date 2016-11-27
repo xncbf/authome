@@ -100,15 +100,15 @@ def user_join(request):
     })
 
 
-class Index(LoginRequiredMixin, ListView):
+class Mypage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     # redirect_field_name = 'index'
     model = Macro
-    template_name = 'authome/index.html'
+    template_name = 'authome/mypage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(Index, self).get_context_data(**kwargs)
+        context = super(Mypage, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['macro_list'] = Macro.objects.filter(user=self.request.user)
         return context
@@ -116,9 +116,9 @@ class Index(LoginRequiredMixin, ListView):
 
 def intro(request):
     """
-     dev 인덱스페이지
+     mypage 인덱스페이지
     """
-    return render(request, 'dev/intro.html', {})
+    return render(request, 'mypage/intro.html', {})
 
 
 @login_required(login_url='/accounts/login/')
@@ -136,7 +136,7 @@ def macro_register(request):
             auth_date=macro_auth_date
         )
         macro.save()
-        return HttpResponseRedirect("/dev/")
+        return HttpResponseRedirect("/mypage/")
     return render(request, 'authome/macro_register.html', {
 
     })
@@ -167,9 +167,11 @@ def auth_register(request, macro_id):
             if user:
                 user_page = UserPage(user=user, macro=macro, end_date=end_date)
                 user_page.save()
-                return HttpResponseRedirect("/dev/manager/{0}/".format(macro_id))
-        except Exception as e:
-            print(e)
+                # return HttpResponseRedirect("/mypage/macro_manager/" % macro_id)
+                return redirect(MacroManage(request, macro_id))
+        except:
+            pass
+
 
     macro = Macro.objects.get(id=macro_id)
     return render(request, 'authome/auth_register.html', {
