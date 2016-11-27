@@ -118,9 +118,9 @@ class Index(LoginRequiredMixin, ListView):
 
 def intro(request):
     """
-     dev 인덱스페이지
+     mypage 인덱스페이지
     """
-    return render(request, 'dev/intro.html', {})
+    return render(request, 'mypage/intro.html', {})
 
 
 def my_page(request):
@@ -135,7 +135,7 @@ def macro_register(request):
     if macro_name and macro_detail:
         macro = Macro(title=macro_name, detail=macro_detail, user=request.user)
         macro.save()
-        return HttpResponseRedirect("/dev/")
+        return HttpResponseRedirect("/mypage/")
     return render(request, 'authome/macro_register.html', {
 
     })
@@ -166,7 +166,7 @@ def auth_register(request, macro_id):
             if user:
                 user_page = UserPage(user=user, macro=macro, end_date=end_date)
                 user_page.save()
-                # return HttpResponseRedirect("/dev/macro_manager/" % macro_id)
+                # return HttpResponseRedirect("/mypage/macro_manager/" % macro_id)
                 return redirect(macro_manage(request, macro_id))
         except:
             pass
