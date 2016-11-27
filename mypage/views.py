@@ -102,15 +102,15 @@ def user_join(request):
     })
 
 
-class Index(LoginRequiredMixin, ListView):
+class Mypage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     #redirect_field_name = 'index'
     model = Macro
-    template_name = 'authome/index.html'
+    template_name = 'authome/mypage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(Index, self).get_context_data(**kwargs)
+        context = super(Mypage, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['macro_list'] = Macro.objects.filter(user=self.request.user)
         return context
