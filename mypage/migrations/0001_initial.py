@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mypage.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('ip', models.GenericIPAddressField()),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mypage.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('end_date', models.DateTimeField(verbose_name='종료일')),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mypage.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
