@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MacroFeeLog, UserPage
+from mypage.models import MacroFeeLog, UserPage
 
 
 class UserPageSerializer(serializers.ModelSerializer):

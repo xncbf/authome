@@ -71,7 +71,7 @@ ROOT_URLCONF = 'authome.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
-    'api': 'mypage.urls',
+    'api': 'api.urls',
 }
 
 TEMPLATES = [

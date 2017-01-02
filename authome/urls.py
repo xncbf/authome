@@ -25,8 +25,5 @@ urlpatterns = [
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^mypage/', include('mypage.urls', namespace='mypage'), ),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^auth/(?P<macro_id>[0-9a-z-]+)/$', views.UserPageDetail.as_view()),
-    url(r'^auth/', views.UserPageList.as_view()),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
