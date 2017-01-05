@@ -18,7 +18,10 @@ def user_login(request):
         if user.is_active:
             login(request, user)
             # 로그인성공
-            return HttpResponseRedirect(request.POST.get('next'))
+            if request.POST.get('next'):
+                return HttpResponseRedirect(request.POST.get('next'))
+            else:
+                return HttpResponseRedirect('/')
         else:
             # Return a 'disabled account' error message
             pass
@@ -134,3 +137,6 @@ def auth_register(request, macro_id):
     return render(request, 'authome/auth_register.html', {
         'macro': macro,
     })
+
+def tutorial(request):
+    return render(request, 'mypage/tutorial.html', {})

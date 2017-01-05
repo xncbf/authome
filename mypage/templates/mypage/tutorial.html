@@ -1,0 +1,49 @@
+{% extends 'tutorial_layout.html' %}
+{% block left_nav %}
+    <li class="bold active"><a href="{% url 'tutorial' %}" class="waves-effect waves-teal">Tutorial</a></li>
+{% endblock %}
+{% block title %}튜토리얼{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m9 l10">
+                <div id="introduction" class="section scrollspy">
+
+                <h1>테스트</h1>
+                    </div>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+                <div id="structure" class="section scrollspy">
+                테스트
+                    </div>
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                <div id="initialization" class="section scrollspy">
+                테스트
+                    </div>
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                <div id="options" class="section scrollspy">
+                테스트
+                    </div>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            </div>
+            <!-- Table of Contents -->
+            <div class="col hide-on-small-only m3 l2">
+                <div class="toc-wrapper">
+                    <ul class="section table-of-contents" style="border-left:#26a69a">
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#structure">Structure</a></li>
+                        <li><a href="#initialization">Intialization</a></li>
+                        <li><a href="#options">Options</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

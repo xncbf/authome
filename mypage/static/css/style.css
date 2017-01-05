@@ -31,6 +31,14 @@
     opacity: .4;
 }
 
+.table-of-contents a:hover{
+    border-left: 1px solid #26a69a !important;
+}
+
+.table-of-contents a.active{
+    border-left: 2px solid #26a69a !important;
+}
+
 #nav-mobile > li > a > i{
     height: 45px;
 }
