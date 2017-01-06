@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 SECRET_KEY = '1tcc-!d(x+=nj9@60dzuqo7$$(4v632-p=m%6y1ee!o!9fiepx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mypage',
     'rest_framework',
     'subdomains',
+    'api',
 ]
 
 REST_FRAMEWORK = {
@@ -67,7 +68,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 ROOT_URLCONF = 'authome.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
@@ -93,7 +94,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.media',
             ],
         },
     },
