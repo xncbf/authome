@@ -7,7 +7,7 @@
     <title>AUTHOME</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-{#    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>#}
+    {#    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>#}
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="http://materializecss.com/css/ghpages-materialize.css" type="text/css" rel="stylesheet"/>
@@ -18,7 +18,7 @@
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
     <script>
-        $(function(){
+        $(function () {
             $('.scrollspy').scrollSpy({
                 scrollOffset: 250
             });
@@ -28,26 +28,25 @@
                 offset: 200
             });
             $(".button-collapse").sideNav();
-          });
+        });
     </script>
 </head>
 <body class="opacity-background">
 <header>
-    <div class="container">
-        <a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
-            <i class="material-icons">menu</i>
-        </a>
-    </div>
-    <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
-        <li class="logo"><a id="logo-container" href="{% url 'intro' %}" class="brand-logo"><h4><span class="teal-text">AUTH</span><span
-                class="grey-text">O<span class="domain">ME</span></span></h4></a></li>
+      <nav class="top-nav teal lighten-1">
+        <div class="container">
+          <div class="nav-wrapper"><a class="page-title">{% block title %}{% endblock %}</a></div>
+        </div>
+      </nav>
+      <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+      <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
+        <li class="logo">
+            <a id="logo-container" href="{% url 'intro' %}" class="brand-logo">
+                <h4><span class="teal-text">AUTH</span><span class="grey-text">OME</span></h4>
+            </a>
+        </li>
         {% block left_nav %}{% endblock %}
     </ul>
-<nav class="top-nav teal lighten-1">
-    <div class="container">
-      <div class="nav-wrapper"><a class="page-title">{% block title %}{% endblock %}</a></div>
-    </div>
-  </nav>
 </header>
 <main>
     {% block content %}{% endblock %}
