@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mypage',
     'rest_framework',
     'subdomains',
+    'api',
 ]
 
 REST_FRAMEWORK = {
