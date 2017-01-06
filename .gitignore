@@ -9,14 +9,7 @@
 *.xml
 __pycache__
 MANIFEST
-dist/
-docs/_build/
-docs/locale/
-node_modules/
-tests/coverage_html/
-tests/.coverage
-build/
-tests/report/
 .idea/
 db.sqlite3
-authome/settings/local.py
+wsgi.py
+settings_local.py
