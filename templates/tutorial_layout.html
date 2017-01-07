@@ -33,13 +33,15 @@
 </head>
 <body class="opacity-background">
 <header>
-      <nav class="top-nav teal lighten-1">
+    <nav class="top-nav teal lighten-1">
         <div class="container">
-          <div class="nav-wrapper"><a class="page-title">{% block title %}{% endblock %}</a></div>
+            <div class="nav-wrapper"><a class="page-title">{% block title %}{% endblock %}</a></div>
         </div>
-      </nav>
-      <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
-      <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
+    </nav>
+    <div class="container"><a href="#" data-activates="nav-mobile"
+                              class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+    </div>
+    <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
         <li class="logo">
             <a id="logo-container" href="{% url 'intro' %}" class="brand-logo">
                 <h4><span class="teal-text">AUTH</span><span class="grey-text">OME</span></h4>
