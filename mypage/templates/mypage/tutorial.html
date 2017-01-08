@@ -1,18 +1,22 @@
 {% extends 'tutorial_layout.html' %}
+{% load static %}
 {% block left_nav %}
     <li class="bold"><a href="{% url 'introduction' %}" class="waves-effect waves-teal">Authome 소개</a></li>
     <li class="bold active"><a href="{% url 'tutorial' %}" class="waves-effect waves-teal">처음 시작하기</a></li>
 {% endblock %}
-{% block title %}Quick Start{% endblock %}
+{% block title %}처음 시작하기{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col s12 m9 l10">
                 <div id="starting" class="section scrollspy">
-                    <h2 class="header teal-text">시작하기</h2>
-                    <p>다음은 빠르게 따라할 수 있는 예제입니다</p>
-                    <h5>오토핫키</h5>
-
+                    <p>
+                        <h2 class="header teal-text">매크로 등록</h2>
+                        메인페이지에서 우측 상단의 관리페이지에 접속합니다.<br><br>
+                        <img class="materialboxed responsive-img z-depth-5" src="{% static 'images/tutorial1.png' %}" >
+                        <p>다음은 빠르게 따라할 수 있는 예제입니다</p>
+                        <h5>오토핫키</h5>
+                    </p>
                 </div>
                 <div id="structure" class="section scrollspy">
 

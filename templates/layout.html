@@ -25,7 +25,7 @@
                 class="grey-text">O<span class="domain">ME</span></span></a>
             <ul class="right hide-on-med-and-down animated fadeIn">
 {#                <li><a href="{% url 'intro' %}" class="waves-effect waves-teal teal-text">소개</a></li>#}
-                <li><a href="{% url 'mypage:mypage' %}" class="waves-effect waves-teal teal-text">마이페이지</a></li>
+                <li><a href="{% url 'mypage:mypage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}
@@ -49,7 +49,7 @@
                         {% endif %}
                     </div>
                 </li>
-                <li><a class="waves-effect" href="{% url 'mypage:mypage' %}"><i class="material-icons">perm_identity</i>마이페이지</a></li>
+                <li><a class="waves-effect" href="{% url 'mypage:mypage' %}"><i class="material-icons">perm_identity</i>관리페이지</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
