@@ -53,5 +53,37 @@
 <main>
     {% block content %}{% endblock %}
 </main>
+<footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col l8 s12">
+            <h5 class="white-text">Authome 성장 돕기</h5>
+            <p class="grey-text text-lighten-4">우리는 Authome 사용을 즐기기를 희망합니다. Authome이 도움을 주었고 팀을 지원하기 원한다면 기부금을 보내주세요. 어떤 금액이라도 이 프로젝트를 지원하고 개발을 계속하는 데 도움이 되며 크게 감사하겠습니다.</p>
+
+          <form id="paypal-donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<button class="btn waves-effect waves-light teal lighten-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">기부하기</button>
+</form>
+
+
+          </div>
+{#          <div class="col l4 s12">#}
+{#              <h5 class="white-text">토론에 참여하기</h5>#}
+{#              <p class="grey-text text-lighten-4">We have a Gitter chat room set up where you can talk directly with us. Come in and discuss new features, future goals, general problems or questions, or anything else you can think of.</p>#}
+{#              <a class="btn waves-effect waves-light teal lighten-3" target="_blank" href="https://gitter.im/Dogfalo/materialize">채팅하기</a>#}
+{#          </div>#}
+            <div class="col l4 s12" style="overflow: hidden;">
+                <h5 class="white-text">접촉하기</h5>
+                <iframe src="http://ghbtns.com/github-btn.html?user=xncbf&amp;repo=authome&amp;type=star&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+                <iframe src="https://www.facebook.com/plugins/follow.php?href=https%3A%2F%2Fwww.facebook.com%2Fxncbf&width=450&height=35&layout=standard&size=large&show_faces=false&appId=836739613126218" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">© 2017 Authome, All rights reserved. <a class="grey-text text-lighten-4 right" href="https://github.com/xncbf/authome/blob/master/LICENSE">MIT License</a> </div>
+      </div>
+    </footer>
 </body>
 </html>
