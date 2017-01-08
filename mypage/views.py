@@ -51,6 +51,7 @@ def user_join(request):
                 # Return a 'disabled account' error message
                 pass
         else:
+            pass
         return HttpResponseRedirect("/")
     return render(request, 'registration/join.html', {
         'form': form,
