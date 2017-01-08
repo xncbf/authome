@@ -138,5 +138,10 @@ def auth_register(request, macro_id):
         'macro': macro,
     })
 
+
 def tutorial(request):
     return render(request, 'mypage/tutorial.html', {})
+
+
+def introduction(request):
+    return render(request, 'mypage/introduction.html', {})
