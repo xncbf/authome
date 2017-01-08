@@ -12,6 +12,9 @@
                                 <a href="{% url 'mypage:macro_manager' macro_id=macro.id %}"
                                    class="waves-effect waves-light btn-block"
                                    style="float: right; text-align: center"><i class="material-icons"></i>관리</a>
+                                <a href="{% url 'mypage:macro_modify' macro_id=macro.id %}"
+                                   class="waves-effect waves-light btn-block"
+                                   style="float: right; text-align: center"><i class="material-icons"></i>수정</a>
                                 <span id="macro_uuid{{ forloop.counter }}"
                                       class="grey-text text-lighten-1 tooltipped hide-on-small-only"
                                       data-position="left" data-tooltip="click to copy" style="float: right"
@@ -21,9 +24,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <p>
-                                    <span>기간: {{ macro.auth_date }}일</span><br>
-                                    <span>가격: {{ macro.fee|intcomma }}원</span><br>
-                                    <span>설명: {{ macro.detail|linebreaksbr }}</span>
+                                    <span>{{ macro.detail|linebreaksbr }}</span>
                                 </p>
                             </div>
                         </li>

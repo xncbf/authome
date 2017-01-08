@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.views.generic.list import ListView
+from django.views.generic.list import ListView, View
 from .forms import LoginForm
 from .models import UserPage, Macro
 
@@ -81,25 +81,48 @@ def intro(request):
     return render(request, 'mypage/intro.html', {})
 
 
-@login_required(login_url='/accounts/login/')
-def macro_register(request):
-    macro_name = request.POST.get('macro_name', False)
-    macro_detail = request.POST.get('macro_detail', False)
-    macro_payment = request.POST.get('macro_payment', False)
-    macro_auth_date = request.POST.get('macro_auth_date', False)
-    if macro_name and macro_detail:
+class MacroRegister(View):
+    login_url = '/accounts/login/'
+    model = Macro
+    template_name = 'authome/macro_register.html'
+
+    def post(self, *args, **kwargs):
+        macro_name = self.request.POST.get('macro_name', False)
+        macro_detail = self.request.POST.get('macro_detail', False)
         macro = Macro(
             title=macro_name,
             detail=macro_detail,
-            fee=macro_payment,
-            user=request.user,
-            auth_date=macro_auth_date
+            user=self.request.user
         )
         macro.save()
         return HttpResponseRedirect("/mypage/")
-    return render(request, 'authome/macro_register.html', {
 
-    })
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name, {
+
+        })
+
+class MacroModify(View):
+    login_url = '/accounts/login/'
+    model = Macro
+    template_name = 'authome/macro_modify.html'
+
+    def post(self, *args, **kwargs):
+        macro_name = self.request.POST.get('macro_name', False)
+        macro_detail = self.request.POST.get('macro_detail', False)
+        self.model.objects.filter(
+            id=kwargs['macro_id'],
+        ).update(
+            title=macro_name,
+            detail=macro_detail,
+        )
+        return HttpResponseRedirect("/mypage/")
+
+    def get(self, *args, **kwargs):
+        macro = Macro.objects.get(id=kwargs['macro_id'])
+        return render(self.request, self.template_name, {
+            'macro': macro,
+        })
 
 
 class MacroManage(LoginRequiredMixin, ListView):

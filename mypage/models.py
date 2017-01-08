@@ -26,8 +26,8 @@ class Macro(TimeStampedModel):
     title = models.CharField('매크로명', max_length=50)
     detail = models.TextField()
     user = models.ForeignKey(User)
-    fee = models.IntegerField('가격', default=0)
-    auth_date = models.IntegerField('추가일자', default=30)
+    # fee = models.IntegerField('가격', default=0)
+    # auth_date = models.IntegerField('추가일자', default=30)
 
     def __str__(self):
         return "%s" % self.title
