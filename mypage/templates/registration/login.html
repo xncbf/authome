@@ -5,7 +5,7 @@
             {% csrf_token %}
             <br><br>
             {% if form.non_field_errors %}
-                <ul class='form-errors'>
+                <ul class='errorlist shake animated'>
                     {% for error in form.non_field_errors %}
                         <li>{{ error }}</li>
                     {% endfor %}

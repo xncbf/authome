@@ -51,7 +51,7 @@ def user_join(request):
                 # Return a 'disabled account' error message
                 pass
         else:
-            pass
+            form.clean()
         return HttpResponseRedirect("/")
     return render(request, 'registration/join.html', {
         'form': form,
@@ -79,7 +79,7 @@ def intro(request):
     return render(request, 'mypage/intro.html', {})
 
 
-class MacroRegister(View):
+class MacroRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
     template_name = 'authome/macro_register.html'
@@ -100,7 +100,7 @@ class MacroRegister(View):
 
         })
 
-class MacroModify(View):
+class MacroModify(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
     template_name = 'authome/macro_modify.html'
@@ -137,7 +137,7 @@ class MacroManage(LoginRequiredMixin, ListView):
         return context
 
 
-class AuthRegister(View):
+class AuthRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     template_name = 'authome/auth_register.html'
 

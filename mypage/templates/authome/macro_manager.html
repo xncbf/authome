@@ -12,7 +12,7 @@
                 <thead>
                 <tr>
                     <th>아이디</th>
-                    <th>결제일</th>
+                    <th>시작일</th>
                     <th>종료일</th>
                 </tr>
                 </thead>
@@ -25,14 +25,13 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="3">등록된 유저가 없습니다</td>
+                        <td colspan="3" class="center-align">등록된 유저가 없습니다</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
             <br>
-            <a href="{% url 'mypage:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn tooltipped"
-               data-position="left" data-tooltip="결제 기능 연동 전까지는<br> 수동입니다ㅜㅜ" style="float: right">
+            <a href="{% url 'mypage:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
                 <i class="material-icons left">cloud</i>유저 등록
             </a>
         </div>

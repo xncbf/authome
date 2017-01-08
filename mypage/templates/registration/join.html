@@ -4,14 +4,6 @@
 <form method="post" action="{% url 'join' %}">
 {% csrf_token %}
 <div class="container">
-
-            {% if form.non_field_errors %}
-                <ul class='form-errors'>
-                    {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
     {{ form.as_p }}
     <button class="btn waves-effect waves-light" type="submit" name="action">가입
         <i class="material-icons right">cloud</i>
