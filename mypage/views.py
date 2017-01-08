@@ -8,30 +8,49 @@ from django.views.generic.list import ListView, View
 from .forms import LoginForm
 from .models import UserPage, Macro
 
-
 def user_login(request):
-    form = LoginForm()
-    username = request.POST.get('username', False)
-    password = request.POST.get('password', False)
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            # 로그인성공
-            if request.POST.get('next'):
-                return HttpResponseRedirect(request.POST.get('next'))
+    form = LoginForm(request.POST or None)
+    if request.POST and form.is_valid():
+        user = form.login(request)
+        if user:
+            if user.is_active:
+                login(request, user)
+                # 로그인성공
+                if request.POST.get('next'):
+                    return HttpResponseRedirect(request.POST.get('next'))
+                else:
+                    return HttpResponseRedirect('/')
             else:
-                return HttpResponseRedirect('/')
+                # 권한이 없는 아이디
+                pass
         else:
-            # Return a 'disabled account' error message
-            pass
-    else:
-        # Return an 'invalid login' error message.
-        # if you want to keep provided username, but clear password field
-        form = LoginForm(initial={'username': request.POST.get('username')})
+            form = form.clean()
     return render(request, 'login.html', {
-        'form': form,
+            'form': form,
     })
+# def user_login(request):
+#     form = LoginForm()
+#     username = request.POST.get('username', False)
+#     password = request.POST.get('password', False)
+#     user = authenticate(username=username, password=password)
+#     if user is not None:
+#         if user.is_active:
+#             login(request, user)
+#             # 로그인성공
+#             if request.POST.get('next'):
+#                 return HttpResponseRedirect(request.POST.get('next'))
+#             else:
+#                 return HttpResponseRedirect('/')
+#         else:
+#             # 권한이 없는 아이디
+#             pass
+#     else:
+#         # Return an 'invalid login' error message.
+#         # if you want to keep provided username, but clear password field
+#         form = LoginForm(initial={'username': request.POST.get('username')})
+#     return render(request, 'login.html', {
+#         'form': form,
+#     })
 
 
 def user_logout(request):
@@ -139,27 +158,25 @@ class MacroManage(LoginRequiredMixin, ListView):
         return context
 
 
-@login_required(login_url='/accounts/login/')
-def auth_register(request, macro_id):
-    user_id = request.POST.get('user_id', False)
-    end_date = request.POST.get('end_date', False)
-    if user_id and end_date:
-        try:
-            user = User.objects.get(username=user_id)
-            macro = Macro.objects.get(id=macro_id)
-            if user:
-                user_page = UserPage(user=user, macro=macro, end_date=end_date)
-                user_page.save()
-                # return HttpResponseRedirect("/mypage/macro_manager/" % macro_id)
-                return redirect(MacroManage.as_view()(request, macro_id))
-        except:
-            pass
+class AuthRegister(View):
+    login_url = '/accounts/login/'
+    template_name = 'authome/auth_register.html'
 
+    def post(self, *args, **kwargs):
+        user_id = self.request.POST.get('user_id', False)
+        end_date = self.request.POST.get('end_date', False)
+        user = User.objects.get(username=user_id)
+        macro = Macro.objects.get(id=kwargs['macro_id'])
+        if user:
+            user_page = UserPage(user=user, macro=macro, end_date=end_date)
+            user_page.save()
+            return redirect('mypage:macro_manager', macro_id=kwargs['macro_id'])
 
-    macro = Macro.objects.get(id=macro_id)
-    return render(request, 'authome/auth_register.html', {
-        'macro': macro,
-    })
+    def get(self, *args, **kwargs):
+        macro = Macro.objects.get(id=kwargs['macro_id'])
+        return render(self.request, 'authome/auth_register.html', {
+            'macro': macro,
+        })
 
 
 def tutorial(request):

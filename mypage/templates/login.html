@@ -4,6 +4,13 @@
         <form id="login_form" method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <br><br>
+            {% if form.non_field_errors %}
+                <ul class='form-errors'>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             <div>{{ form.username.label_tag }}</div>
             <div class="">{{ form.username }}</div>
             <div>{{ form.password.label_tag }}</div>
