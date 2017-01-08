@@ -28,29 +28,6 @@ def user_login(request):
     return render(request, 'login.html', {
             'form': form,
     })
-# def user_login(request):
-#     form = LoginForm()
-#     username = request.POST.get('username', False)
-#     password = request.POST.get('password', False)
-#     user = authenticate(username=username, password=password)
-#     if user is not None:
-#         if user.is_active:
-#             login(request, user)
-#             # 로그인성공
-#             if request.POST.get('next'):
-#                 return HttpResponseRedirect(request.POST.get('next'))
-#             else:
-#                 return HttpResponseRedirect('/')
-#         else:
-#             # 권한이 없는 아이디
-#             pass
-#     else:
-#         # Return an 'invalid login' error message.
-#         # if you want to keep provided username, but clear password field
-#         form = LoginForm(initial={'username': request.POST.get('username')})
-#     return render(request, 'login.html', {
-#         'form': form,
-#     })
 
 
 def user_logout(request):
