@@ -8,6 +8,7 @@ from django.views.generic.list import ListView, View
 from .forms import LoginForm
 from .models import UserPage, Macro
 
+
 def user_login(request):
     form = LoginForm(request.POST or None)
     if request.POST and form.is_valid():
@@ -25,7 +26,7 @@ def user_login(request):
                 pass
         else:
             form = form.clean()
-    return render(request, 'login.html', {
+    return render(request, 'registration/login.html', {
             'form': form,
     })
 
@@ -49,9 +50,9 @@ def user_join(request):
             else:
                 # Return a 'disabled account' error message
                 pass
-
+        else:
         return HttpResponseRedirect("/")
-    return render(request, 'join.html', {
+    return render(request, 'registration/join.html', {
         'form': form,
     })
 
