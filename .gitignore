@@ -11,4 +11,3 @@ __pycache__
 MANIFEST
 .idea/
 db.sqlite3
-settings_local.py
