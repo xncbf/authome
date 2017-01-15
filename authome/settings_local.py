@@ -18,6 +18,6 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = BASE_DIR.ancestor(1).child("static")
+# STATIC_ROOT = BASE_DIR.child("static")
 
-MEDIA_ROOT = BASE_DIR.ancestor(1).child('images')
+# MEDIA_ROOT = BASE_DIR.child('images')
