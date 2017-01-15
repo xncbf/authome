@@ -165,5 +165,18 @@ def tutorial(request):
 def introduction(request):
     return render(request, 'mypage/introduction.html', {})
 
+
 def page_not_found_view(request):
     return render(request, 'error/404.html')
+
+
+def error_view(request):
+    return render(request, 'error/500.html')
+
+
+def permission_denied_view(request):
+    return render(request, 'error/403.html')
+
+
+def bad_request_view(request):
+    return render(request, 'error/400.html')

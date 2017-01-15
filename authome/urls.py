@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 handler404 = 'mypage.views.page_not_found_view'
-# handler500 = 'mypage.views.error_view'
-# handler403 = 'mypage.views.permission_denied_view'
-# handler400 = 'mypage.views.bad_request_view'
+handler500 = 'mypage.views.error_view'
+handler403 = 'mypage.views.permission_denied_view'
+handler400 = 'mypage.views.bad_request_view'
 
 
 urlpatterns = [
