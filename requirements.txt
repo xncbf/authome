@@ -3,3 +3,4 @@ djangorestframework
 django-subdomains
 Unipath
 django-allauth
+django-admin-honeypot

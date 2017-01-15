@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.humanize',
+    'admin_honeypot',
     'mypage',
     'rest_framework',
     'subdomains',
