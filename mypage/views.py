@@ -164,3 +164,6 @@ def tutorial(request):
 
 def introduction(request):
     return render(request, 'mypage/introduction.html', {})
+
+def page_not_found_view(request):
+    return render(request, 'error/404.html')
