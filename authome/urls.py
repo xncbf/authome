@@ -27,6 +27,7 @@ handler400 = 'mypage.views.bad_request_view'
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    url(r'^xncbf/', include(admin.site.urls)),
     url(r'^accounts/login/', views.user_login, name='login'),
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
