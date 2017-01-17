@@ -55,3 +55,11 @@ main {
 .errorlist{
     color: #FF1744 !important;
 }
+
+blockquote{
+    border-left: 5px solid #009688 !important;
+}
+
+.promo i{
+    font-size: 7rem !important;
+}
