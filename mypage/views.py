@@ -180,3 +180,7 @@ def permission_denied_view(request):
 
 def bad_request_view(request):
     return render(request, 'error/400.html')
+
+
+def yeonsu(request):
+    return render(request, 'yeonsu.html')

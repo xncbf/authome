@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^tutorial/', views.tutorial, name='tutorial'),
     url(r'^introduction/', views.introduction, name='introduction'),
     url(r'^mypage/', include('mypage.urls', namespace='mypage'), ),
+    url(r'^yeonsu/', views.yeonsu, name='yeonsu'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
