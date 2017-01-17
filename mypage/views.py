@@ -7,6 +7,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.views.generic.list import ListView, View
 from .forms import LoginForm
 from .models import UserPage, Macro
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 def user_login(request):
@@ -181,6 +182,6 @@ def permission_denied_view(request):
 def bad_request_view(request):
     return render(request, 'error/400.html')
 
-
+@xframe_options_exempt
 def yeonsu(request):
     return render(request, 'yeonsu.html')
