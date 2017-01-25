@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from mypage.models import UserPage
 from .serializers import UserPageSerializer
 from django.utils import timezone
+from django.shortcuts import render
 
 
 class UserPageDetail(APIView):
@@ -28,3 +29,7 @@ class UserPageDetail(APIView):
         userPage = self.get_object(macro_id)
         serializer = UserPageSerializer(userPage)
         return Response(serializer.data)
+
+
+def bad_gateway(request):
+    return render(request, 'error/502.html')
