@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from mypage.models import UserPage
 from .serializers import UserPageSerializer
+from django.utils import timezone
 
 
 class UserPageDetail(APIView):
@@ -11,7 +12,15 @@ class UserPageDetail(APIView):
     """
     def get_object(self, macro_id):
         try:
-            return UserPage.objects.get(user__username=self.request.user, macro=macro_id)
+            result = UserPage.objects.get(user__username=self.request.user, macro=macro_id)
+            # 현지 시간이 아닌, 절대시간으로 비교함
+            # datetime.now() <- 현지시간
+            # timezone.now() <- 절대시간
+            if(result.end_date.strftime('%Y%m%d%H%M%S') < timezone.now().strftime('%Y%m%d%H%M%S')):
+                if result.end_yn == True:
+                    UserPage.objects.filter(user__username=self.request.user, macro=macro_id).update(end_yn=False)
+                    result = UserPage.objects.get(user__username=self.request.user, macro=macro_id)
+            return result
         except UserPage.DoesNotExist:
             raise Http404
 

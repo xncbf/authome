@@ -63,3 +63,21 @@ blockquote{
 .promo i{
     font-size: 7rem !important;
 }
+
+.docs > div h3 {
+    font-size: 2.12rem !important;
+    line-height: 110% !important;
+    margin: 1.46rem 0 1.168rem 0 !important;
+}
+
+.docs > div h4 {
+    font-size: 1.52rem !important;
+    line-height: 110% !important;
+    margin: 1.14rem 0 .912rem 0 !important;
+}
+
+.docs > div h5 {
+    font-size: 1.22rem !important;
+    line-height: 110% !important;
+    margin: .82rem 0 .656rem 0 !important;
+}

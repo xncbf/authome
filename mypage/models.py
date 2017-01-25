@@ -68,6 +68,7 @@ class UserPage(TimeStampedModel):
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
     end_date = models.DateTimeField('종료일')
+    end_yn = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = '인증정보'
