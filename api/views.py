@@ -29,7 +29,3 @@ class UserPageDetail(APIView):
         userPage = self.get_object(macro_id)
         serializer = UserPageSerializer(userPage)
         return Response(serializer.data)
-
-
-def bad_gateway(request):
-    return render(request, 'error/502.html')
