@@ -5,3 +5,4 @@ Unipath
 django-allauth
 django-admin-honeypot
 pytz
+invoke
