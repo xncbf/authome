@@ -175,6 +175,10 @@ def error_view(request):
     return render(request, 'error/500.html')
 
 
+def bad_gateway(request):
+    return render(request, 'error/502.html')
+
+
 def permission_denied_view(request):
     return render(request, 'error/403.html')
 
