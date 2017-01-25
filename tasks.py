@@ -14,6 +14,7 @@ def deploy(ctx):
         sys.exit("Pyinvoke task file(s) is changed. Please re-run this task.")
     ctx.run("pip install -r requirements.txt")
     ctx.run("python manage.py collectstatic --noinput")
+    ctx.run("sudo cp /root/authome/api/templates/error/502.html /tmp/authome/")
     # Restart receiving server and batch server.
     ctx.run("sudo service uwsgi restart", pty=True)
     # Give some time for reloading application.
