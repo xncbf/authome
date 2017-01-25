@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="robots" content="NONE,NOARCHIVE"/>
+    <title>User Page Detail – Django REST framework</title>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/bootstrap-tweaks.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/prettify.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/rest_framework/css/default.css"/>
+</head>
+<body class="">
+<div class="wrapper">
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class="container">
+            <span>
+                <a class='navbar-brand' rel="nofollow" href='http://www.django-rest-framework.org'>
+                    Django REST framework
+                </a>
+            </span>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        admin
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href='/api-auth/logout/?next=/c6adc080-813b-485c-a8fb-5ea889c452a5/'>Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="active"><a href="/c6adc080-813b-485c-a8fb-5ea889c452a5/">User Page Detail</a></li>
+        </ul>
+        <!-- Content -->
+        <div id="content">
+            <form id="get-form" class="pull-right">
+                <fieldset>
+                    <div class="btn-group format-selection">
+                        <a class="btn btn-primary js-tooltip" href="/c6adc080-813b-485c-a8fb-5ea889c452a5/"
+                           rel="nofollow" title="Make a GET request on the User Page Detail resource">GET</a>
+                        <button class="btn btn-primary dropdown-toggle js-tooltip" data-toggle="dropdown"
+                                title="Specify a format for the GET request">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="js-tooltip format-option"
+                                   href="/c6adc080-813b-485c-a8fb-5ea889c452a5/?format=json" rel="nofollow"
+                                   title="Make a GET request on the User Page Detail resource with the format set to `json`">json</a>
+                            </li>
+                            <li>
+                                <a class="js-tooltip format-option"
+                                   href="/c6adc080-813b-485c-a8fb-5ea889c452a5/?format=api" rel="nofollow"
+                                   title="Make a GET request on the User Page Detail resource with the format set to `api`">api</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </fieldset>
+            </form>
+
+
+            <form class="button-form" action="/c6adc080-813b-485c-a8fb-5ea889c452a5/" data-method="OPTIONS">
+                <button class="btn btn-primary js-tooltip"
+                        title="Make an OPTIONS request on the User Page Detail resource">OPTIONS
+                </button>
+            </form>
+
+
+            <div class="content-main">
+                <div class="page-header">
+                    <h1>User Page Detail</h1>
+                </div>
+                <div style="float:left">
+
+                    <p>해당 매크로에 대한 나의 인증정보를 가져옵니다.</p>
+
+                </div>
+
+
+                <div class="request-info" style="clear: both">
+                    <pre class="prettyprint"><b>GET</b> /</pre>
+                </div>
+
+                <div class="response-info">
+                <pre class="prettyprint"><span class="meta nocode"><b>HTTP 404 Not Found</b>
+<b>Allow:</b> <span class="lit">GET, HEAD, OPTIONS</span>
+<b>Content-Type:</b> <span class="lit">application/json</span>
+<b>Vary:</b> <span class="lit">Accept</span>
+
+</span>{
+    &quot;detail&quot;: &quot;찾을 수 없습니다.&quot;
+}</pre>
+                </div>
+            </div>
+
+
+        </div><!-- /.content -->
+    </div><!-- /.container -->
+</div><!-- ./wrapper -->
+
+
+<script>
+    window.drf = {
+        csrfHeaderName: "X-CSRFTOKEN",
+        csrfCookieName: "csrftoken"
+    };
+</script>
+<script src="/static/rest_framework/js/jquery-1.12.4.min.js"></script>
+<script src="/static/rest_framework/js/ajax-form.js"></script>
+<script src="/static/rest_framework/js/csrf.js"></script>
+<script src="/static/rest_framework/js/bootstrap.min.js"></script>
+<script src="/static/rest_framework/js/prettify-min.js"></script>
+<script src="/static/rest_framework/js/default.js"></script>
+<script>
+    $(document).ready(function () {
+        $('form').ajaxForm();
+    });
+</script>
+
+
+</body>
+
+</html>
