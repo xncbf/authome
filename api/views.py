@@ -1,7 +1,7 @@
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from mypage.models import UserPage, MacroLog
+from main.models import UserPage, MacroLog
 from .serializers import UserPageSerializer
 from django.utils import timezone
 from ipware.ip import get_ip

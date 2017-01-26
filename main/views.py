@@ -77,7 +77,7 @@ def intro(request):
     """
      mypage 인덱스페이지
     """
-    return render(request, 'mypage/intro.html', {})
+    return render(request, 'main/intro.html', {})
 
 
 class MacroRegister(LoginRequiredMixin, View):
@@ -160,11 +160,11 @@ class AuthRegister(LoginRequiredMixin, View):
 
 
 def tutorial(request):
-    return render(request, 'mypage/tutorial.html', {})
+    return render(request, 'docs/tutorial.html', {})
 
 
 def introduction(request):
-    return render(request, 'mypage/introduction.html', {})
+    return render(request, 'docs/introduction.html', {})
 
 
 def page_not_found_view(request):

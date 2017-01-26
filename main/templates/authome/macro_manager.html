@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
+            <span id="macro_uuid{{ forloop.counter }}" class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+                  data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
+                  onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+            <table class="bordered highlight">
+                <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>시작일</th>
+                    <th>종료일</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.user }}</td>
+                        <td>{{ user.created }}</td>
+                        <td>{{ user.end_date }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3" class="center-align">등록된 유저가 없습니다</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <a href="{% url 'mypage:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
+                <i class="material-icons left">cloud</i>유저 등록
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from mypage import views
+from main import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-handler404 = 'mypage.views.page_not_found_view'
-handler500 = 'mypage.views.error_view'
-handler403 = 'mypage.views.permission_denied_view'
-handler400 = 'mypage.views.bad_request_view'
+handler404 = 'main.views.page_not_found_view'
+handler500 = 'main.views.error_view'
+handler403 = 'main.views.permission_denied_view'
+handler400 = 'main.views.bad_request_view'
 
 
 urlpatterns = [
@@ -31,9 +31,9 @@ urlpatterns = [
     url(r'^accounts/login/', views.user_login, name='login'),
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
-    url(r'^tutorial/', views.tutorial, name='tutorial'),
-    url(r'^introduction/', views.introduction, name='introduction'),
-    url(r'^mypage/', include('mypage.urls', namespace='mypage'), ),
+    url(r'^docs/tutorial/', views.tutorial, name='tutorial'),
+    url(r'^docs/introduction/', views.introduction, name='introduction'),
+    url(r'^mypage/', include('main.urls', namespace='mypage'), ),
     url(r'^yeonsu/', views.yeonsu, name='yeonsu'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
