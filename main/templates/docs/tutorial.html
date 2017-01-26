@@ -10,11 +10,6 @@
         <div class="row">
             <div class="col s12 m9 l10 docs">
                 <div id="part1" class="section scrollspy">
-                    <h3 class="header teal-text">순서</h3>
-                    <ol><a href="#part2"><h5 class="header black-text">매크로 등록하기</h5></a></ol>
-                    <ol><a href="#part3"><h5 class="header black-text">매크로에 삽입하기</h5></a></ol>
-                </div>
-                <div id="part2" class="section scrollspy">
                     <h3 class="header teal-text">매크로 등록하기</h3>
                     <p>
                         다음을 보고 따라합니다.<br><br>
@@ -25,11 +20,11 @@
                         매크로의 ID (예: 28d805b8-9c27-405a-aa51-a61424dc5e05) 가 알려지지 않도록 각별한 주의가 요구됩니다.
                     </blockquote>
                 </div>
-                <div id="part3" class="section scrollspy">
-                    <h3 class="header teal-text">매크로에 삽입하기</h3>
+                <div id="part2" class="section scrollspy">
+                    <h3 class="header teal-text">매크로에 인증 삽입하기</h3>
                     <h5>오토핫키</h5>
                     <p>
-                        다음은 단순히 msgbox 를 띄우는 예제입니다.<br>
+                        다음은 오토핫키에서 유저인증을 받아 msgbox 를 띄우는 예제입니다.<br>
                         예제에는 curl.exe 가 반드시 필요하지만 가능하다면 사용하지 않아도 좋습니다.<br>
                         예제에 포함된 라이브러리는 다운로드 할 수 있습니다.
                     </p>
@@ -72,8 +67,24 @@ F1::
     }
                         </code>
                     </pre>
+                </div>
+                <div id="part3" class="section scrollspy">
+                    <h3 class="header teal-text">유저 인증 등록하기</h3>
                     <p>
-                        인증을 위해 변경할 부분은 총 1 부분 입니다.
+                        유저 아이디는 인증받고자 하는 유저가 회원가입이 완료된 상태여야만 합니다.<br>
+                        예제에서는 test 계정을 임시로 생성하여 테스트 했습니다.<br>
+                        다음을 보고 따라합니다.<br><br>
+                        <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial2.gif' %}" >
+                        <br>
+                    </p>
+                </div>
+                <div id="part4" class="section scrollspy">
+                    <h3 class="header teal-text">유저가 인증받는 과정</h3>
+                    <p>
+                        위의 과정을 다 마쳤다면 인증받는 과정을 눈으로 확인할 수 있습니다.<br>
+                        다음은 아이디와 비밀번호를 차례로 입력한 후, 매크로 단축키로 지정한 F1을 누른 것입니다.<br><br>
+                        <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial3.gif' %}" >
+                        <br>
                     </p>
                 </div>
             </div>
@@ -81,9 +92,10 @@ F1::
             <div class="col hide-on-small-only m3 l2">
                 <div class="toc-wrapper">
                     <ul class="section table-of-contents" style="border-left:#26a69a">
-                        <li><a href="#part1">순서</a></li>
-                        <li><a href="#part2">매크로 등록하기</a></li>
-                        <li><a href="#part3">매크로에 삽입하기</a></li>
+                        <li><a href="#part1">매크로 등록하기</a></li>
+                        <li><a href="#part2">매크로에 인증 삽입하기</a></li>
+                        <li><a href="#part3">유저 인증 등록하기</a></li>
+                        <li><a href="#part4">유저가 인증받는 과정</a></li>
                     </ul>
                 </div>
             </div>
