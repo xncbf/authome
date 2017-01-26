@@ -1,11 +1,10 @@
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from mypage.models import UserPage
+from mypage.models import UserPage, MacroLog
 from .serializers import UserPageSerializer
 from django.utils import timezone
-from django.shortcuts import render
-
+from ipware.ip import get_ip
 
 class UserPageDetail(APIView):
     """
@@ -28,4 +27,5 @@ class UserPageDetail(APIView):
     def get(self, request, macro_id, format=None):
         userPage = self.get_object(macro_id)
         serializer = UserPageSerializer(userPage)
+        MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
