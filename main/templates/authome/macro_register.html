@@ -3,7 +3,7 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <h4 class="teal-text text-lighten-1">매크로 등록</h4>
-            <form method="post" action="{% url 'mypage:macro_register' %}" class="col s12">
+            <form method="post" action="{% url 'main:macro_register' %}" class="col s12">
                 {% csrf_token %}
                 <div class="row">
                     <div class="input-field col s12">

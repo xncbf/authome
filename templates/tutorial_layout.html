@@ -1,4 +1,5 @@
 {% load static %}
+{% load subdomainurls %}
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -47,7 +48,7 @@
     </div>
     <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
         <li class="logo">
-            <a id="logo-container" href="{% url 'intro' %}" class="brand-logo">
+            <a id="logo-container" href="{% url 'intro' subdomain=None %}" class="brand-logo">
                 <h4><span class="teal-text">AUTH</span><span class="grey-text">OME</span></h4>
             </a>
         </li>

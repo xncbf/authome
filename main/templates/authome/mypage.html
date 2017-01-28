@@ -9,10 +9,10 @@
                         <li>
                             <div class="collapsible-header">
                                 <span><i class="material-icons">filter_drama</i>{{ macro.title }}</span>
-                                <a href="{% url 'mypage:macro_manager' macro_id=macro.id %}"
+                                <a href="{% url 'main:macro_manager' macro_id=macro.id %}"
                                    class="waves-effect waves-light btn-block"
                                    style="float: right; text-align: center"><i class="material-icons"></i>관리</a>
-                                <a href="{% url 'mypage:macro_modify' macro_id=macro.id %}"
+                                <a href="{% url 'main:macro_modify' macro_id=macro.id %}"
                                    class="waves-effect waves-light btn-block"
                                    style="float: right; text-align: center"><i class="material-icons"></i>수정</a>
                                 <span id="macro_uuid{{ forloop.counter }}"
@@ -28,7 +28,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <a href="{% url 'mypage:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
+                <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
                     <i class="material-icons left">cloud</i>매크로 등록
                 </a>
             {% else %}
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div style="text-align: center; width:100%">
                         <br><br><br>
-                        <a href="{% url 'mypage:macro_register' %}" class="waves-effect waves-light btn-large">
+                        <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn-large">
                             <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
                         </a>
                     </div>

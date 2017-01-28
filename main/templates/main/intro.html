@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load subdomainurls %}
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container animated fadeIn">
@@ -8,7 +9,7 @@
                 <h5 class="header col s12 light">매크로 또는 프로그램에 관리시스템을 도입해서 쉽고 편리하게 관리해보세요</h5>
             </div>
             <div class="row center">
-                <a href="{% url 'tutorial' %}" id="download-button" class="btn-large waves-effect waves-light">어떻게 사용하나요?</a>
+                <a href="{% url 'tutorial' subdomain='docs' %}" id="download-button" class="btn-large waves-effect waves-light">어떻게 사용하나요?</a>
             </div>
             <br><br>
         </div>

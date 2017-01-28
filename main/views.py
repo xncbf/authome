@@ -150,21 +150,13 @@ class AuthRegister(LoginRequiredMixin, View):
         if user:
             user_page = UserPage(user=user, macro=macro, end_date=end_date)
             user_page.save()
-            return redirect('mypage:macro_manager', macro_id=kwargs['macro_id'])
+            return redirect('main:macro_manager', macro_id=kwargs['macro_id'])
 
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         return render(self.request, 'authome/auth_register.html', {
             'macro': macro,
         })
-
-
-def tutorial(request):
-    return render(request, 'docs/tutorial.html', {})
-
-
-def introduction(request):
-    return render(request, 'docs/introduction.html', {})
 
 
 def page_not_found_view(request):

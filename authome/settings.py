@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'subdomains',
     'api',
+    'docs',
 ]
 
 REST_FRAMEWORK = {
@@ -74,6 +75,7 @@ SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
     'api': 'api.urls',
+    'docs': 'docs.urls',
 }
 
 DATABASES = {
