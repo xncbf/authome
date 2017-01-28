@@ -1,7 +1,6 @@
 (function ($) {
     $(function () {
 
-        $('.button-collapse').sideNav();
         //모달 트리거
         $('.modal').modal();
         $('.tooltipped').tooltip({
