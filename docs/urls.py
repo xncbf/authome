@@ -9,5 +9,5 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^tutorial/', views.tutorial, name='tutorial'),
-    url(r'^introduction/', views.introduction, name='introduction'),
+    url(r'^$', views.introduction, name='introduction'),
 ]
