@@ -8,6 +8,6 @@ handler403 = 'main.views.permission_denied_view'
 handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
-    url(r'^tutorial/', views.tutorial, name='tutorial'),
+    url(r'^(?i)quickstart/', views.quick_start, name='quick_start'),
     url(r'^$', views.introduction, name='introduction'),
 ]

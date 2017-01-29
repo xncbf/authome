@@ -6,6 +6,7 @@ from .serializers import UserPageSerializer
 from django.utils import timezone
 from ipware.ip import get_ip
 
+
 class UserPageDetail(APIView):
     """
     해당 매크로에 대한 나의 인증정보를 가져옵니다.

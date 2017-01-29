@@ -101,6 +101,7 @@ class MacroRegister(LoginRequiredMixin, View):
 
         })
 
+
 class MacroModify(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
@@ -173,6 +174,7 @@ def permission_denied_view(request):
 
 def bad_request_view(request):
     return render(request, 'error/400.html')
+
 
 @xframe_options_exempt
 def yeonsu(request):
