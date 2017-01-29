@@ -32,6 +32,5 @@ urlpatterns = [
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^mypage/', include('main.urls', namespace='main'), ),
-    url(r'^yeonsu/', views.yeonsu, name='yeonsu'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
