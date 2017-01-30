@@ -1,1 +1,28 @@
 {% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div class="collection">
+            <a href="#!" class="collection-item"><span class="badge">1</span>Alan</a>
+            <a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>
+            <a href="#!" class="collection-item">Alan</a>
+            <a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>
+            <a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>
+        </div>
+        <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
+            <i class="material-icons left">mode_edit</i>글쓰기
+        </a>
+    </div>
+{% endblock %}

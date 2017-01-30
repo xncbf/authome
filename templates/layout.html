@@ -31,8 +31,8 @@
                 class="grey-text">O<span class="domain">ME</span></span></a>
             <ul class="right hide-on-med-and-down animated fadeIn">
                 <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">소개</a></li>
-                <li><a href="{% url 'board:macro_list' %}" class="waves-effect waves-teal teal-text">리스트</a></li>
-                <li><a href="{% url 'board:board_list' %}" class="waves-effect waves-teal teal-text">게시판</a></li>
+                <li><a href="{% url 'board:macro_list' %}" class="waves-effect waves-teal teal-text">매크로</a></li>
+                <li><a href="{% url 'board:board_list' %}" class="waves-effect waves-teal teal-text">자유게시판</a></li>
                 <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
@@ -57,6 +57,8 @@
                         {% endif %}
                     </div>
                 </li>
+                <li><a class="waves-effect" href="{% url 'board:macro_list' %}"><i class="material-icons">view_list</i>매크로</a></li>
+                <li><a class="waves-effect" href="{% url 'board:board_list' %}"><i class="material-icons">forum</i>자유게시판</a></li>
                 <li><a class="waves-effect" href="{% url 'main:mypage' %}"><i class="material-icons">perm_identity</i>관리페이지</a></li>
                 <li>
                     <div class="divider"></div>
