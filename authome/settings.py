@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'subdomains',
     'api',
     'docs',
+    'board',
 ]
 
 REST_FRAMEWORK = {

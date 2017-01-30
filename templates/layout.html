@@ -31,6 +31,8 @@
                 class="grey-text">O<span class="domain">ME</span></span></a>
             <ul class="right hide-on-med-and-down animated fadeIn">
                 <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">소개</a></li>
+                <li><a href="{% url 'board:macro_list' %}" class="waves-effect waves-teal teal-text">리스트</a></li>
+                <li><a href="{% url 'board:board_list' %}" class="waves-effect waves-teal teal-text">게시판</a></li>
                 <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
