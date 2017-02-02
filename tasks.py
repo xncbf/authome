@@ -16,7 +16,7 @@ def deploy(ctx):
     ctx.run("python manage.py makemigrations")
     ctx.run("python manage.py migrate")
     ctx.run("python manage.py collectstatic --noinput")
-    ctx.run("sudo cp /root/authome/api/templates/error/502.html /tmp/authome/")
+    # ctx.run("sudo cp /home/ubuntu/authome/api/templates/error/502.html /home/ubuntu/authome/")
     # Restart receiving server and batch server.
     ctx.run("restart authome", pty=True)
     # Give some time for reloading application.
