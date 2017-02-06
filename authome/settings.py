@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 from unipath import Path
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1tcc-!d(x+=nj9@60dzuqo7$$(4v632-p=m%6y1ee!o!9fiepx'
+SECRET_KEY = os.environ['AUTHOME_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -81,8 +82,12 @@ SUBDOMAIN_URLCONFS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR.child('db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['AUTHOME_DATABASE_NAME'],
+        'USER': os.environ['AUTHOME_DATABASE_USER'],
+        'PASSWORD': os.environ['AUTHOME_DATABASE_PASSWORD'],
+        'HOST': os.environ['AUTHOME_DATABASE_HOST'],
+        'PORT': os.environ['AUTHOME_DATABASE_PORT'],
     }
 }
 

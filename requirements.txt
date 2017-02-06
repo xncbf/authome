@@ -7,3 +7,4 @@ django-admin-honeypot
 pytz
 invoke
 django-ipware
+psycopg2

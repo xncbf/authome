@@ -11,12 +11,12 @@ ALLOWED_HOSTS = ['*']
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR.child('db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR.child('db.sqlite3'),
+#     }
+# }
 
 # STATIC_ROOT = BASE_DIR.child("static")
 
