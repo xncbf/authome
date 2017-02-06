@@ -18,7 +18,7 @@ def deploy(ctx):
     ctx.run("python manage.py collectstatic --noinput")
     # ctx.run("sudo cp /home/ubuntu/authome/api/templates/error/502.html /home/ubuntu/authome/")
     # Restart receiving server and batch server.
-    ctx.run("restart authome", pty=True)
+    ctx.run("sudo service authome restart", pty=True)
     # Give some time for reloading application.
     time.sleep(1)
     # Test if the site works well.
