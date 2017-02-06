@@ -7,6 +7,9 @@ SECRET_KEY = '1tcc-!d(x+=nj9@60dzuqo7$$(4v632-p=m%6y1ee!o!9fiepx'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

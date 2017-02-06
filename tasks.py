@@ -22,7 +22,7 @@ def deploy(ctx):
     # Give some time for reloading application.
     time.sleep(1)
     # Test if the site works well.
-    with urlopen("http://autho.me") as response:
+    with urlopen("https://autho.me") as response:
         if not response.getcode() == 200:
             sys.exit("CRITICAL: The site respond CODE " + response.getcode())
     # Success!
