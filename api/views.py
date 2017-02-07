@@ -35,10 +35,10 @@ class GetList(APIView):
     """
     전체 Endpoint 를 가져옵니다.
     """
-    def get(self, request, macro_id, format=None):
+    def get(self, request, format=None):
         userPage = UserPage.objects.all()
-        if not len(userPage):
-            raise Http404
+        # if not len(userPage):
+        #     raise Http404
         serializer = AuthSerializer(userPage)
         MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
