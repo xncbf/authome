@@ -2,12 +2,12 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from main.models import UserPage, MacroLog
-from .serializers import UserPageSerializer
+from .serializers import AuthSerializer
 from django.utils import timezone
 from ipware.ip import get_ip
 
 
-class UserPageDetail(APIView):
+class GetAuth(APIView):
     """
     해당 매크로에 대한 나의 인증정보를 가져옵니다.
     """
@@ -27,6 +27,16 @@ class UserPageDetail(APIView):
 
     def get(self, request, macro_id, format=None):
         userPage = self.get_object(macro_id)
-        serializer = UserPageSerializer(userPage)
+        serializer = AuthSerializer(userPage)
+        MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
+        return Response(serializer.data)
+
+class GetList(APIView):
+    """
+    전체 Endpoint 를 가져옵니다.
+    """
+    def get(self, request, macro_id, format=None):
+        userPage = UserPage.objects.all()
+        serializer = AuthSerializer(userPage)
         MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
