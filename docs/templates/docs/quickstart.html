@@ -24,7 +24,7 @@
                     <h3 class="header teal-text">매크로에 인증 삽입하기</h3>
                     <h5>오토핫키</h5>
                     <p>
-                        다음은 오토핫키에서 유저인증을 받아 msgbox 를 띄우는 예제입니다.<br>
+                        다음은 오토핫키에서 유저인증을 받아 msgbox 를 띄우는 예제의 일부분입니다.<br>
                         예제에는 curl.exe 가 반드시 필요하지만 가능하다면 사용하지 않아도 좋습니다.<br>
                         예제에 포함된 라이브러리는 다운로드 할 수 있습니다.
                     </p>
@@ -33,13 +33,8 @@
                     </a>
                     <pre>
                         <code class="autohotkey">
-#SingleInstance Force
 ;이 Uid 를 자신의 매크로 ID 로 변경해줍니다
 global Uid = "3a526973-98cf-4f0e-8791-5ae7759948d7"
-
-;
-; 이부분에 예제 다운로드에 포함된 authome.ahk 를 전부 붙여넣습니다.
-;
 
 F1::
     if (GetAuth(id ":" pw))
@@ -49,7 +44,7 @@ F1::
     else
     {
         msgbox, 인증실패
-	;ExitApp
+	    ExitApp
     }
                         </code>
                     </pre>
