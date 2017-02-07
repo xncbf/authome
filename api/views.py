@@ -37,6 +37,8 @@ class GetList(APIView):
     """
     def get(self, request, macro_id, format=None):
         userPage = UserPage.objects.all()
+        if not len(userPage):
+            raise Http404
         serializer = AuthSerializer(userPage)
         MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
