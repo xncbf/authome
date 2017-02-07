@@ -12,6 +12,7 @@ def deploy(ctx):
     pull_result = ctx.run("git pull origin master")
     if is_task_file_changed(pull_result):
         sys.exit("Pyinvoke task file(s) is changed. Please re-run this task.")
+    ctx.run("sudo xargs apt install < requirements.system")
     ctx.run("pip install -r requirements.txt")
     ctx.run("python manage.py makemigrations")
     ctx.run("python manage.py migrate")
