@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 
@@ -9,5 +9,6 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^(?i)quickstart/', views.quick_start, name='quick_start'),
+    url(r'^(?i)docs/', include('rest_framework_docs.urls')),
     url(r'^$', views.introduction, name='introduction'),
 ]
