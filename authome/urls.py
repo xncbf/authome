@@ -18,6 +18,7 @@ from django.contrib import admin
 from main import views
 from django.conf.urls.static import static
 from django.conf import settings
+import os
 
 handler404 = 'main.views.page_not_found_view'
 handler500 = 'main.views.error_view'
@@ -27,7 +28,7 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    url(r'^xncbf/', include(admin.site.urls)),
+    url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
     url(r'^accounts/login/', views.user_login, name='login'),
     url(r'^accounts/logout/', views.user_logout, name='logout'),
     url(r'^accounts/join/', views.user_join, name='join'),
