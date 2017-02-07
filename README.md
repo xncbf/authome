@@ -2,11 +2,11 @@
 # [AUTHOME](http://autho.me) 매크로 사용자 관리 사이트
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
-# Requirements
+## Requirements
 * python>=3.4
 * django==1.9.9
 
-# 패키지 의존성
+## 패키지 의존성
 * djangorestframework
 * django-subdomains
 * Unipath
@@ -17,14 +17,14 @@
 * django-ipware
 * psycopg2
 
-# 개발 환경 세팅
-## 의존성 패키지 설치 및 모델 migration
+## 개발 환경 세팅
+### 의존성 패키지 설치 및 모델 migration
 ```
 $ pip install -r requirements.txt
 $ python manage.py migrate
 ```
 
-## 사이트 변수 설정
+### 사이트 변수 설정
 api.autho.me 와 같은 subdomain 을 사용하려면 다음과 같은 설정이 필요합니다.
 ```
 $ python manage.py shell
@@ -34,8 +34,8 @@ $ python manage.py shell
 >>> site.save()
 ```
 
-# 환경변수 세팅
-##예시
+## 환경변수 세팅
+###예시
 ```
 AUTHOME_SECRET_KEY = 비밀키
 AUTHOME_DATABASE_NAME = 디비명
