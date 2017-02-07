@@ -9,7 +9,7 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
     url(r'^(?i)docs/', include('rest_framework_docs.urls')),
+    url(r'^(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
     url(r'^$', views.GetList.as_view()),
 ]
