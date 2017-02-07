@@ -6,6 +6,11 @@
 * python>=3.4
 * django==1.9.9
 
+## 시스템 의존성
+패키지 의존성을 설치하기 전에 앞서 설치가 필요합니다.
+* libpq-dev
+* python3-dev
+
 ## 패키지 의존성
 * djangorestframework
 * django-subdomains
@@ -16,6 +21,7 @@
 * invoke
 * django-ipware
 * psycopg2
+
 
 ## 개발 환경 세팅
 ### 의존성 패키지 설치 및 모델 migration
