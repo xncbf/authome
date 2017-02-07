@@ -63,7 +63,7 @@ REST_FRAMEWORK = {
 }
 
 REST_FRAMEWORK_DOCS = {
-    'HIDE_DOCS': True
+    'HIDE_DOCS': False
 }
 
 
