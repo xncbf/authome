@@ -34,8 +34,8 @@ $ python manage.py shell
 >>> site.save()
 ```
 
-## 환경변수 세팅
-###예시
+### 환경변수 세팅
+#### 예시
 ```
 AUTHOME_SECRET_KEY = 비밀키
 AUTHOME_DATABASE_NAME = 디비명
