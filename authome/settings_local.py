@@ -10,6 +10,7 @@ ALLOWED_HOSTS = ['*']
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_DOMAIN = '.example.com'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

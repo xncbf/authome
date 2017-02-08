@@ -80,13 +80,14 @@ MIDDLEWARE_CLASSES = [
 ]
 
 SITE_ID = 2
-ROOT_URLCONF = 'authome.urls'
+ROOT_URLCONF = 'api.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
     'api': 'api.urls',
     'docs': 'docs.urls',
 }
+SESSION_COOKIE_DOMAIN = '.authome.com'
 
 DATABASES = {
     'default': {
