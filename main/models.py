@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from _datetime import timedelta
 import uuid
 
 
@@ -67,7 +69,7 @@ class UserPage(TimeStampedModel):
     """
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
-    end_date = models.DateTimeField('종료일')
+    end_date = models.DateTimeField('종료일', default=timezone.now)
     end_yn = models.BooleanField(default=True)
 
     class Meta:
