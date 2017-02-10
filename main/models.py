@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from _datetime import timedelta
 import uuid
 
 
@@ -78,3 +77,7 @@ class UserPage(TimeStampedModel):
 
     def __str__(self):
         return "%s" % self.user
+
+    @property
+    def is_past_due(self):
+        return timezone.now() > self.end_date
