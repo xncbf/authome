@@ -12,7 +12,7 @@ from rest_framework_docs.api_docs import ApiDocumentation
 
 class GetAuth(APIView):
     """
-    해당 매크로에 대한 나의 인증정보를 가져옵니다.
+    예시: /3a526973-98cf-4f0e-8791-5ae7759948d7/
     """
     def get_object(self, macro_id):
         try:
