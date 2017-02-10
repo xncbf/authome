@@ -1,4 +1,35 @@
 {% extends 'layout.html' %}
+{% block script %}
+    <script>
+    $(function(){
+        {% if error %}
+            Materialize.toast('{{ error }}', 3000, 'rounded');
+        {% endif %}
+        $("#user_id").change(function (e) {
+            if($(this).val().length<1){return false}
+            $.ajax({
+                type: "POST",
+                url: '.',
+                data: $('form').serialize(),
+                success: function (args) {
+                    const result = JSON.parse(args)
+                    if(result.result){
+                        $(".material-icons.prefix:first").html('done');
+                        $(".input-field .prefix:first").css('color','#26a69a');
+                    }else{
+                        $(".material-icons.prefix:first").html('error_outline');
+                        $(".input-field .prefix:first").css('color','#f44336');
+                        Materialize.toast(result.error, 3000, 'rounded');
+                    }
+                },
+                error: function (e) {
+                    console.error(e.responseText);
+                }
+            });
+        });
+    })
+    </script>
+{% endblock %}
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -7,7 +38,7 @@
                 {% csrf_token %}
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">done</i>
+                        <i class="material-icons prefix">error_outline</i>
                         <input id="user_id" name="user_id" type="text">
                         <label for="user_id">유저 아이디</label>
                     </div>

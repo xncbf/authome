@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
+from django.core import serializers
 from .forms import LoginForm
 from .models import UserPage, Macro
+import json
 
 
 def user_login(request):
@@ -142,17 +143,42 @@ class AuthRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     template_name = 'authome/auth_register.html'
 
-    def post(self, *args, **kwargs):
-        user_id = self.request.POST.get('user_id', False)
-        end_date = self.request.POST.get('end_date', False)
-        user = User.objects.get(username=user_id)
+    def post(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        if user:
-            user_page = UserPage(user=user, macro=macro, end_date=end_date)
-            user_page.save()
+        if request.is_ajax():
+            user_id = request.POST.get('user_id')
+            macro_id = kwargs.get('macro_id')
+            result = {}
+            if User.objects.filter(username=user_id):
+                if not UserPage.objects.filter(user__username=user_id, macro=macro_id):
+                    result['result'] = True
+                else:
+                    result['result'] = False
+                    result['error'] = "이미 등록된 사용자입니다."
+            else:
+                result['result'] = False
+                result['error'] = "존재하지 않는 사용자입니다"
+            return HttpResponse(json.dumps(result, ensure_ascii=False))
+        # ajax 요청이 아닌 경우
+        else:
+            create = {}
+            user_id = self.request.POST.get('user_id', False)
+            end_date = self.request.POST.get('end_date', False)
+            if end_date:
+                create['end_date'] = end_date
+            try:
+                create['user'] = User.objects.get(username=user_id)
+                create['macro'] = macro
+                user_page = UserPage(**create)
+                user_page.save()
+            except:
+                return render(self.request, self.template_name, {
+                    'macro': macro,
+                    'error': '등록 실패',
+                })
             return redirect('main:macro_manager', macro_id=kwargs['macro_id'])
 
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         return render(self.request, 'authome/auth_register.html', {
             'macro': macro,
