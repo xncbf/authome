@@ -87,7 +87,7 @@ SUBDOMAIN_URLCONFS = {
     'api': 'api.urls',
     'docs': 'docs.urls',
 }
-SESSION_COOKIE_DOMAIN = '.authome.com'
+SESSION_COOKIE_DOMAIN = '.autho.me'
 
 DATABASES = {
     'default': {
