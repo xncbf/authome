@@ -34,6 +34,7 @@ class GetAuth(APIView):
         MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
 
+
 class GetList(APIView):
     """
     전체 Endpoint 를 가져옵니다.
