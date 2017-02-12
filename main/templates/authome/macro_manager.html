@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load humanize %}
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -19,7 +20,12 @@
                     <tr {% if not user.is_past_due %}class="teal lighten-5" {% endif %}>
                         <td>{{ user.user }}</td>
                         <td>{{ user.created }}</td>
-                        <td>{{ user.end_date }}</td>
+                        <td>
+                            {{ user.end_date|date:"Y년 m월 d일" }}
+                            {% if not user.is_past_due %}
+                            <span class="new badge" data-badge-caption="남음">{{ user.end_date|naturaltime }}</span>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% empty %}
                     <tr>
