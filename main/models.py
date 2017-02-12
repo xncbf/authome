@@ -24,7 +24,7 @@ class Macro(TimeStampedModel):
     class Meta:
         verbose_name_plural = '매크로'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField('매크로명', max_length=50)
+    title = models.CharField('매크로명', max_length=30)
     detail = models.TextField()
     user = models.ForeignKey(User)
     # fee = models.IntegerField('가격', default=0)
