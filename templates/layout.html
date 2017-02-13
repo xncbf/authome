@@ -38,6 +38,9 @@
                 <li><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal teal-text">API</a></li>
                 <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">문서</a></li>
                 <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
+                {% if debug %}
+                <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">로그</a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}
@@ -68,6 +71,9 @@
                 <li><a class="waves-effect" href="{% url 'drfdocs' subdomain='api' %}"><i class="material-icons">perm_identity</i>API</a></li>
                 <li><a class="waves-effect" href="{% url 'introduction' subdomain='docs' %}"><i class="material-icons">perm_identity</i>문서</a></li>
                 <li><a class="waves-effect" href="{% url 'main:mypage' %}"><i class="material-icons">perm_identity</i>관리페이지</a></li>
+                {% if debug %}
+                <li><a class="waves-effect" href="{% url 'log:main' %}"><i class="material-icons">perm_identity</i>로그</a></li>
+                {% endif %}
                 <li>
                     <div class="divider"></div>
                 </li>

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'api',
     'docs',
     'board',
+    'log',
 ]
 
 REST_FRAMEWORK = {
