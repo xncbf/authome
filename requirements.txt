@@ -1,4 +1,4 @@
-django==1.9.9
+django==1.9.12
 djangorestframework
 django-subdomains
 Unipath
