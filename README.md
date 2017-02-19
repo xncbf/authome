@@ -1,4 +1,4 @@
-![Image of Yaktocat](/main/static/images/authome.png)
+[![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=master)](https://travis-ci.org/xncbf/authome)
 # [AUTHOME](https://autho.me) 매크로 사용자 관리 사이트
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
