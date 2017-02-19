@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block script %}
+    <script>
+    $(function(){
+        $("select.select-user").change(function () {
+            $.ajax({
+                type: "POST",
+                url: '.',
+                data: $('form').serialize(),
+                success: function (args) {
+                },
+                error: function (e) {
+                    console.error(e.responseText);
+                }
+            });
+        })
+    })
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l6">
+                <div class="card-panel">
+                    <h5 class="thin">최근 접속 목록</h5>
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                                <select class="select-user" multiple>
+                                    <option value="" disabled selected>사용자 선택</option>
+                                    <option value="" data-icon="images/sample-1.jpg" class="circle">example 1</option>
+                                </select>
+                        </li>
+                        {% for log in macroLog %}
+                            <li class="collection-item">
+                                <div><a href="{% url 'main:macro_manager' macro_id=log.macro.id %}">{{ log.macro }}</a></div>
+                                <div class="chip">
+{#                                    <img src="images/yuna.jpg">#}
+                                    {{ log.user.username }}
+                                </div>
+                                <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m12 l6">
+                <div class="card-panel">
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <div class="chips chips-autocomplete"></div>
+                        </li>
+                        <li class="collection-item">
+                            <div>Alvin<a href="#!" class="secondary-content"></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

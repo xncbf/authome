@@ -12,7 +12,7 @@
                 url: '.',
                 data: $('form').serialize(),
                 success: function (args) {
-                    const result = JSON.parse(args)
+                    var result = JSON.parse(args);
                     if(result.result){
                         $(".material-icons.prefix:first").html('done');
                         $(".input-field .prefix:first").css('color','#26a69a');
