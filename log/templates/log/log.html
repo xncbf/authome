@@ -6,11 +6,14 @@
             $.ajax({
                 type: "POST",
                 url: '.',
-                data: $('form').serialize(),
-                success: function (args) {
+                data: {
+                    ddlUser: $('[name=ddlUser]').val().join()
+                },
+                success: function (response) {
+
                 },
                 error: function (e) {
-                    console.error(e.responseText);
+                    console.error(e);
                 }
             });
         })
@@ -25,10 +28,12 @@
                     <h5 class="thin">최근 접속 목록</h5>
                     <ul class="collection with-header">
                         <li class="collection-header">
-                                <select class="select-user" multiple>
-                                    <option value="" disabled selected>사용자 선택</option>
-                                    <option value="" data-icon="images/sample-1.jpg" class="circle">example 1</option>
-                                </select>
+                            <select name="ddlUser" class="select-user" multiple>
+                                <option value="" disabled selected>사용자 선택</option>
+                                {% for user in userPage %}
+                                <option value="{{ user.user.id }}" data-icon="images/sample-1.jpg" class="circle">{{ user.user.username }}</option>
+                                {% endfor %}
+                            </select>
                         </li>
                         {% for log in macroLog %}
                             <li class="collection-item">
