@@ -5,7 +5,7 @@ from main.models import MacroLog
 
 
 class Log(LoginRequiredMixin, View):
-    template_name = "log/main.html"
+    template_name = "log/log.html"
     login_url = '/accounts/login/'
     def get(self, request, *args, **kwargs):
         context = {}
