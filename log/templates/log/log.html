@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block script %}
     <script>
     $(function(){
@@ -10,7 +11,15 @@
                     ddlUser: $('[name=ddlUser]').val().join()
                 },
                 success: function (response) {
-
+                    var res = JSON.parse(response);
+                    '<li class="collection-item">\
+                        <div><a href="manager/">' + res.macro_name + '</a></div>\
+                        <div class="chip">\
+                            <img src="{% static 'images/Jigglypuff.png' %}">\
+                            {{ log.user.username }}\
+                        </div>\
+                        <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>\
+                    </li>'
                 },
                 error: function (e) {
                     console.error(e);
@@ -25,13 +34,13 @@
         <div class="row">
             <div class="col s12 m12 l6">
                 <div class="card-panel">
-                    <h5 class="thin">최근 접속 목록</h5>
+                    <h5 class="thin">최근 접속자 목록</h5>
                     <ul class="collection with-header">
                         <li class="collection-header">
                             <select name="ddlUser" class="select-user" multiple>
                                 <option value="" disabled selected>사용자 선택</option>
                                 {% for user in userPage %}
-                                <option value="{{ user.user.id }}" data-icon="images/sample-1.jpg" class="circle">{{ user.user.username }}</option>
+                                <option value="{{ user.user.id }}" data-icon="{% static 'images/Jigglypuff.png' %}" class="circle">{{ user.user.username }}</option>
                                 {% endfor %}
                             </select>
                         </li>
@@ -39,7 +48,7 @@
                             <li class="collection-item">
                                 <div><a href="{% url 'main:macro_manager' macro_id=log.macro.id %}">{{ log.macro }}</a></div>
                                 <div class="chip">
-{#                                    <img src="images/yuna.jpg">#}
+                                    <img src="{% static 'images/Jigglypuff.png' %}">
                                     {{ log.user.username }}
                                 </div>
                                 <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>
