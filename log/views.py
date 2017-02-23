@@ -1,7 +1,10 @@
+import json
+
 from django.shortcuts import render, HttpResponse
 from django.views.generic.list import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.serializers import serialize
+from django.db import connection
 from main.models import MacroLog, UserPage
 
 
@@ -16,7 +19,23 @@ class Log(LoginRequiredMixin, View):
         return render(self.request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            ddlUser = request.POST.get('ddlUser')
-            data = serialize("json", MacroLog.objects.filter(macro__user__id__in=ddlUser.split(','))[:8])
-            return HttpResponse(data)
+        with connection.cursor() as cursor:
+            if request.is_ajax():
+                ddlUser = request.POST.get('ddlUser')
+                where = {}
+                where[''] = ddlUser
+                cursor.execute("""SELECT
+                *
+                FROM
+                main_MacroLog""")
+                result = self.dictfetchall(cursor)
+                # result = serialize("json", MacroLog.objects.filter(macro__user__id__in=ddlUser.split(','))[:8])
+                return HttpResponse(json.dumps(result, ensure_ascii=False))
+
+    def dictfetchall(self, cursor):
+        "Return all rows from a cursor as a dict"
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]

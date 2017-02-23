@@ -12,14 +12,16 @@
                 },
                 success: function (response) {
                     var res = JSON.parse(response);
-                    '<li class="collection-item">\
-                        <div><a href="manager/">' + res.macro_name + '</a></div>\
-                        <div class="chip">\
-                            <img src="{% static 'images/Jigglypuff.png' %}">\
-                            {{ log.user.username }}\
-                        </div>\
-                        <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>\
-                    </li>'
+                    var html = '<li class="collection-item">\
+                                    <div><a href="manager/">' + res.macro_name + '</a></div>\
+                                    <div class="chip">\
+                                        <img src="' +  + '">\
+                                        {{ log.user.username }}\
+                                    </div>\
+                                    <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>\
+                                </li>';
+                    $("ul li.collection-item.user-list").remove();
+                    $("ul.user-list").append(html);
                 },
                 error: function (e) {
                     console.error(e);
@@ -35,7 +37,7 @@
             <div class="col s12 m12 l6">
                 <div class="card-panel">
                     <h5 class="thin">최근 접속자 목록</h5>
-                    <ul class="collection with-header">
+                    <ul class="collection with-header user-list">
                         <li class="collection-header">
                             <select name="ddlUser" class="select-user" multiple>
                                 <option value="" disabled selected>사용자 선택</option>
@@ -45,7 +47,7 @@
                             </select>
                         </li>
                         {% for log in macroLog %}
-                            <li class="collection-item">
+                            <li class="collection-item user-list">
                                 <div><a href="{% url 'main:macro_manager' macro_id=log.macro.id %}">{{ log.macro }}</a></div>
                                 <div class="chip">
                                     <img src="{% static 'images/Jigglypuff.png' %}">
