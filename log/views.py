@@ -58,4 +58,6 @@ class Log(LoginRequiredMixin, View):
                                      e.get('username'),
                                      e.get('ip'),
                                     DateFormat(e.get('created')).format('y-m-d H:i'))
+        if len(obj) == 0:
+            html = '<li class="collection-item user-list">사용 흔적이 없어요!</li>'
         return html
