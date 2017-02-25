@@ -9,3 +9,4 @@ invoke
 django-ipware
 psycopg2
 drfdocs
+django_mobile

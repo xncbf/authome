@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'rest_framework',
     'subdomains',
+    'django_mobile',
     'main',
     'api',
     'docs',
@@ -78,6 +79,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_mobile.middleware.MobileDetectionMiddleware',
+    'django_mobile.middleware.SetFlavourMiddleware',
 ]
 
 SITE_ID = 2
@@ -104,7 +107,9 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child('templates'), ],
+        'DIRS': [
+            BASE_DIR.child('templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,6 +117,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_mobile.context_processors.flavour',
             ],
         },
     },
