@@ -26,7 +26,10 @@ class Log(LoginRequiredMixin, View):
                 where = {}
                 where[''] = ddlUser
                 cursor.execute("""SELECT
-                *
+                ML.macro_id,
+                ML.created,
+                M.title,
+                U.username
                 FROM main_macrolog ML
                 LEFT JOIN main_macro M ON M.id = ML.macro_id
                 LEFT JOIN auth_user U ON U.id = ML.user_id""")

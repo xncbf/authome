@@ -12,14 +12,17 @@
                 },
                 success: function (response) {
                     var res = JSON.parse(response);
-                    var html = '<li class="collection-item">\
-                                    <div><a href="manager/">' + res.macro_name + '</a></div>\
-                                    <div class="chip">\
-                                        <img src="/statiic/images/Jigglypuff.png">\
-                                        {{ log.user.username }}\
-                                    </div>\
-                                    <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>\
-                                </li>';
+                    var html = ''
+                    for(var i=0; i<res.length;i++){
+                        html += '<li class="collection-item user-list">\
+                            <div><a href="manager/' + res[i].macro_id + '">' + res[i].title+ '</a></div>\
+                            <div class="chip">\
+                                <img src="/static/images/Jigglypuff.png">\
+                                ' + res[i].username +'\
+                            </div>\
+                            <span class="secondary-content">' + res[i].created + '</span>\
+                        </li>';
+                    }
                     $("ul li.collection-item.user-list").remove();
                     $("ul.user-list").append(html);
                 },
