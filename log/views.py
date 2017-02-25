@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.serializers import serialize
 from django.db import connection
 from main.models import MacroLog, UserPage
+from .services import dictfetchall
 
 
 class Log(LoginRequiredMixin, View):
@@ -28,14 +29,6 @@ class Log(LoginRequiredMixin, View):
                 *
                 FROM
                 main_MacroLog""")
-                result = self.dictfetchall(cursor)
+                result = dictfetchall(cursor)
                 # result = serialize("json", MacroLog.objects.filter(macro__user__id__in=ddlUser.split(','))[:8])
                 return HttpResponse(json.dumps(result, ensure_ascii=False))
-
-    def dictfetchall(self, cursor):
-        "Return all rows from a cursor as a dict"
-        columns = [col[0] for col in cursor.description]
-        return [
-            dict(zip(columns, row))
-            for row in cursor.fetchall()
-        ]
