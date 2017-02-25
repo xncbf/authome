@@ -81,6 +81,22 @@ nav {
     height: 56px;
     line-height: 56px;
 }
+
+ul.user-list li {
+    padding: 10px !important;
+}
+
+ul.user-list li a {
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+ul.user-list li:hover {
+    background-color: gainsboro;
+}
+
 @media screen and (max-width:780px) {
     h2.header {
         font-size: 3.00rem;

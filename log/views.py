@@ -46,12 +46,13 @@ class Log(LoginRequiredMixin, View):
     def set_html(self, obj, html=''):
         for e in obj:
             html += """<li class="collection-item user-list">
-                        <div><a href="{0}">{1}</a></div>
-                        <div class="chip">
-                            <img src="{2}">{3}
-
-                        </div>
-                        <span class="secondary-content">{4}<br>{5}</span>
+                        <a href="{0}">
+                            <div>{1}</div>
+                            <div class="chip">
+                                <img src="{2}">{3}
+                            </div>
+                            <span class="secondary-content">{4}<br>{5}</span>
+                        </a>
                     </li>""".format(reverse('main:macro_manager', kwargs={'macro_id': e.get('macro_id')}),
                                      e.get('title') or '제목없음',
                                      static('images/Jigglypuff.png'),

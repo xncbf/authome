@@ -25,19 +25,17 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col s12 m12 l6">
-                <div class="card-panel">
-                    <h5 class="thin">최근 접속자 목록</h5>
-                    <select name="ddlUser" class="select-user" multiple>
-                        <option value="" disabled selected>사용자 선택</option>
-                        {% for user in userPage %}
+            <div class="col s12 m12 l6 card-panel">
+                <h5 class="thin">최근 접속자 목록</h5>
+                <select name="ddlUser" class="select-user" multiple>
+                    <option value="" disabled selected>사용자 선택</option>
+                    {% for user in userPage %}
                         <option value="{{ user.user.id }}" data-icon="{% static 'images/Jigglypuff.png' %}" class="circle">{{ user.user.username }}</option>
-                        {% endfor %}
-                    </select>
-                    <ul class="collection with-header user-list">
+                    {% endfor %}
+                </select>
+                <ul class="collection with-header user-list">
                     {# 자바스크립트에서 동적 생성 #}
-                    </ul>
-                </div>
+                </ul>
             </div>
             <div class="col s12 m12 l6">
                 <div class="card-panel">
