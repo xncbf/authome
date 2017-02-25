@@ -1,12 +1,12 @@
-import json
-
 from django.shortcuts import render, HttpResponse
 from django.views.generic.list import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.serializers import serialize
 from django.db import connection
+from django.core.urlresolvers import reverse
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.utils.dateformat import DateFormat
 from main.models import MacroLog, UserPage
-from .services import dictfetchall, JSONEncoder
+from .services import dictfetchall
 
 
 class Log(LoginRequiredMixin, View):
@@ -22,16 +22,40 @@ class Log(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         with connection.cursor() as cursor:
             if request.is_ajax():
-                ddlUser = request.POST.get('ddlUser')
-                where = {}
-                where[''] = ddlUser
+                ddl_user = ','.join(request.POST.get('ddlUser').split(','))
+                if ddl_user:
+                    where_str = 'AND ML.user_id IN ({0})'.format(ddl_user)
+                else:
+                    where_str = ''
                 cursor.execute("""SELECT
                 ML.macro_id,
                 ML.created,
+                ML.ip,
                 M.title,
                 U.username
                 FROM main_macrolog ML
                 LEFT JOIN main_macro M ON M.id = ML.macro_id
-                LEFT JOIN auth_user U ON U.id = ML.user_id""")
-                result = dictfetchall(cursor)
-                return HttpResponse(json.dumps(result, ensure_ascii=False, cls=JSONEncoder))
+                LEFT JOIN auth_user U ON U.id = ML.user_id
+                WHERE M.user_id = '{0}' {1}
+                ORDER BY ML.created DESC
+                LIMIT 8""".format(request.user.pk, where_str))
+                obj = dictfetchall(cursor)
+                result = self.set_html(obj)
+                return HttpResponse(result)
+
+    def set_html(self, obj, html=''):
+        for e in obj:
+            html += """<li class="collection-item user-list">
+                        <div><a href="{0}">{1}</a></div>
+                        <div class="chip">
+                            <img src="{2}">{3}
+
+                        </div>
+                        <span class="secondary-content">{4}<br>{5}</span>
+                    </li>""".format(reverse('main:macro_manager', kwargs={'macro_id': e.get('macro_id')}),
+                                     e.get('title') or '제목없음',
+                                     static('images/Jigglypuff.png'),
+                                     e.get('username'),
+                                     e.get('ip'),
+                                    DateFormat(e.get('created')).format('y-m-d H:i'))
+        return html

@@ -11,26 +11,14 @@
                     ddlUser: $('[name=ddlUser]').val().join()
                 },
                 success: function (response) {
-                    var res = JSON.parse(response);
-                    var html = ''
-                    for(var i=0; i<res.length;i++){
-                        html += '<li class="collection-item user-list">\
-                            <div><a href="manager/' + res[i].macro_id + '">' + res[i].title+ '</a></div>\
-                            <div class="chip">\
-                                <img src="/static/images/Jigglypuff.png">\
-                                ' + res[i].username +'\
-                            </div>\
-                            <span class="secondary-content">' + res[i].created + '</span>\
-                        </li>';
-                    }
-                    $("ul li.collection-item.user-list").remove();
-                    $("ul.user-list").append(html);
+                    var html = response;
+                    $("ul.user-list").html(html);
                 },
                 error: function (e) {
                     console.error(e);
                 }
             });
-        })
+        }).trigger('change');
     })
     </script>
 {% endblock %}
@@ -40,25 +28,14 @@
             <div class="col s12 m12 l6">
                 <div class="card-panel">
                     <h5 class="thin">최근 접속자 목록</h5>
-                    <ul class="collection with-header user-list">
-                        <li class="collection-header">
-                            <select name="ddlUser" class="select-user" multiple>
-                                <option value="" disabled selected>사용자 선택</option>
-                                {% for user in userPage %}
-                                <option value="{{ user.user.id }}" data-icon="{% static 'images/Jigglypuff.png' %}" class="circle">{{ user.user.username }}</option>
-                                {% endfor %}
-                            </select>
-                        </li>
-                        {% for log in macroLog %}
-                            <li class="collection-item user-list">
-                                <div><a href="{% url 'main:macro_manager' macro_id=log.macro.id %}">{{ log.macro }}</a></div>
-                                <div class="chip">
-                                    <img src="{% static 'images/Jigglypuff.png' %}">
-                                    {{ log.user.username }}
-                                </div>
-                                <span class="secondary-content">{{ log.created|date:"y-m-d H:i:s" }}</span>
-                            </li>
+                    <select name="ddlUser" class="select-user" multiple>
+                        <option value="" disabled selected>사용자 선택</option>
+                        {% for user in userPage %}
+                        <option value="{{ user.user.id }}" data-icon="{% static 'images/Jigglypuff.png' %}" class="circle">{{ user.user.username }}</option>
                         {% endfor %}
+                    </select>
+                    <ul class="collection with-header user-list">
+                    {# 자바스크립트에서 동적 생성 #}
                     </ul>
                 </div>
             </div>
