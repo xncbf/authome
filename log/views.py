@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.serializers import serialize
 from django.db import connection
 from main.models import MacroLog, UserPage
-from .services import dictfetchall
+from .services import dictfetchall, JSONEncoder
 
 
 class Log(LoginRequiredMixin, View):
@@ -27,8 +27,8 @@ class Log(LoginRequiredMixin, View):
                 where[''] = ddlUser
                 cursor.execute("""SELECT
                 *
-                FROM
-                main_MacroLog""")
+                FROM main_macrolog ML
+                LEFT JOIN main_macro M ON M.id = ML.macro_id
+                LEFT JOIN auth_user U ON U.id = ML.user_id""")
                 result = dictfetchall(cursor)
-                # result = serialize("json", MacroLog.objects.filter(macro__user__id__in=ddlUser.split(','))[:8])
-                return HttpResponse(json.dumps(result, ensure_ascii=False))
+                return HttpResponse(json.dumps(result, ensure_ascii=False, cls=JSONEncoder))
