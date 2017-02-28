@@ -3,8 +3,8 @@
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
-* python>=3.4
-* django==1.9.9
+* python>=3.4.x
+* django==1.9.x
 
 ## 시스템 의존성
 패키지 의존성을 설치하기 전에 앞서 설치가 필요합니다.
@@ -21,6 +21,8 @@
 * invoke
 * django-ipware
 * psycopg2
+* drfdocs
+* django_mobile
 
 
 ## 개발 환경 세팅
