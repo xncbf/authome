@@ -30,7 +30,7 @@
            aria-expanded="false">Jump To <span class="caret"></span></a>
         <ul class="dropdown-menu">
             {% for group in endpoints_grouped %}
-                <li><a href="#{{ group.grouper|lower }}-group">{{ group.grouper|default:"Get Auth" }}</a></li>
+                <li><a href="#{{ group.grouper|lower }}-group">{{ group.grouper }}</a></li>
             {% endfor %}
         </ul>
     </li>
@@ -44,7 +44,7 @@
     {% if endpoints_grouped %}
         {% for group in endpoints_grouped %}
 
-            <h1 id="{{ group.grouper|lower }}-group">{{ group.grouper|default:"Get Auth" }}</h1>
+            <h1 id="{{ group.grouper|lower }}-group">{{ group.grouper }}</h1>
 
             <div class="panel-group" role="tablist">
 

@@ -9,6 +9,6 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
+    url(r'^macro/', view=include('api_macro.urls', namespace='accounts')),
     url(r'^$', views.DRFDocsView.as_view(), name='drfdocs'),
 ]
