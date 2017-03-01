@@ -37,7 +37,7 @@ class GetAuth(APIView):
             MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
             return Response(serializer.data)
         else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 class GetList(APIView):
