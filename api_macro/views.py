@@ -34,7 +34,7 @@ class GetAuth(APIView):
         if user:
             userPage = self.get_object(user, macro_id)
             serializer = AuthSerializer(userPage)
-            MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
+            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request))
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
