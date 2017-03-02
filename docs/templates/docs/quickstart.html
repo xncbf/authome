@@ -27,9 +27,8 @@
                     <h5>오토핫키</h5>
                     <p>
                         다음은 오토핫키에서 유저인증을 받아 msgbox 를 띄우는 예제의 일부분입니다.<br>
-                        예제에는 curl.exe 가 반드시 필요하지만 가능하다면 사용하지 않아도 좋습니다.<br>
                     </p>
-                    <a id="download-source" class="btn waves-effect waves-light" href="{% static "example_ahk.zip" %}">
+                    <a id="download-source" class="btn waves-effect waves-light" href="{% static "example/example.ahk" %}">
                         예제 다운로드<i class="material-icons right">file_download</i>
                     </a>
                     <pre>
@@ -38,7 +37,7 @@
 global Uid = "3a526973-98cf-4f0e-8791-5ae7759948d7"
 
 F1::
-    if (GetAuth(id ":" pw))
+    if (GetAuth(id "/" pw))
     {
         msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
     }
