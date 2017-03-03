@@ -29,9 +29,11 @@ handler400 = 'main.views.bad_request_view'
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
-    url(r'^accounts/login/', views.user_login, name='login'),
-    url(r'^accounts/logout/', views.user_logout, name='logout'),
-    url(r'^accounts/join/', views.user_join, name='join'),
+
+    url(r'^accounts/', include('allauth.urls')),
+    # url(r'^accounts/login/', views.user_login, name='login'),
+    # url(r'^accounts/logout/', views.user_logout, name='logout'),
+    # url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^mypage/', include('main.urls', namespace='main'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),

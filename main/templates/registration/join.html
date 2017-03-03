@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <br><br>
-<form method="post" action="{% url 'join' %}">
+<form method="post" action="{% url 'account_signup' %}">
 {% csrf_token %}
 <div class="container">
     {{ form.as_p }}

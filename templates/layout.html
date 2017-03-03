@@ -52,9 +52,9 @@
                 <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">로그</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
+                    <li><a href="{% url 'account_logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}" class="waves-effect waves-teal teal-text">로그인</a></li>
+                    <li><a href="{% url 'account_login' %}" class="waves-effect waves-teal teal-text">로그인</a></li>
                 {% endif %}
             </ul>
             <ul id="nav-mobile" class="side-nav">
@@ -64,13 +64,13 @@
                         {% if user.is_authenticated %}
                             <a href="#"><img class="circle" src="{% static "images/test.jpg" %}"></a>
                         {% else %}
-                            <a href="{% url 'login' %}"><img class="circle" src="{% static "images/test.jpg" %}"></a>
+                            <a href="{% url 'account_login' %}"><img class="circle" src="{% static "images/test.jpg" %}"></a>
                         {% endif %}
                         {% if user.is_authenticated %}
                             <a href="#!name"><span class="white-text name">{{ user.get_username }}</span></a>
 {#                            <a href="#!email"><span class="white-text email">xncbf@gmail.com</span></a>#}
                         {% else %}
-                            <p><a href="{% url 'login' %}" class="white-text">로그인해주세요</a></p>
+                            <p><a href="{% url 'account_login' %}" class="white-text">로그인해주세요</a></p>
                         {% endif %}
                     </div>
                 </li>
@@ -86,7 +86,7 @@
                     <div class="divider"></div>
                 </li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" class="waves-effect">로그아웃</a></li>
+                    <li><a href="{% url 'account_logout' %}" class="waves-effect">로그아웃</a></li>
                 {% endif %}
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>

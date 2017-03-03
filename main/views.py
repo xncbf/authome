@@ -10,53 +10,53 @@ from .models import UserPage, Macro
 import json
 
 
-def user_login(request):
-    form = LoginForm(request.POST or None)
-    if request.POST and form.is_valid():
-        user = form.login(request)
-        if user:
-            if user.is_active:
-                login(request, user)
-                # 로그인성공
-                if request.POST.get('next'):
-                    return HttpResponseRedirect(request.POST.get('next'))
-                else:
-                    return HttpResponseRedirect('/')
-            else:
-                # 권한이 없는 아이디
-                pass
-        else:
-            form = form.clean()
-    return render(request, 'registration/login.html', {
-            'form': form,
-    })
-
-
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect("/")
-
-
-def user_join(request):
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-        user = form.save()
-        password = request.POST.get('password1', False)
-        user = authenticate(username=user.username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                # 로그인성공
-                return HttpResponseRedirect("/")
-            else:
-                # Return a 'disabled account' error message
-                pass
-        else:
-            form.clean()
-        return HttpResponseRedirect("/")
-    return render(request, 'registration/join.html', {
-        'form': form,
-    })
+# def user_login(request):
+#     form = LoginForm(request.POST or None)
+#     if request.POST and form.is_valid():
+#         user = form.login(request)
+#         if user:
+#             if user.is_active:
+#                 login(request, user)
+#                 # 로그인성공
+#                 if request.POST.get('next'):
+#                     return HttpResponseRedirect(request.POST.get('next'))
+#                 else:
+#                     return HttpResponseRedirect('/')
+#             else:
+#                 # 권한이 없는 아이디
+#                 pass
+#         else:
+#             form = form.clean()
+#     return render(request, 'registration/login.html', {
+#             'form': form,
+#     })
+#
+#
+# def user_logout(request):
+#     logout(request)
+#     return HttpResponseRedirect("/")
+#
+#
+# def user_join(request):
+#     form = UserCreationForm(request.POST)
+#     if form.is_valid():
+#         user = form.save()
+#         password = request.POST.get('password1', False)
+#         user = authenticate(username=user.username, password=password)
+#         if user is not None:
+#             if user.is_active:
+#                 login(request, user)
+#                 # 로그인성공
+#                 return HttpResponseRedirect("/")
+#             else:
+#                 # Return a 'disabled account' error message
+#                 pass
+#         else:
+#             form.clean()
+#         return HttpResponseRedirect("/")
+#     return render(request, 'registration/join.html', {
+#         'form': form,
+#     })
 
 
 class Mypage(LoginRequiredMixin, ListView):

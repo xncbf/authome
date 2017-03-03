@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <div class="container">
-        <form id="login_form" method="post" action="{% url 'login' %}">
+        <form id="login_form" method="post" action="{% url 'account_login' %}">
             {% csrf_token %}
             <br><br>
             {% if form.non_field_errors %}
@@ -21,7 +21,6 @@
             </button>
             <a href="#modal1" class="modal-trigger waves-effect waves-light btn"><i
                     class="material-icons right">cloud</i>회원가입</a>
-            </span>
         </form>
     </div>
 
