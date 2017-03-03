@@ -97,6 +97,10 @@ ul.user-list li:hover {
     background-color: gainsboro;
 }
 
+.btn-login{
+    margin: 5px;
+}
+
 @media screen and (max-width:780px) {
     h2.header {
         font-size: 3.00rem;
