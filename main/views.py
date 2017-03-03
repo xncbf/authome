@@ -32,11 +32,6 @@ import json
 #     })
 #
 #
-# def user_logout(request):
-#     logout(request)
-#     return HttpResponseRedirect("/")
-#
-#
 # def user_join(request):
 #     form = UserCreationForm(request.POST)
 #     if form.is_valid():
