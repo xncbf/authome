@@ -5,18 +5,6 @@
 {% block content %}
     <div class="container">
         <h1 class="teal-text">{% trans "Sign In" %}</h1>
-        {% get_providers as socialaccount_providers %}
-        {% if socialaccount_providers %}
-            <div class="socialaccount_ballot">
-                <ul class="socialaccount_providers">
-                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                </ul>
-            </div>
-            {% include "socialaccount/snippets/login_extra.html" %}
-        {% else %}
-            <p>{% blocktrans %}If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-        {% endif %}
         <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             {{ form.as_p }}
@@ -31,5 +19,18 @@
             <a href="{{ signup_url }}" class="modal-trigger waves-effect waves-light btn"><i
                     class="material-icons right">cloud</i>회원가입</a>
         </form>
+
+        {% get_providers as socialaccount_providers %}
+        {% if socialaccount_providers %}
+            <div class="socialaccount_ballot">
+                <ul class="socialaccount_providers">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </ul>
+            </div>
+            {% include "socialaccount/snippets/login_extra.html" %}
+        {% else %}
+            <p>{% blocktrans %}If you have not created an account yet, then please
+                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+        {% endif %}
     </div>
 {% endblock %}
