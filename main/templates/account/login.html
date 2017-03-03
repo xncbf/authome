@@ -4,7 +4,11 @@
 {% block script %}
     <script>
     $(function(){
-        $(".socialaccount_providers li").addClass("btn waves-effect waves-light").children("a").addClass("white-text")
+{#        $(".socialaccount_providers li").addClass("btn waves-effect waves-light").children("a").addClass("white-text");#}
+{#        $(".socialaccount_providers li a[title=Facebook]").parent().addClass('blue darken-4');#}
+{#        $(".socialaccount_providers li a[title=Naver]").parent().addClass('green darken-4');#}
+{#        $(".socialaccount_providers li a[title=Kakao]").parent().addClass('yellow accent-4');#}
+        $(".btn").css("margin","5px 0");
     })
     </script>
 {% endblock %}
@@ -20,22 +24,27 @@
                href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
             <br>
             <button class="btn waves-effect waves-light" type="submit" name="action">로그인
-                <i class="material-icons right">send</i></button>
-            <a href="{{ signup_url }}" class="modal-trigger waves-effect waves-light btn"><i
-                    class="material-icons right">cloud</i>회원가입</a>
+                <i class="material-icons right">send</i>
+            </button>
+            <a href="{{ signup_url }}" class="modal-trigger waves-effect waves-light btn">
+                <i class="material-icons right">cloud</i>회원가입
+            </a>
+            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>소셜 로그인
+                <i class="material-icons right">perm_identity</i>
+            </a>
+            {% get_providers as socialaccount_providers %}
+            {% if socialaccount_providers %}
+                <div id="dropdown1" class="socialaccount_ballot dropdown-content">
+                    <ul class="socialaccount_providers">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                    </ul>
+                </div>
+                {% include "socialaccount/snippets/login_extra.html" %}
+            {% else %}
+                <p>{% blocktrans %}If you have not created an account yet, then please
+                    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+            {% endif %}
         </form>
 
-        {% get_providers as socialaccount_providers %}
-        {% if socialaccount_providers %}
-            <div class="socialaccount_ballot">
-                <ul class="socialaccount_providers">
-                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                </ul>
-            </div>
-            {% include "socialaccount/snippets/login_extra.html" %}
-        {% else %}
-            <p>{% blocktrans %}If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-        {% endif %}
     </div>
 {% endblock %}
