@@ -51,21 +51,3 @@ class GetList(APIView):
         serializer = AuthSerializer(userPage)
         MacroLog.objects.create(user=request.user, macro=userPage.macro, ip=get_ip(request))
         return Response(serializer.data)
-
-
-class DRFDocsView(TemplateView):
-
-    template_name = "rest_framework_docs/custom.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(DRFDocsView, self).get_context_data(**kwargs)
-        docs = ApiDocumentation()
-        endpoints = docs.get_endpoints()
-
-        query = self.request.GET.get("search", "")
-        if query and endpoints:
-            endpoints = [endpoint for endpoint in endpoints if query in endpoint.path]
-
-        context['query'] = query
-        context['endpoints'] = endpoints
-        return context
