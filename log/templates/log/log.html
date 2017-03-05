@@ -30,7 +30,8 @@
                 <select name="ddlUser" class="select-user" multiple>
                     <option value="" disabled selected>사용자 선택</option>
                     {% for user in userPage %}
-                        <option value="{{ user.user.id }}" data-icon="{% static 'images/Jigglypuff.png' %}" class="circle">{{ user.user.username }}</option>
+                        {% static 'images/Jigglypuff.png' as default_profile %}
+                        <option value="{{ user.user.id }}" data-icon="{{ user.socialaccount_set.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
                     {% endfor %}
                 </select>
                 <ul class="collection with-header user-list">
