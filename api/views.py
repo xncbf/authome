@@ -12,7 +12,7 @@ from main.models import UserPage, MacroLog
 
 class GetAuth(APIView):
     """
-    예시: /test/password/3a526973-98cf-4f0e-8791-5ae7759948d7/
+    예시: /아이디/패스워드/매크로UID/
     """
     def get_object(self, macro_id):
         try:
