@@ -1,12 +1,12 @@
 from django.http import Http404
 from django.utils import timezone
-from django.views.generic.base import TemplateView
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from ipware.ip import get_ip
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework_docs.api_docs import ApiDocumentation
+from allauth.socialaccount.models import SocialAccount, SocialToken
 from api_macro.serializers import AuthSerializer
 from main.models import UserPage, MacroLog
 
@@ -37,7 +37,19 @@ class GetAuth(APIView):
             MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request))
             return Response(serializer.data)
         else:
-            return Response(status=status.HTTP_403_FORBIDDEN)
+            try:
+                social_user = User.objects.get(username=username)
+                social_account = SocialAccount.objects.get(user_id=social_user.pk)
+                social_token = SocialToken.objects.get(account_id=social_account.pk)
+                if social_token.token == password:
+                    userPage = self.get_object(social_user.username, macro_id)
+                    serializer = AuthSerializer(userPage)
+                    MacroLog.objects.create(user=social_user, macro=userPage.macro, ip=get_ip(request))
+                    return Response(serializer.data)
+                else:
+                    raise Exception
+            except:
+                return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 class GetList(APIView):
