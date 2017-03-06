@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=master)](https://travis-ci.org/xncbf/authome)
+[![Beerpay](https://beerpay.io/xncbf/authome/badge.svg?style=beer-square)](https://beerpay.io/xncbf/authome)  [![Beerpay](https://beerpay.io/xncbf/authome/make-wish.svg?style=flat-square)](https://beerpay.io/xncbf/authome?focus=wish)
 # [AUTHOME](https://autho.me) 매크로 사용자 관리 사이트
 [![Beerpay](https://beerpay.io/xncbf/authome/badge.svg)](https://beerpay.io/xncbf/authome)
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
