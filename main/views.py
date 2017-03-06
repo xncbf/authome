@@ -16,7 +16,7 @@ def user_logout(request):
 class MyPage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     model = Macro
-    template_name = 'authome/mypage.html'
+    template_name = 'main/mypage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -36,7 +36,6 @@ def intro(request):
 class MacroRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
-    template_name = 'authome/macro_register.html'
 
     def post(self, *args, **kwargs):
         macro_name = self.request.POST.get('macro_name', False)
@@ -50,7 +49,7 @@ class MacroRegister(LoginRequiredMixin, View):
         return HttpResponseRedirect("/mypage/")
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name, {
+        return render(self.request, 'main/macro_register.html', {
 
         })
 
@@ -58,7 +57,6 @@ class MacroRegister(LoginRequiredMixin, View):
 class MacroModify(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
-    template_name = 'authome/macro_modify.html'
 
     def post(self, *args, **kwargs):
         macro_name = self.request.POST.get('macro_name', False)
@@ -73,7 +71,7 @@ class MacroModify(LoginRequiredMixin, View):
 
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        return render(self.request, self.template_name, {
+        return render(self.request, 'main/macro_modify.html', {
             'macro': macro,
         })
 
@@ -81,7 +79,7 @@ class MacroModify(LoginRequiredMixin, View):
 class MacroManage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     model = UserPage
-    template_name = 'authome/macro_manager.html'
+    template_name = 'main/macro_manager.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -94,7 +92,6 @@ class MacroManage(LoginRequiredMixin, ListView):
 
 class AuthRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
-    template_name = 'authome/auth_register.html'
 
     def post(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
@@ -125,7 +122,7 @@ class AuthRegister(LoginRequiredMixin, View):
                 user_page = UserPage(**create)
                 user_page.save()
             except:
-                return render(self.request, self.template_name, {
+                return render(self.request, 'main/auth_register.html', {
                     'macro': macro,
                     'error': '등록 실패',
                 })
@@ -133,7 +130,7 @@ class AuthRegister(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        return render(self.request, 'authome/auth_register.html', {
+        return render(self.request, 'main/auth_register.html', {
             'macro': macro,
         })
 
