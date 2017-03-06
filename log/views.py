@@ -60,7 +60,7 @@ class Log(LoginRequiredMixin, View):
                             </div>
                             <span class="secondary-content">{4}<br>{5}</span>
                         </a>
-                    </li>""".format(reverse('main:macro_manager', kwargs={'macro_id': e.get('macro_id')}),
+                    </li>""".format(reverse('main:user_manage', kwargs={'macro_id': e.get('macro_id')}),
                                     e.get('title') or '제목없음',
                                     profile_url,
                                     e.get('username'),

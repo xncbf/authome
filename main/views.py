@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
 from .models import UserPage, Macro
@@ -10,17 +10,17 @@ import json
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect(reverse('intro'))
 
 
-class MyPage(LoginRequiredMixin, ListView):
+class MacroManage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     model = Macro
-    template_name = 'main/mypage.html'
+    template_name = 'main/macro_manage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(MyPage, self).get_context_data(**kwargs)
+        context = super(MacroManage, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['macro_list'] = Macro.objects.filter(user=self.request.user)
         return context
@@ -28,7 +28,7 @@ class MyPage(LoginRequiredMixin, ListView):
 
 def intro(request):
     """
-     mypage 인덱스페이지
+     macro_manage 인덱스페이지
     """
     return render(request, 'main/intro.html', {})
 
@@ -46,7 +46,7 @@ class MacroRegister(LoginRequiredMixin, View):
             user=self.request.user
         )
         macro.save()
-        return HttpResponseRedirect("/mypage/")
+        return HttpResponseRedirect(reverse('main:macro_manage'))
 
     def get(self, *args, **kwargs):
         return render(self.request, 'main/macro_register.html', {
@@ -67,7 +67,7 @@ class MacroModify(LoginRequiredMixin, View):
             title=macro_name,
             detail=macro_detail,
         )
-        return HttpResponseRedirect("/mypage/")
+        return HttpResponseRedirect(reverse('main:macro_manage'))
 
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
@@ -76,14 +76,14 @@ class MacroModify(LoginRequiredMixin, View):
         })
 
 
-class MacroManage(LoginRequiredMixin, ListView):
+class UserManage(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     model = UserPage
-    template_name = 'main/macro_manager.html'
+    template_name = 'main/user_manage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        context = super(MacroManage, self).get_context_data(**kwargs)
+        context = super(UserManage, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['macro'] = Macro.objects.get(id=self.kwargs['macro_id'])
         context['users'] = UserPage.objects.filter(macro=self.kwargs['macro_id'])
@@ -126,7 +126,7 @@ class AuthRegister(LoginRequiredMixin, View):
                     'macro': macro,
                     'error': '등록 실패',
                 })
-            return redirect('main:macro_manager', macro_id=kwargs['macro_id'])
+            return redirect('main:user_manage', macro_id=kwargs['macro_id'])
 
     def get(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])

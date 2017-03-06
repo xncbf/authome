@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # url(r'^accounts/join/', views.user_join, name='join'),
-    url(r'^mypage/', include('main.urls', namespace='main'), ),
+    url(r'^macro/', include('main.urls', namespace='main'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),
     url(r'^$', views.intro, name='intro'),
