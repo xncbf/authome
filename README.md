@@ -53,3 +53,8 @@ AUTHOME_DATABASE_HOST = 디비 호스트
 AUTHOME_DATABASE_PORT = 디비 포트
 AUTHOME_ADMIN_URL = 관리자페이지 url
 ```
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/xncbf/authome/badge.svg?style=beer-square)](https://beerpay.io/xncbf/authome)  [![Beerpay](https://beerpay.io/xncbf/authome/make-wish.svg?style=flat-square)](https://beerpay.io/xncbf/authome?focus=wish)
