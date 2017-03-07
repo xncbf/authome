@@ -8,6 +8,13 @@ services:
 env:
   global:
     - BUILD_ON_TRAVIS=true
+    - AUTHOME_SECRET_KEY=travis
+    - AUTHOME_DATABASE_NAME=travisci
+    - AUTHOME_DATABASE_USER=postgres
+    - AUTHOME_DATABASE_PASSWORD=test12#$
+    - AUTHOME_DATABASE_HOST=localhost
+    - AUTHOME_DATABASE_PORT=5432
+    - AUTHOME_ADMIN_URL=travisadmin
   matrix:
     - DJANGO_VERSION=1.9.12 DB=postgresql
 

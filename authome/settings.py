@@ -97,28 +97,16 @@ SUBDOMAIN_URLCONFS = {
 }
 SESSION_COOKIE_DOMAIN = '.autho.me'
 
-if 'BUILD_ON_TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'travisci',
-            'USER': 'postgres',
-            'PASSWORD': 'test#@!',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['AUTHOME_DATABASE_NAME'],
+        'USER': os.environ['AUTHOME_DATABASE_USER'],
+        'PASSWORD': os.environ['AUTHOME_DATABASE_PASSWORD'],
+        'HOST': os.environ['AUTHOME_DATABASE_HOST'],
+        'PORT': os.environ['AUTHOME_DATABASE_PORT'],
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['AUTHOME_DATABASE_NAME'],
-            'USER': os.environ['AUTHOME_DATABASE_USER'],
-            'PASSWORD': os.environ['AUTHOME_DATABASE_PASSWORD'],
-            'HOST': os.environ['AUTHOME_DATABASE_HOST'],
-            'PORT': os.environ['AUTHOME_DATABASE_PORT'],
-        }
-    }
+}
 
 TEMPLATES = [
     {
