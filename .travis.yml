@@ -1,17 +1,27 @@
 language: python
 python:
   - "3.4"
-  - "3.5"
-  - "3.6"
+
+services:
+  - postgresql
+
 env:
-  - DJANGO='Django==1.9.*'
-matrix:
-  exclude:
-    - python: "3.4"
-      env: DJANGO='Django==1.9.*'
-    - python: "3.5"
-      env: DJANGO='Django==1.9.*'
-    - python: "3.6"
-      env: DJANGO='Django==1.9.*'
+  global:
+    - BUILD_ON_TRAVIS=true
+  matrix:
+    - DJANGO_VERSION=1.9.12 DB=postgresql
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libpq-dev
+  - sudo apt-get install -y python3-dev
+
 install:
-  - pip install $DJANGO
+  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO_VERSION
+
+before_script:
+  - python manage.py makemigrations
+
+script:
+  - python manage.py migrate
