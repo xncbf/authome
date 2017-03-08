@@ -21,8 +21,9 @@
                             <p>{{ user.created }} 시작
 {#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
                             </p>
+{#                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>#}
+                            <a href="#!" class="secondary-content grey-text"><i class="material-icons">grade</i></a>
                             {% if not user.is_past_due %}
-                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                                 <span class="new badge" data-badge-caption="남음">{{ user.end_date|naturaltime }}</span>
                              {% endif %}
                         </li>
