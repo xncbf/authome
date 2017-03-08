@@ -1,43 +1,42 @@
 {% extends 'layout.html' %}
+{% load static from staticfiles %}
 {% load humanize %}
 {% block content %}
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
-            <span id="macro_uuid{{ forloop.counter }}" class="grey-text text-lighten-1 tooltipped hide-on-small-only"
-                  data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
-                  onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
-            <table class="bordered highlight">
-                <thead>
-                <tr>
-                    <th>아이디</th>
-                    <th>시작일</th>
-                    <th>종료일</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in users %}
-                    <tr {% if not user.is_past_due %}class="teal lighten-5" {% endif %}>
-                        <td>{{ user.user }}</td>
-                        <td>{{ user.created }}</td>
-                        <td>
-                            {{ user.end_date|date:"Y년 m월 d일" }}
+            <div class="row">
+                <div class="s12">
+                    <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
+                    <span id="macro_uuid{{ forloop.counter }}"
+                          class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+                          data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
+                          onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+                    <br><br>
+                    <ul class="collection">
+                    {% for user in users %}
+                        <li class="collection-item avatar">
+                            {% static "images/Jigglypuff.png" as default_profile %}
+                            <img src="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
+                            <span class="title">{{ user.user }}</span>
+                            <p>{{ user.created }} 시작
+{#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
+                            </p>
                             {% if not user.is_past_due %}
-                            <span class="new badge" data-badge-caption="남음">{{ user.end_date|naturaltime }}</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="3" class="center-align">등록된 유저가 없습니다</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <br>
-            <a href="{% url 'main:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
-                <i class="material-icons left">cloud</i>유저 등록
-            </a>
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                                <span class="new badge" data-badge-caption="남음">{{ user.end_date|naturaltime }}</span>
+                             {% endif %}
+                        </li>
+                    {% empty %}
+                        <li class="collection-item avatar">
+                            등록된 유저가 없습니다
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    <a href="{% url 'main:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
+                        <i class="material-icons left">cloud</i>유저 등록
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
