@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^user-manage/(?P<macro_id>[0-9a-z-]+)/$', views.MacroManage.as_view(), name='user_manage'),
     url(r'^auth-register/(?P<macro_id>[0-9a-z-]+)/$', views.AuthRegister.as_view(), name='auth_register'),
     url(r'^macro-manage/$', views.MacroManage.as_view(), name='macro_manage'),
+    url(r'^mypage/$', views.MyPage.as_view(), name='mypage'),
 ]

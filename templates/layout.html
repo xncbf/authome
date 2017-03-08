@@ -49,7 +49,7 @@
                 <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">문서</a></li>
                 <li><a href="{% url 'main:macro_manage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">로그</a></li>
-                <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">내정보</a></li>
+                <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">내정보</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'account_logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}
@@ -85,7 +85,7 @@
                 <li><a class="waves-effect" href="{% url 'introduction' subdomain='docs' %}"><i class="material-icons">description</i>문서</a></li>
                 <li><a class="waves-effect" href="{% url 'main:macro_manage' %}"><i class="material-icons">recent_actors</i>관리페이지</a></li>
                 <li><a class="waves-effect" href="{% url 'log:main' %}"><i class="material-icons">visibility</i>로그</a></li>
-                <li><a class="waves-effect" href="{% url 'log:main' %}"><i class="material-icons">assignment_ind</i>내정보</a></li>
+                <li><a class="waves-effect" href="{% url 'main:mypage' %}"><i class="material-icons">assignment_ind</i>내정보</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
