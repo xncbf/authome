@@ -1,25 +1,75 @@
 {% extends 'layout.html' %}
 {% load humanize %}
 {% load static from staticfiles %}
+{% block script %}
+    <script>
+    $(function () {
+        $('.modal').modal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .1, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '10%', // Ending top style attribute
+                width:100,
+                ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+
+                    console.log(modal, trigger);
+                },
+                complete: function () {
+
+                } // Callback for Modal close
+            }
+        );
+    })
+    </script>
+{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <div class="card-panel row s12">
-                    <div class="col s12 m4">
-                        {% static "images/Jigglypuff.png" as default_profile %}
-                        <img class="responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" width="150px" height="150px">
-                    </div>
-                    <div class="col s12 m8">
-                        <h2>
+                <div class="card-panel">
+                    <div class="row">
+                        <div class="col s12 m4">
+                            {% static "images/Jigglypuff.png" as default_profile %}
+                            <img class="responsive-img"
+                                 src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"
+                                 width="150px" height="150px">
+                        </div>
+                        <div class="col s12 m8">
+                            <h2>
                                 {{ user.socialaccount_set.all.0.get_provider_account|default:user.get_username }}
-                            <small>
-                                @{{ user.get_username }}
-                            </small>
-                        </h2>
+                                <small>
+                                    @{{ user.get_username }}
+                                </small>
+                            </h2>
+                            <span>
+                                <a class="waves-effect waves-light btn" href="#modal1">비밀번호 변경</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>비밀번호 변경</h4>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">비밀번호</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="password2" type="password" class="validate">
+                    <label for="password2">비밀번호 확인</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
     </div>
 {% endblock %}
