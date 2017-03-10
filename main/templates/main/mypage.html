@@ -21,7 +21,7 @@
                                 </small>
                             </h2>
                             <span>
-                                <a class="waves-effect waves-light btn" href="#modal1">비밀번호 변경</a>
+                                <a class="waves-effect waves-light btn" href="#modal1">비밀번호 설정</a>
                             </span>
                         </div>
                     </div>
@@ -32,18 +32,7 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <h4>비밀번호 변경</h4>
-
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">비밀번호</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="password2" type="password" class="validate">
-                    <label for="password2">비밀번호 확인</label>
-                </div>
-            </div>
+            {% include  "account/password_set.html" %}
         </div>
         <div class="modal-footer">
             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
