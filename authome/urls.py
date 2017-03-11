@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from main import views
 from django.conf.urls.static import static
 from django.conf import settings
