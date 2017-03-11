@@ -137,8 +137,10 @@ class AuthRegister(LoginRequiredMixin, View):
 
 class MyPage(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
+
     def get(self, *args, **kwargs):
         return render(self.request, 'main/mypage.html')
+
     def post(self, *args, **kwargs):
         pass
 
