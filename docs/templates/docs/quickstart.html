@@ -64,19 +64,16 @@ F1::
                     <p>
                         위의 과정을 다 마쳤다면 인증받는 과정을 눈으로 확인할 수 있습니다.<br>
                         다음은 아이디와 비밀번호를 차례로 입력한 후, 매크로 단축키로 지정한 F1을 누른 것입니다.<br>
-                        만약, 인증받을 유저가 소셜 로그인을 이용한 유저인 경우 비밀번호에 <a href="#part5">Token</a> 값을 입력해야 합니다.<br><br>
+                        만약, 인증받을 유저가 소셜 로그인을 이용한 유저인 경우 먼저 비밀번호를 설정해주셔야 합니다.<br><br>
                         <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial3.gif' %}" >
                         <br>
                     </p>
                 </div>
                 <div id="part5" class="section scrollspy">
-                    <h3 class="header teal-text">Token 이란?</h3>
+                    <h3 class="header teal-text">비밀번호 설정</h3>
                     <p>
-                        Token이란 소셜사이트에서 로그인을 유지하기 위해 제공되는 비밀번호와 같은 값입니다.<br>
-                        소셜 로그인한 유저의 경우 패스워드가 설정되지 않으므로 해당 소셜 사이트에서 제공하는 Token 을 통해 로그인해야합니다.<br>
-                        다음은 소셜 로그인 후 Token 값을 얻는 방법입니다.<br>
-                        <img class="materialboxed responsive-img z-depth-3" alt="토큰값 얻기" src="" >
-                        <br>
+                        비밀번호는 <a href="{% url "main:mypage" subdomain=None %}">내정보 탭</a>에서 설정할 수 있습니다.
+                        <br><br>
                     </p>
                 </div>
             </div>
@@ -88,7 +85,7 @@ F1::
                         <li><a href="#part2">매크로에 인증 삽입하기</a></li>
                         <li><a href="#part3">유저 인증 등록하기</a></li>
                         <li><a href="#part4">유저가 인증받는 과정</a></li>
-                        <li><a href="#part5">Token 이란?</a></li>
+                        <li><a href="#part5">비밀번호 설정</a></li>
                     </ul>
                 </div>
             </div>
