@@ -27,6 +27,11 @@ SECURE_SSL_REDIRECT = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# allauth
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION = ("mandatory")
+ACCOUNT_EMAIL_REQUIRED = True
+
 ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = '/'
