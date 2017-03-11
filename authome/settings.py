@@ -24,10 +24,19 @@ SECRET_KEY = os.environ['AUTHOME_SECRET_KEY']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_SES_REGION_NAME = os.environ['AWS_SES_REGION_NAME']
+AWS_SES_REGION_ENDPOINT = os.environ['AWS_SES_REGION_ENDPOINT']
+AWS_SES_ACCESS_KEY_ID = os.environ['AWS_SES_ACCESS_KEY_ID']
+AWS_SES_SECRET_ACCESS_KEY = os.environ['AWS_SES_SECRET_ACCESS_KEY']
+SERVER_EMAIL = "no-reply@autho.me"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# allauth
+# django-allauth SETTINGS
 # ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 # ACCOUNT_EMAIL_VERIFICATION = ("mandatory")
 # ACCOUNT_EMAIL_REQUIRED = True
@@ -47,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.humanize',
+    'django.contrib.sitemaps',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
