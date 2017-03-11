@@ -66,7 +66,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 100,
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/minute',
+        'user': '100/minute'
+    }
 }
 
 REST_FRAMEWORK_DOCS = {
