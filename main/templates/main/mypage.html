@@ -21,7 +21,13 @@
                                 </small>
                             </h2>
                             <span>
-                                <a class="waves-effect waves-light btn" href="#modal1">비밀번호 설정</a>
+                            <a class="waves-effect waves-light btn" href="#modal1">
+                                {% if user.has_usable_password %}
+                                    비밀번호 변경
+                                {% else %}
+                                    비밀번호 설정
+                                {% endif %}
+                            </a>
                             </span>
                         </div>
                     </div>
@@ -32,10 +38,11 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-            {% include  "account/password_set.html" %}
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            {% if user.has_usable_password %}
+                {% include  "account/password_change.html" %}
+            {% else %}
+                {% include  "account/password_set.html" %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

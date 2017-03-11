@@ -142,7 +142,7 @@ class MyPage(LoginRequiredMixin, View):
         return render(self.request, 'main/mypage.html')
 
     def post(self, *args, **kwargs):
-        pass
+        return HttpResponse('')
 
 
 
