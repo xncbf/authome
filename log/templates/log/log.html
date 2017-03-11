@@ -13,9 +13,6 @@
                 success: function (response) {
                     var html = response;
                     $("ul.user-list").html(html);
-                },
-                error: function (e) {
-                    console.error(e);
                 }
             });
         }).trigger('change');

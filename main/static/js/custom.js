@@ -36,5 +36,8 @@ $.ajaxSetup({
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
+    },
+    error: function (e) {
+        console.error(e);
     }
 });
