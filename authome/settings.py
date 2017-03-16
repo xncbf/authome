@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django_mobile',
     'main',
     'api',
+    'api_macro',
     'docs',
     'board',
     'log',
