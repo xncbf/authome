@@ -101,6 +101,15 @@ ul.user-list li:hover {
     margin: 5px;
 }
 
+ul > li > ul > li > a{
+    padding-left: 70px !important;
+}
+
+ul.side-nav.fixed li > ul > li.active {
+    background-color: rgba(0,0,0,0.05);
+}
+
+
 @media screen and (max-width:780px) {
     h2.header {
         font-size: 3.00rem;
