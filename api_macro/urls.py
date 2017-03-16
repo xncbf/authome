@@ -8,5 +8,5 @@ handler403 = 'main.views.permission_denied_view'
 handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
-    url(r'^auth/(?P<username>\w+)/(?P<password>\w+)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
+    url(r'^auth/(?P<username>.*)/(?P<password>.*)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
 ]
