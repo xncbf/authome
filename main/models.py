@@ -44,9 +44,6 @@ class MacroFeeLog(TimeStampedModel):
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
 
-    def __str__(self):
-        return "%s / %s / %s" % (self.user, self.macro, self.create_date)
-
 
 class MacroLog(TimeStampedModel):
     """
@@ -57,9 +54,6 @@ class MacroLog(TimeStampedModel):
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
     ip = models.GenericIPAddressField()
-
-    def __str__(self):
-        return "%s : %s " % (self.user, self.ip)
 
 
 class UserPage(TimeStampedModel):
