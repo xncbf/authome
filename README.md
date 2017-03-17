@@ -12,17 +12,20 @@
 * python3-dev
 
 ## 패키지 의존성
+* django==1.9.12
 * djangorestframework
 * django-subdomains
-* Unipath
-* django-allauth
+* django-allauth==0.31.0
 * django-admin-honeypot
-* pytz
-* invoke
+* django-ses
 * django-ipware
+* django_mobile
+* Unipath
 * psycopg2
 * drfdocs
-* django_mobile
+* pytz
+* invoke
+* boto
 
 
 ## 개발 환경 세팅
@@ -37,7 +40,7 @@ api.autho.me 와 같은 subdomain 을 사용하려면 다음과 같은 설정이
 ```
 $ python manage.py shell
 >>> from django.contrib.sites.models import Site
->>> site = Site.objects.all()[SITE_ID]
+>>> site = Site.objects.all()[0]
 >>> site.domain = 'localhost:8000'
 >>> site.save()
 ```
