@@ -1,5 +1,5 @@
 #SingleInstance Force
-;ì´ UID ë¥¼ ìì‹ ì˜ ë§¤í¬ë¡œ ID ë¡œ ë³€ê²½í•´ì¤ë‹ˆë‹¤
+;ÀÌ UID ¸¦ ÀÚ½ÅÀÇ ¸ÅÅ©·Î ID ·Î º¯°æÇØÁİ´Ï´Ù
 global UID = "3a526973-98cf-4f0e-8791-5ae7759948d7"
 
 class JSON
@@ -202,8 +202,8 @@ class JSON
 }
 
 global url = "https://api.autho.me/macro/auth/"
-InputBox, id, User Name, ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.
-InputBox, pw, Password, ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.
+InputBox, id, User Name, ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.
+InputBox, pw, Password, ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.
 
 GetAuth(Token)
 {
@@ -220,11 +220,11 @@ GetAuth(Token)
 F1::
     if (GetAuth(id "/" pw))
     {
-        msgbox, ì¸ì¦ì„±ê³µ!`nì´ ë¶€ë¶„ì„ ì§€ìš°ê³  í•„ìš”í•œ ê¸°ëŠ¥ì„ ë„£ì–´ì£¼ì„¸ìš”
+        msgbox, ÀÎÁõ¼º°ø!`nÀÌ ºÎºĞÀ» Áö¿ì°í ÇÊ¿äÇÑ ±â´ÉÀ» ³Ö¾îÁÖ¼¼¿ä
     }
     else
     {
-        msgbox, ì¸ì¦ì‹¤íŒ¨
+        msgbox, ÀÎÁõ½ÇÆĞ
 	;ExitApp
     }
 
