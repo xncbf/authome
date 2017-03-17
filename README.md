@@ -41,7 +41,7 @@ api.autho.me 와 같은 subdomain 을 사용하려면 다음과 같은 설정이
 $ python manage.py shell
 >>> from django.contrib.sites.models import Site
 >>> site = Site.objects.all()[0]
->>> site.domain = 'localhost:8000'
+>>> site.domain = 'example.com:8000'
 >>> site.save()
 ```
 
@@ -55,8 +55,20 @@ AUTHOME_DATABASE_PASSWORD = 디비 패스워드
 AUTHOME_DATABASE_HOST = 디비 호스트
 AUTHOME_DATABASE_PORT = 디비 포트
 AUTHOME_ADMIN_URL = 관리자페이지 url
-AWS_SES_REGION_NAME = email ses 리전 이름
-AWS_SES_REGION_ENDPOINT = ses End Point
-AWS_SES_ACCESS_KEY_ID = 엑세스키 ID
-AWS_SES_SECRET_ACCESS_KEY = 엑세스키
 ```
+
+### 개발환경
+#### URL
+개발환경은 example.com:8000 에서 개발하기 적합하도록 설정되어있습니다.  
+host 파일 수정후에 사용하시면 됩니다.
+
+#### settings
+개발용 settings 는 settings_local.py 에서 settings.py 를 오버라이딩 하도록 설정되어있습니다.
+```
+$ python3 manage.py runserver example.com:8000 --settings=authome.settings_local
+```
+또는 환경변수에
+```
+DJANGO_SETTINGS_MODULE = authome.settings_local
+```
+를 추가한 뒤에 사용해주시면 됩니다.
