@@ -6,7 +6,9 @@ from django.db import connection
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.dateformat import DateFormat
-from allauth.socialaccount.models import SocialAccount
+from django.utils.dateparse import parse_datetime
+from django.utils import timezone
+from pytz import timezone as tz
 from main.models import MacroLog, UserPage
 from .services import dictfetchall
 
@@ -48,6 +50,8 @@ class Log(LoginRequiredMixin, View):
     def set_html(self, obj, html=''):
         for e in obj:
             user = User.objects.get(username=e.get('username'))
+            local_time = timezone.localtime(e.get('created'))
+
             if user.socialaccount_set.all():
                 profile_url = user.socialaccount_set.all()[0].get_avatar_url()
             else:
@@ -65,7 +69,7 @@ class Log(LoginRequiredMixin, View):
                                     profile_url,
                                     e.get('username'),
                                     e.get('ip'),
-                                    DateFormat(e.get('created')).format('y-m-d H:i'))
+                                    local_time.strftime('%y-%m-%d %H:%M'))
         if len(obj) == 0:
             html = '<li class="collection-item user-list">사용 흔적이 없어요!</li>'
         return html
