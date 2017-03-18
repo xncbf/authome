@@ -4,7 +4,10 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
+from django.http import Http404
 from .models import UserPage, Macro
+from utils.decorators import check_is_my_macro
+
 import json
 
 
@@ -58,6 +61,7 @@ class MacroModify(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     model = Macro
 
+    @check_is_my_macro(macro_id='macro_id')
     def post(self, *args, **kwargs):
         macro_name = self.request.POST.get('macro_name', False)
         macro_detail = self.request.POST.get('macro_detail', False)
@@ -69,6 +73,7 @@ class MacroModify(LoginRequiredMixin, View):
         )
         return HttpResponseRedirect(reverse('main:macro_manage'))
 
+    @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         return render(self.request, 'main/macro_modify.html', {
@@ -81,6 +86,7 @@ class UserManage(LoginRequiredMixin, ListView):
     model = UserPage
     template_name = 'main/user_manage.html'
 
+    @check_is_my_macro('macro_id')
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(UserManage, self).get_context_data(**kwargs)
@@ -93,6 +99,7 @@ class UserManage(LoginRequiredMixin, ListView):
 class AuthRegister(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
 
+    @check_is_my_macro(macro_id='macro_id')
     def post(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         if request.is_ajax():
@@ -128,7 +135,8 @@ class AuthRegister(LoginRequiredMixin, View):
                 })
             return redirect('main:user_manage', macro_id=kwargs['macro_id'])
 
-    def get(self, request, *args, **kwargs):
+    @check_is_my_macro(macro_id='macro_id')
+    def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         return render(self.request, 'main/auth_register.html', {
             'macro': macro,
