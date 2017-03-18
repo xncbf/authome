@@ -143,6 +143,37 @@ class AuthRegister(LoginRequiredMixin, View):
         })
 
 
+class AuthModify(LoginRequiredMixin, View):
+    login_url = '/accounts/login/'
+
+    @check_is_my_macro(macro_id='macro_id')
+    def post(self, *args, **kwargs):
+        macro = Macro.objects.get(id=kwargs['macro_id'])
+        user = User.objects.get(username=kwargs['username'])
+        end_date = self.request.POST.get('end_date')
+
+        updateDict = {}
+        updateDict['user'] = user
+        updateDict['end_date'] = end_date
+        updateDict['end_yn'] = False
+
+        user_page = UserPage.objects.filter(macro=macro, user=user)
+        user_page.update(**updateDict)
+
+        return redirect('main:user_manage', macro_id=kwargs['macro_id'])
+
+    @check_is_my_macro(macro_id='macro_id')
+    def get(self, *args, **kwargs):
+        macro = kwargs['macro_id']
+        user = User.objects.get(username=kwargs['username'])
+        userpage = UserPage.objects.get(user__username=kwargs['username'], macro=macro)
+        return render(self.request, 'main/auth_modify.html', {
+            'macro': macro,
+            'user': user,
+            'userpage': userpage,
+        })
+
+
 class MyPage(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
 
