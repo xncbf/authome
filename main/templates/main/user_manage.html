@@ -13,18 +13,20 @@
                           onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
                     <br><br>
                     <ul class="collection">
-                    {% for user in users %}
+                    {% for userpage in users %}
                         <li class="collection-item avatar">
-                            {% static "images/Jigglypuff.png" as default_profile %}
-                            <img src="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
-                            <span class="title">{{ user.user }}</span>
-                            <p>{{ user.created }} 시작
+{#                            <a href="{% url "main:macro_modify" macro_id=macro.id username=users[forloop.counter0].username %}">#}
+                                {% static "images/Jigglypuff.png" as default_profile %}
+                                <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
+                                <span class="title">{{ userpage.user }}</span>
+{#                            </a>#}
+                            <p>{{ userpage.created }} 시작
 {#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
                             </p>
 {#                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>#}
                             <a href="#!" class="secondary-content grey-text"><i class="material-icons">grade</i></a>
-                            {% if not user.is_past_due %}
-                                <span class="new badge" data-badge-caption="남음">{{ user.end_date|naturaltime }}</span>
+                            {% if not userpage.is_past_due %}
+                                <span class="new badge" data-badge-caption="남음">{{ userpage.end_date|naturaltime }}</span>
                              {% endif %}
                         </li>
                     {% empty %}
