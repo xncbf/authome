@@ -15,11 +15,11 @@
                     <ul class="collection">
                     {% for userpage in users %}
                         <li class="collection-item avatar">
-{#                            <a href="{% url "main:macro_modify" macro_id=macro.id username=users[forloop.counter0].username %}">#}
+                            <a href="{% url "main:auth_modify" macro_id=macro.id username=userpage.user.username %}">
                                 {% static "images/Jigglypuff.png" as default_profile %}
                                 <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
                                 <span class="title">{{ userpage.user }}</span>
-{#                            </a>#}
+                            </a>
                             <p>{{ userpage.created }} 시작
 {#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
                             </p>
