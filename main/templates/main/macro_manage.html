@@ -7,7 +7,7 @@
                 <ul class="collapsible" data-collapsible="accordion">
                     {% for macro in macro_list %}
                         <li>
-                            <div class="collapsible-header">
+                            <div class="collapsible-header truncate">
                                 <span><i class="material-icons">filter_drama</i>{% if flavour == "mobile" %}{{ macro.title|truncatechars:8 }}{% else %}{{ macro.title }}{% endif %}</span>
                                 <a href="{% url 'main:user_manage' macro_id=macro.id %}"
                                    class="waves-effect waves-light btn-block"
