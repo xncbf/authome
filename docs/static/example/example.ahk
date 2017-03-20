@@ -1,6 +1,6 @@
 #SingleInstance Force
 ;이 UID 를 자신의 매크로 ID 로 변경해줍니다
-global UID = "3a526973-98cf-4f0e-8791-5ae7759948d7"
+global UID = "fd7fbf5a-2840-49df-a235-74ed9877a1a2"
 
 class JSON
 {
@@ -214,17 +214,13 @@ GetAuth(Token)
     return result.end_yn
 }
 
-
-
-
-F1::
-    if (GetAuth(id "/" pw))
-    {
-        msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
-    }
-    else
-    {
-        msgbox, 인증실패
-	;ExitApp
-    }
-
+if (GetAuth(id "/" pw))
+{
+    msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
+}
+else
+{
+    msgbox, 인증실패
+;ExitApp
+}
+return
