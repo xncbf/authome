@@ -59,7 +59,7 @@
             <ul id="nav-mobile" class="side-nav">
                 <li>
                     <div class="userView">
-                        <span class="background"><img src="{% static "images/test.jpg" %}"></span>
+                        <span class="background"><img src="{% static "images/test.jpg" %}" style="width: 100%"></span>
                         {% if user.is_authenticated %}
                             {% static "images/Jigglypuff.png" as default_profile %}
                             <a href="#"><img class="circle" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"></a>
