@@ -19,7 +19,6 @@
 * django-admin-honeypot
 * django-ipware
 * django_mobile
-* django-adminplus
 * Unipath
 * psycopg2
 * drfdocs

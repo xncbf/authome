@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
 from main import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -34,7 +33,6 @@ urlpatterns = [
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
     url(r'^accounts/', include('allauth.urls')),
 
-    # url(r'^accounts/join/', views.user_join, name='join'),
     url(r'^macro/', include('main.urls', namespace='main'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),
