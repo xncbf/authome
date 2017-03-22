@@ -15,10 +15,10 @@ env:
     - AUTHOME_DATABASE_HOST=localhost
     - AUTHOME_DATABASE_PORT=5432
     - AUTHOME_ADMIN_URL=travisadmin
-    - ENV EMAIL_HOST=smtp.gmail.com
-    - ENV EMAIL_HOST_USER test@gmail.com
-    - ENV EMAIL_HOST_PASSWORD test
-    - ENV EMAIL_PORT 587
+    - EMAIL_HOST=smtp.gmail.com
+    - EMAIL_HOST_USER=test@gmail.com
+    - EMAIL_HOST_PASSWORD=test
+    - EMAIL_PORT=587
 
   matrix:
     - DJANGO_VERSION=1.9.12 DB=postgresql
