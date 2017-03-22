@@ -3,9 +3,9 @@ djangorestframework
 django-subdomains
 django-allauth==0.31.0
 django-admin-honeypot
-django-ses
 django-ipware
 django_mobile
+django-adminplus
 Unipath
 psycopg2
 drfdocs
