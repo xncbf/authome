@@ -101,6 +101,13 @@ ul.user-list li:hover {
     margin: 5px;
 }
 
+.beta{
+    font-size: 15px;
+    margin: -6px 0 0 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
 ul > li > ul > li > a{
     padding-left: 70px !important;
 }
