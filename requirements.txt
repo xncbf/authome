@@ -5,9 +5,10 @@ django-allauth==0.31.0
 django-admin-honeypot
 django-ipware
 django_mobile
+django-ses
+boto
 Unipath
 psycopg2
 drfdocs
 pytz
 invoke
-boto
