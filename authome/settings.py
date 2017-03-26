@@ -34,12 +34,15 @@ LOGIN_REDIRECT_URL = '/'
 
 # ### 이메일 설정
 
+EMAIL_BACKEND = 'django_ses.SESBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = os.environ['EMAIL_PORT']
-
+AWS_SES_REGION_NAME = os.environ['AWS_SES_REGION_NAME']
+AWS_SES_REGION_ENDPOINT = os.environ['AWS_ACCESS_KEY_ID']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+DEFAULT_FROM_EMAIL = 'noreply@autho.me'
+# AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 # Application definition
 
 INSTALLED_APPS = [
