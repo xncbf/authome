@@ -55,10 +55,14 @@ AUTHOME_DATABASE_HOST = 디비 호스트
 AUTHOME_DATABASE_PORT = 디비 포트
 AUTHOME_ADMIN_URL = 관리자페이지 url
 EMAIL_HOST = 이메일 호스트
-EMAIL_HOST_USER = 이메일 아이디
-EMAIL_HOST_PASSWORD = 이메일 패스워드
-EMAIL_PORT = 이메일 서버 포트
+AWS_SES_REGION_NAME = AWS 리전 네임
+AWS_SES_REGION_ENDPOINT = AWS SES 리전 엔드포인트
+AWS_ACCESS_KEY_ID = AWS 엑세스 키
+AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 ```
+
+### 이메일 환경
+django-ses 를 사용하였습니다.
 
 ### 개발환경
 #### URL
