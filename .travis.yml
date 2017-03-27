@@ -38,5 +38,4 @@ before_script:
   - python manage.py makemigrations
 
 script:
-  - python manage.py migrate
   - python manage.py migrate --run-syncdb
