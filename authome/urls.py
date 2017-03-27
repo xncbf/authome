@@ -13,26 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import os
+
 from django.conf.urls import url, include
 from django.contrib import admin
 from main import views
 from django.conf.urls.static import static
 from django.conf import settings
-import os
+from adminplus.sites import AdminSitePlus
 
 handler404 = 'main.views.page_not_found_view'
 handler500 = 'main.views.error_view'
 handler403 = 'main.views.permission_denied_view'
 handler400 = 'main.views.bad_request_view'
 
+admin.site = AdminSitePlus()
+admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
-
+    url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/django-ses/', include('django_ses.urls')),
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
     url(r'^accounts/', include('allauth.urls')),
-
     url(r'^macro/', include('main.urls', namespace='main'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),

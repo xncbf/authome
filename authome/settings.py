@@ -40,6 +40,7 @@ AWS_SES_REGION_ENDPOINT = os.environ['AWS_SES_REGION_ENDPOINT']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_SES_RETURN_PATH = 'xncbf12@gmail.com'
+SERVER_EMAIL = 'xncbf12@gmail.com'
 DEFAULT_FROM_EMAIL = 'noreply@autho.me'
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
@@ -50,7 +51,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -59,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'django_ses',
+    'adminplus',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',

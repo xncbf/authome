@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_ses.views import dashboard
 from .models import Macro, MacroFeeLog, MacroLog, UserPage
 
 
@@ -27,3 +28,4 @@ admin.site.register(Macro, MacroAdmin)
 admin.site.register(UserPage, UserPageAdmin)
 admin.site.register(MacroFeeLog)
 admin.site.register(MacroLog, MacroLogAdmin)
+admin.site.register_view('django-ses', dashboard, 'Django SES Stats')
