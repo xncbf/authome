@@ -20,6 +20,7 @@
 * django-ipware
 * django_mobile
 * django-ses
+* django-adminplus
 * boto
 * Unipath
 * psycopg2
