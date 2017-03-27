@@ -20,6 +20,7 @@ env:
     - AWS_SES_REGION_ENDPOINT=email.us-east-1.amazonaws.com
     - AWS_ACCESS_KEY_ID=AWSACCESSKEYID
     - AWS_SECRET_ACCESS_KEY=aU/AWSSECRETACCESSKEY
+    - BOTO_CONFIG=/tmp/nowhere
 
   matrix:
     - DJANGO_VERSION=1.9.12 DB=postgresql
@@ -38,4 +39,4 @@ before_script:
   - python manage.py makemigrations
 
 script:
-  - python manage.py migrate --run-syncdb
+  - python manage.py migrate
