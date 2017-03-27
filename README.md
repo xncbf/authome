@@ -19,12 +19,13 @@
 * django-admin-honeypot
 * django-ipware
 * django_mobile
+* django-ses
+* boto
 * Unipath
 * psycopg2
 * drfdocs
 * pytz
 * invoke
-* boto
 
 
 ## 개발 환경 세팅
