@@ -15,20 +15,16 @@ Including another URLconf
 """
 import os
 
+from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from main import views
-from django.conf.urls.static import static
-from django.conf import settings
-from adminplus.sites import AdminSitePlus
 
 handler404 = 'main.views.page_not_found_view'
 handler500 = 'main.views.error_view'
 handler403 = 'main.views.permission_denied_view'
 handler400 = 'main.views.bad_request_view'
-
-admin.site = AdminSitePlus()
-admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),

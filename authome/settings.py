@@ -51,7 +51,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin.apps.SimpleAdminConfig',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sitemaps',
     'django_ses',
-    'adminplus',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
