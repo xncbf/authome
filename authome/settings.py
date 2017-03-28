@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-from unipath import Path
 import os
+
+from unipath import Path
+from boto.ses import SESConnection
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
@@ -42,6 +44,8 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_SES_RETURN_PATH = 'xncbf12@gmail.com'
 SERVER_EMAIL = 'xncbf12@gmail.com'
 DEFAULT_FROM_EMAIL = 'noreply@autho.me'
+SESConnection.DefaultRegionName = AWS_SES_REGION_NAME
+SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
 # allauth 설정
