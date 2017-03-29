@@ -12,3 +12,4 @@ psycopg2
 drfdocs
 pytz
 invoke
+celery

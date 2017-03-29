@@ -48,6 +48,10 @@ SESConnection.DefaultRegionName = AWS_SES_REGION_NAME
 SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
+#### celery 세팅
+CELERY_TIMEZONE = 'Asia/Seoul'
+CELERY_ENABLE_UTC=False
+
 # allauth 설정
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
