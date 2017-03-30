@@ -14,6 +14,8 @@ import os
 
 from unipath import Path
 from boto.ses import SESConnection
+from datetime import timedelta
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
@@ -49,8 +51,18 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
 #### celery 세팅
-CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_ENABLE_UTC=False
+BROKER_URL = 'amqp://guest:guest@localhost//'
+CELERY_IMPORTS = ('authome.tasks', )
+CELERY_RESULT_BACKEND = 'amqp://'
+CELERY_ANNOTATIONS = {'authome.tasks.add': {'rate_limit': '10/s'}}
+
+CELERYBEAT_SCHEDULE = {
+    'example': {
+        'task': 'authome.tasks.add',
+        'schedule': crontab(hour='*', minute=1, day_of_week='mon,tue,wed,thu,fri'),
+        'args': (16, 16),
+    },
+}
 
 # allauth 설정
 ACCOUNT_EMAIL_REQUIRED = True
