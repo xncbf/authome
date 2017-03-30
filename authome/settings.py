@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
+    'django_celery_beat',
 ]
 
 REST_FRAMEWORK = {

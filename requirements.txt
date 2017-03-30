@@ -13,3 +13,4 @@ drfdocs
 pytz
 invoke
 celery
+django-celery-beat
