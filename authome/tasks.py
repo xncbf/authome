@@ -1,18 +1,8 @@
 from __future__ import absolute_import
+from django.core.management import call_command
 from authome.celery import app
 
 
 @app.task
-def add(x, y):
-    print('test')
-    return x + y
-
-
-@app.task
-def mul(x, y):
-    return x * y
-
-
-@app.task
-def xsum(numbers):
-    return sum(numbers)
+def get_ses_statistics():
+    call_command('get_ses_statistics')

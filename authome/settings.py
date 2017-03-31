@@ -51,16 +51,16 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
 #### celery 세팅
-BROKER_URL = 'amqp://guest:guest@localhost//'
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_IMPORTS = ('authome.tasks', )
 CELERY_RESULT_BACKEND = 'amqp://'
-CELERY_ANNOTATIONS = {'authome.tasks.add': {'rate_limit': '10/s'}}
+CELERY_TIMEZONE = 'UTC'
+# CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
 
 CELERYBEAT_SCHEDULE = {
-    'example': {
-        'task': 'authome.tasks.add',
-        'schedule': crontab(hour='*', minute=1, day_of_week='mon,tue,wed,thu,fri'),
-        'args': (16, 16),
+    'get_ses_statistics': {
+        'task': 'authome.tasks.get_ses_statistics',
+        'schedule': crontab(hour=0, minute=0),
     },
 }
 
