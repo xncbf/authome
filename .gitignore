@@ -12,3 +12,4 @@ MANIFEST
 .idea/
 db.sqlite3
 /static/
+*.pid
