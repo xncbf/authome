@@ -54,8 +54,8 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_IMPORTS = ('authome.tasks', )
 CELERY_RESULT_BACKEND = 'amqp://'
-CELERY_TIMEZONE = 'Asia/Seoul'
-CELERY_ENABLE_UTC = False
+# CELERY_TIMEZONE = 'Asia/Seoul'
+# CELERY_ENABLE_UTC = False
 
 # CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
 # 'schedule': crontab(hour=0, minute=0),
