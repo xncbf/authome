@@ -58,11 +58,10 @@ CELERY_RESULT_BACKEND = 'amqp://'
 # CELERY_ENABLE_UTC = False
 
 # CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
-# 'schedule': crontab(hour=0, minute=0),
 CELERYBEAT_SCHEDULE = {
     'get_ses_statistics': {
         'task': 'authome.tasks.get_ses_statistics',
-        'schedule': crontab(minute='*'),
+        'schedule': crontab(hour=0, minute=0),
     },
 }
 
