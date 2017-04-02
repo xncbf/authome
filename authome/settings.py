@@ -61,8 +61,7 @@ CELERY_RESULT_BACKEND = 'amqp://'
 CELERYBEAT_SCHEDULE = {
     'get_ses_statistics': {
         'task': 'authome.tasks.get_ses_statistics',
-        'schedule': crontab(minute='*'),
-        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': crontab(hour=0, minute=0),
     },
 }
 
