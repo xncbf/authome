@@ -67,7 +67,7 @@ AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 django-ses 를 사용하였습니다.
 
 ### celery
-ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.
+ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.  
 broker는 product 환경에서 rabbitmq 를 사용합니다.
 
 ### 개발환경
