@@ -3,7 +3,7 @@
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
-* python>=3.4.x
+* python==3.4.x
 * django==1.9.x
 
 ## 시스템 의존성
@@ -26,6 +26,8 @@
 * drfdocs
 * pytz
 * invoke
+* celery
+* django-celery-beat
 
 
 ## 개발 환경 세팅
@@ -63,6 +65,10 @@ AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 
 ### 이메일 환경
 django-ses 를 사용하였습니다.
+
+### celery
+ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.
+broker는 product 환경에서 rabbitmq 를 사용합니다.
 
 ### 개발환경
 #### URL
