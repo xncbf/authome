@@ -31,9 +31,7 @@ SECURE_SSL_REDIRECT = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['*']
-
 LOGIN_REDIRECT_URL = '/'
 
 # ### 이메일 설정
@@ -50,18 +48,17 @@ SESConnection.DefaultRegionName = AWS_SES_REGION_NAME
 SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
+
 #### celery 세팅
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_IMPORTS = ('authome.tasks', )
 CELERY_RESULT_BACKEND = 'amqp://'
-# CELERY_TIMEZONE = 'Asia/Seoul'
-# CELERY_ENABLE_UTC = False
 
 # CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
 CELERYBEAT_SCHEDULE = {
     'get_ses_statistics': {
         'task': 'authome.tasks.get_ses_statistics',
-        'schedule': crontab(minute=5),
+        'schedule': timedelta(days=1),
     },
     'verify_end_yn': {
         'task': 'authome.tasks.verify_end_yn',
@@ -72,6 +69,7 @@ CELERYBEAT_SCHEDULE = {
         "schedule": crontab(minute='0'),
     }
 }
+
 
 # allauth 설정
 ACCOUNT_EMAIL_REQUIRED = True
