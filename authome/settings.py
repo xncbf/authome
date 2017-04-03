@@ -66,6 +66,10 @@ CELERYBEAT_SCHEDULE = {
     'verify_end_yn': {
         'task': 'authome.tasks.verify_end_yn',
         "schedule": timedelta(seconds=30),
+    },
+    'celery.backend_cleanup': {
+        'task': 'celery.backend_cleanup',
+        "schedule": crontab(minute='0'),
     }
 }
 
