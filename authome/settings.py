@@ -61,8 +61,12 @@ CELERY_RESULT_BACKEND = 'amqp://'
 CELERYBEAT_SCHEDULE = {
     'get_ses_statistics': {
         'task': 'authome.tasks.get_ses_statistics',
-        'schedule': crontab(hour=0, minute=0),
+        'schedule': crontab(minute=5),
     },
+    'verify_end_yn': {
+        'task': 'authome.tasks.verify_end_yn',
+        "schedule": timedelta(seconds=30),
+    }
 }
 
 # allauth 설정
