@@ -1,4 +1,4 @@
-django==1.9.12
+django==1.9.13
 djangorestframework
 django-subdomains
 django-allauth==0.31.0
