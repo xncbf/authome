@@ -12,7 +12,7 @@
 * python3-dev
 
 ## 패키지 의존성
-* django==1.9.12
+* django==1.9.x
 * djangorestframework
 * django-subdomains
 * django-allauth==0.31.0
