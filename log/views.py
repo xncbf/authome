@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic.list import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -16,7 +16,9 @@ class Log(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['macroLog'] = MacroLog.objects.filter(macro__user=request.user)[:16]
+        qs = MacroLog.objects.filter(macro__user=request.user).order_by('macro', 'user', '-created').distinct('macro', 'user')
+        unsorted_results = qs.all()
+        context['macroLog'] = sorted(unsorted_results, key=lambda t: t.created, reverse=True)
         context['userPage'] = UserPage.objects.filter(macro__user=request.user).distinct('user')
         return render(self.request, self.template_name, context)
 

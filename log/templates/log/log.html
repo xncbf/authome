@@ -2,6 +2,7 @@
 {% load static %}
 {% load l10n %}
 {% load subdomainurls %}
+{% load humanize %}
 {% block script %}
     <script>
     $(function(){
@@ -53,7 +54,7 @@
                                 </div>
                                 <span class="secondary-content">
                                     {{ log.ip }}<br>
-                                    {{ log.created }}
+                                    <span class="new badge" data-badge-caption="접속">최근 {{ log.created|naturaltime }}</span>
                                 </span>
                             </a>
                         </li>
