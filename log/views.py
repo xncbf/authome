@@ -5,10 +5,7 @@ from django.contrib.auth.models import User
 from django.db import connection
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.utils.dateformat import DateFormat
-from django.utils.dateparse import parse_datetime
 from django.utils import timezone
-from pytz import timezone as tz
 from main.models import MacroLog, UserPage
 from .services import dictfetchall
 
@@ -19,7 +16,7 @@ class Log(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        context['macroLog'] = MacroLog.objects.filter(macro__user=request.user)[:8]
+        context['macroLog'] = MacroLog.objects.filter(macro__user=request.user)[:16]
         context['userPage'] = UserPage.objects.filter(macro__user=request.user).distinct('user')
         return render(self.request, self.template_name, context)
 
@@ -42,7 +39,7 @@ class Log(LoginRequiredMixin, View):
                 LEFT JOIN auth_user U ON U.id = ML.user_id
                 WHERE M.user_id = '{0}' {1}
                 ORDER BY ML.created DESC
-                LIMIT 8""".format(request.user.pk, where_str))
+                LIMIT 16""".format(request.user.pk, where_str))
                 obj = dictfetchall(cursor)
                 result = self.set_html(obj)
                 return HttpResponse(result)

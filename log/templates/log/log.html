@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% load l10n %}
+{% load subdomainurls %}
 {% block script %}
     <script>
     $(function(){
@@ -16,14 +17,21 @@
                     $("ul.user-list").html(html);
                 }
             });
-        }).trigger('change');
+        })
     })
     </script>
 {% endblock %}
 {% block content %}
-    <div class="container">
         <div class="row">
-            <div class="col s12 m12 l6 card-panel">
+            <div class="col s12 l2" style="margin-top: 7.5px">
+                <!-- 어썸 반응형1 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9848654927199314"
+                     data-ad-slot="1824258784"
+                     data-ad-format="auto"></ins>
+            </div>
+            <div class="col s12 l8 card-panel">
                 <h5 class="thin">최근 접속자 목록</h5>
                 <select name="ddlUser" class="select-user" multiple>
                     <option value="" disabled selected>사용자 선택</option>
@@ -34,21 +42,24 @@
                 </select>
                 <ul class="collection with-header user-list">
                     {# 자바스크립트에서 동적 생성 #}
+                    {% for log in macroLog %}
+                        <li class="collection-item user-list">
+                            <a href="{% url 'main:user_manage' subdomain=None macro_id=log.macro_id %}">
+                                <div>{{ log.macro.title|default:"제목없음" }}</div>
+                                <div class="chip">
+                                    {% static 'images/Jigglypuff.png' as default_profile %}
+                                    <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                                    {{ log.user.username }}
+                                </div>
+                                <span class="secondary-content">
+                                    {{ log.ip }}<br>
+                                    {{ log.created }}
+                                </span>
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
-            <div class="col s12 m12 l6">
-                <div class="card-panel">
-                    <ul class="collection with-header">
-                        <li class="collection-header">
-                            <div class="chips chips-autocomplete"></div>
-                        </li>
-                        <li class="collection-item">
-                            <div>여기 뭐가 있으면 좋을까..<a href="#!" class="secondary-content"></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
-    </div>
 {% endblock %}
