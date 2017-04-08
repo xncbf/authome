@@ -41,7 +41,7 @@ class Log(LoginRequiredMixin, View):
                 LEFT JOIN auth_user U ON U.id = ML.user_id
                 WHERE M.user_id = '{0}' {1}
                 ORDER BY ML.created DESC
-                LIMIT 16""".format(request.user.pk, where_str))
+                LIMIT 20""".format(request.user.pk, where_str))
                 obj = dictfetchall(cursor)
                 result = self.set_html(obj)
                 return HttpResponse(result)

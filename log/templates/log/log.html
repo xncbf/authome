@@ -35,7 +35,7 @@
             <div class="col s12 l8 card-panel">
                 <h5 class="thin">최근 접속자 목록</h5>
                 <select name="ddlUser" class="select-user" multiple>
-                    <option value="" disabled selected>사용자 선택</option>
+                    <option value="" disabled selected>사용자 선택(최대 20개 표시)</option>
                     {% for user in userPage %}
                         {% static 'images/Jigglypuff.png' as default_profile %}
                         <option value="{{ user.user.id }}" data-icon="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
