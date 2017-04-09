@@ -1,65 +1,39 @@
 {% extends 'layout.html' %}
 {% load static from staticfiles %}
 {% load humanize %}
-{% block content %}
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="row">
-            <div class="col s12 l2" style="padding: 7.5px 30px;">
-                <!-- 어썸 반응형1 -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9848654927199314"
-                     data-ad-slot="1824258784"
-                     data-ad-format="auto"></ins>
-            </div>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <div class="col s12 l8">
-                <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
-                <span id="macro_uuid{{ forloop.counter }}"
-                      class="grey-text text-lighten-1 tooltipped hide-on-small-only"
-                      data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
-                      onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
-                <br><br>
-                <ul class="collection">
-                {% for userpage in users %}
-                    <li class="collection-item avatar">
-                        <a href="{% url "main:auth_modify" macro_id=macro.id username=userpage.user.username %}">
-                            {% static "images/Jigglypuff.png" as default_profile %}
-                            <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
-                            <span class="title">{{ userpage.user }}</span>
-                        </a>
-                        <p>{{ userpage.created }} 시작
-{#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
-                        </p>
-{#                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>#}
-                        <a href="#!" class="secondary-content grey-text"><i class="material-icons">grade</i></a>
-                        {% if not userpage.is_past_due %}
-                            <span class="new badge" data-badge-caption="남음">{{ userpage.end_date|naturaltime }}</span>
-                         {% endif %}
-                    </li>
-                {% empty %}
-                    <li class="collection-item avatar center-align">
-                        <br>등록된 유저가 없습니다
-                    </li>
-                {% endfor %}
-                </ul>
-                <a href="{% url 'main:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
-                    <i class="material-icons left">cloud</i>유저 등록
+{% block contents %}
+    <div class="col s12 l8">
+        <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
+        <span id="macro_uuid{{ forloop.counter }}"
+              class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+              data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
+              onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+        <br><br>
+        <ul class="collection">
+        {% for userpage in users %}
+            <li class="collection-item avatar">
+                <a href="{% url "main:auth_modify" macro_id=macro.id username=userpage.user.username %}">
+                    {% static "images/Jigglypuff.png" as default_profile %}
+                    <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
+                    <span class="title">{{ userpage.user }}</span>
                 </a>
-            </div>
-            <div class="col s12 l2" style="padding: 7.5px 30px;">
-                <!-- 어썸 반응형2 -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9848654927199314"
-                     data-ad-slot="1809082384"
-                     data-ad-format="auto"></ins>
-            </div>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+                <p>{{ userpage.created }} 시작
+{#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
+                </p>
+{#                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>#}
+                <a href="#!" class="secondary-content grey-text"><i class="material-icons">grade</i></a>
+                {% if not userpage.is_past_due %}
+                    <span class="new badge" data-badge-caption="남음">{{ userpage.end_date|naturaltime }}</span>
+                 {% endif %}
+            </li>
+        {% empty %}
+            <li class="collection-item avatar center-align">
+                <br>등록된 유저가 없습니다
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="{% url 'main:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
+            <i class="material-icons left">cloud</i>유저 등록
+        </a>
     </div>
 {% endblock %}

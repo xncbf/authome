@@ -1,36 +1,32 @@
 {% extends 'layout.html' %}
 {% load humanize %}
 {% load static from staticfiles %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <div class="card-panel">
-                    <div class="row">
-                        <div class="col s12 m4">
-                            {% static "images/Jigglypuff.png" as default_profile %}
-                            <img class="responsive-img"
-                                 src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"
-                                 width="150px" height="150px">
-                        </div>
-                        <div class="col s12 m8">
-                            <h2>
-                                {{ user.socialaccount_set.all.0.get_provider_account|default:user.get_username }}
-                                <small>
-                                    @{{ user.get_username }}
-                                </small>
-                            </h2>
-                            <span>
-                            <a class="waves-effect waves-light btn" href="#modal1">
-                                {% if user.has_usable_password %}
-                                    비밀번호 변경
-                                {% else %}
-                                    비밀번호 설정
-                                {% endif %}
-                            </a>
-                            </span>
-                        </div>
-                    </div>
+{% block contents %}
+    <div class="col s12 l8">
+        <div class="card-panel">
+            <div class="row">
+                <div class="col s12 m4">
+                    {% static "images/Jigglypuff.png" as default_profile %}
+                    <img class="responsive-img"
+                         src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"
+                         width="150px" height="150px">
+                </div>
+                <div class="col s12 m8">
+                    <h2>
+                        {{ user.socialaccount_set.all.0.get_provider_account|default:user.get_username }}
+                        <small>
+                            @{{ user.get_username }}
+                        </small>
+                    </h2>
+                    <span>
+                        <a class="waves-effect waves-light btn" href="#modal1">
+                            {% if user.has_usable_password %}
+                                비밀번호 변경
+                            {% else %}
+                                비밀번호 설정
+                            {% endif %}
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>

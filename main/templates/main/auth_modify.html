@@ -1,22 +1,19 @@
 {% extends 'layout.html' %}
-{% block content %}
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <h4 class="teal-text text-lighten-1">{{ user.username }} 인증 수정</h4>
-            <form method="post" action="{% url 'main:auth_modify' macro_id=macro username=user %}" class="col s12">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">done</i>
-                        <input id="end_date" name="end_date" type="date" class="datepicker" value="{{ userpage.end_date|date:"Y-m-d" }}">
-                        <label for="end_date">인증 종료일</label>
-                    </div>
+{% block contents %}
+    <div class="col s12 l8">
+        <h4 class="teal-text text-lighten-1">{{ user.username }} 인증 수정</h4>
+        <form method="post" action="{% url 'main:auth_modify' macro_id=macro username=user %}" class="col s12">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">done</i>
+                    <input id="end_date" name="end_date" type="date" class="datepicker" value="{{ userpage.end_date|date:"Y-m-d" }}">
+                    <label for="end_date">인증 종료일</label>
                 </div>
-                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">완료
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
-
-        </div>
+            </div>
+            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">완료
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
     </div>
 {% endblock %}

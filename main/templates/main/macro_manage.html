@@ -1,72 +1,45 @@
 {% extends 'layout.html' %}
 {% load humanize %}
-{% block content %}
-<div class="row">
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="col s12 l2" style="padding: 7.5px 50px;">
-            <!-- 어썸 반응형1 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9848654927199314"
-                 data-ad-slot="2308609981"
-                 data-ad-format="auto"></ins>
-        </div>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="col s12 l8">
-            {% if macro_list %}
-                <ul class="collapsible" data-collapsible="accordion">
-                    {% for macro in macro_list %}
-                        <li>
-                            <div class="collapsible-header truncate">
-                                <span><i class="material-icons">filter_drama</i>{% if flavour == "mobile" %}{{ macro.title|truncatechars:8 }}{% else %}{{ macro.title }}{% endif %}</span>
-                                <a href="{% url 'main:user_manage' macro_id=macro.id %}"
-                                   class="waves-effect waves-light btn-block"
-                                   style="float: right; text-align: center"><i class="material-icons"></i>관리</a>
-                                <a href="{% url 'main:macro_modify' macro_id=macro.id %}"
-                                   class="waves-effect waves-light btn-block"
-                                   style="float: right; text-align: center"><i class="material-icons"></i>수정</a>
-                                <span id="macro_uuid{{ forloop.counter }}"
-                                      class="grey-text text-lighten-1 tooltipped hide-on-small-only"
-                                      data-position="left" data-tooltip="click to copy" style="float: right"
-                                      onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
-                            </div>
-                            <div class="collapsible-body">
-                                <p>
-                                    <span>{{ macro.detail|linebreaksbr }}</span>
-                                </p>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
-                    <i class="material-icons left">cloud</i>매크로 등록
-                </a>
-            {% else %}
-                {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
-                <div class="row">
-                    <div style="text-align: center; width:100%">
-                        <br><br><br>
-                        <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn-large">
-                            <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
-                        </a>
-                    </div>
+{% block contents %}
+    <div class="col s12 l8">
+        {% if macro_list %}
+            <ul class="collapsible" data-collapsible="accordion">
+                {% for macro in macro_list %}
+                    <li>
+                        <div class="collapsible-header truncate">
+                            <span><i class="material-icons">filter_drama</i>{% if flavour == "mobile" %}{{ macro.title|truncatechars:8 }}{% else %}{{ macro.title }}{% endif %}</span>
+                            <a href="{% url 'main:user_manage' macro_id=macro.id %}"
+                               class="waves-effect waves-light btn-block"
+                               style="float: right; text-align: center"><i class="material-icons"></i>관리</a>
+                            <a href="{% url 'main:macro_modify' macro_id=macro.id %}"
+                               class="waves-effect waves-light btn-block"
+                               style="float: right; text-align: center"><i class="material-icons"></i>수정</a>
+                            <span id="macro_uuid{{ forloop.counter }}"
+                                  class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+                                  data-position="left" data-tooltip="click to copy" style="float: right"
+                                  onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+                        </div>
+                        <div class="collapsible-body">
+                            <p>
+                                <span>{{ macro.detail|linebreaksbr }}</span>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
+                <i class="material-icons left">cloud</i>매크로 등록
+            </a>
+        {% else %}
+            {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
+            <div class="row">
+                <div style="text-align: center; width:100%">
+                    <br><br><br>
+                    <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn-large">
+                        <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
+                    </a>
                 </div>
-            {% endif %}
-        </div>
-
-        <div class="col s12 l2" style="padding: 7.5px 50px;">
-            <!-- 어썸 반응형1 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9848654927199314"
-                 data-ad-slot="2308609981"
-                 data-ad-format="auto"></ins>
-        </div>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+            </div>
+        {% endif %}
     </div>
-</div>
 {% endblock %}
