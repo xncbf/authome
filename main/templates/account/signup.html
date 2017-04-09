@@ -4,20 +4,18 @@
 {% block script %}
 {% endblock %}
 {% block contents %}
-    <div class="col s12 l8">
-        <p>
-            {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-        </p>
+    <p>
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
 
-        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-            {% endif %}
-            <button class="btn waves-effect waves-light" type="submit" name="action">{% trans "Sign Up" %}
-                <i class="material-icons right">cloud</i>
-            </button>
-        </form>
-    </div>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button class="btn waves-effect waves-light" type="submit" name="action">{% trans "Sign Up" %}
+            <i class="material-icons right">cloud</i>
+        </button>
+    </form>
 {% endblock %}

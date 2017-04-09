@@ -28,27 +28,25 @@
     </script>
 {% endblock %}
 {% block contents %}
-    <div class="col s12 l8">
-        <h4 class="teal-text text-lighten-1">유저 등록</h4>
-        <form method="post" action="{% url 'main:auth_register' macro_id=macro.id %}" class="col s12">
-            {% csrf_token %}
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">error_outline</i>
-                    <input id="user_id" name="user_id" type="text">
-                    <label for="user_id">유저 아이디</label>
-                </div>
+    <h4 class="teal-text text-lighten-1">유저 등록</h4>
+    <form method="post" action="{% url 'main:auth_register' macro_id=macro.id %}" class="col s12">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">error_outline</i>
+                <input id="user_id" name="user_id" type="text">
+                <label for="user_id">유저 아이디</label>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">done</i>
-                    <input id="end_date" name="end_date" type="date" class="datepicker">
-                    <label for="end_date">인증 종료일</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">done</i>
+                <input id="end_date" name="end_date" type="date" class="datepicker">
+                <label for="end_date">인증 종료일</label>
             </div>
-            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">등록
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
-    </div>
+        </div>
+        <button class="btn waves-effect waves-light btn-large" type="submit" name="action">등록
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
 {% endblock %}

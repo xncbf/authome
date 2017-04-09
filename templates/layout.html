@@ -1,29 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="row">
-        <div class="col s12 l2" style="padding: 7.5px 30px;">
-            <!-- 어썸 반응형1 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9848654927199314"
-                 data-ad-slot="2308609981"
-                 data-ad-format="auto"></ins>
+    <div class="container" style="width: 98%">
+        <div class="row">
+            <div class="col s12 l3" style="padding: 7.5px 30px;">
+                <!-- 어썸 반응형1 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9848654927199314"
+                     data-ad-slot="2308609981"
+                     data-ad-format="auto"></ins>
+            </div>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <div class="col s12 l9">
+            {% block contents %}{% endblock %}
+            </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </div>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        {% block contents %}{% endblock %}
-        <div class="col s12 l2" style="padding: 7.5px 30px;">
-            <!-- 어썸 반응형1 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9848654927199314"
-                 data-ad-slot="1809082384"
-                 data-ad-format="auto"></ins>
-        </div>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </div>
 {% endblock %}

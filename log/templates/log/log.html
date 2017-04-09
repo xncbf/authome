@@ -23,33 +23,31 @@
     </script>
 {% endblock %}
 {% block contents %}
-    <div class="col s12 l8 card-panel">
-        <h5 class="thin">최근 접속자 목록</h5>
-        <select name="ddlUser" class="select-user" multiple>
-            <option value="" disabled selected>사용자 선택(최대 20개 표시)</option>
-            {% for user in userPage %}
-                {% static 'images/Jigglypuff.png' as default_profile %}
-                <option value="{{ user.user.id }}" data-icon="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
-            {% endfor %}
-        </select>
-        <ul class="collection with-header user-list">
-            {# 자바스크립트에서 동적 생성 #}
-            {% for log in macroLog %}
-                <li class="collection-item user-list">
-                    <a href="{% url 'main:user_manage' subdomain=None macro_id=log.macro_id %}">
-                        <div>{{ log.macro.title|default:"제목없음" }}</div>
-                        <div class="chip">
-                            {% static 'images/Jigglypuff.png' as default_profile %}
-                            <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
-                            {{ log.user.username }}
-                        </div>
-                        <span class="secondary-content">
-                            {{ log.ip }}<br>
-                            <span class="new badge" data-badge-caption="접속">최근 {{ log.created|naturaltime }}</span>
-                        </span>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h5 class="thin">최근 접속자 목록</h5>
+    <select name="ddlUser" class="select-user" multiple>
+        <option value="" disabled selected>사용자 선택(최대 20개 표시)</option>
+        {% for user in userPage %}
+            {% static 'images/Jigglypuff.png' as default_profile %}
+            <option value="{{ user.user.id }}" data-icon="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
+        {% endfor %}
+    </select>
+    <ul class="collection with-header user-list">
+        {# 자바스크립트에서 동적 생성 #}
+        {% for log in macroLog %}
+            <li class="collection-item user-list">
+                <a href="{% url 'main:user_manage' subdomain=None macro_id=log.macro_id %}">
+                    <div>{{ log.macro.title|default:"제목없음" }}</div>
+                    <div class="chip">
+                        {% static 'images/Jigglypuff.png' as default_profile %}
+                        <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        {{ log.user.username }}
+                    </div>
+                    <span class="secondary-content">
+                        {{ log.ip }}<br>
+                        <span class="new badge" data-badge-caption="접속">최근 {{ log.created|naturaltime }}</span>
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
