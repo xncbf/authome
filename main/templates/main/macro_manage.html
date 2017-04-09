@@ -1,8 +1,20 @@
 {% extends 'layout.html' %}
 {% load humanize %}
 {% block content %}
+<div class="row">
     <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
+        <div class="col s12 l2" style="margin-top: 7.5px">
+            <!-- 어썸 반응형1 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9848654927199314"
+                 data-ad-slot="1824258784"
+                 data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="col s12 l8">
             {% if macro_list %}
                 <ul class="collapsible" data-collapsible="accordion">
                     {% for macro in macro_list %}
@@ -43,5 +55,18 @@
                 </div>
             {% endif %}
         </div>
+
+        <div class="col s12 l2" style="margin-top: 7.5px">
+            <!-- 어썸 반응형1 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9848654927199314"
+                 data-ad-slot="1824258784"
+                 data-ad-format="auto"></ins>
+        </div>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
+</div>
 {% endblock %}
