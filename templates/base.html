@@ -42,12 +42,12 @@
         <div class="nav-wrapper container"><a id="logo-container" href="{% url 'intro' %}" class="brand-logo"><span class="teal-text">AUTH</span><span
                 class="grey-text">O<span class="domain">ME</span></span><span class="pink-text text-darken-2 beta">beta!</span></a>
             <ul class="right hide-on-med-and-down animated fadeIn">
+                <li><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal teal-text">API</a></li>
+                <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">문서</a></li>
                 {% if debug %}
                 <li><a href="{% url 'board:macro_list' %}" class="waves-effect waves-teal teal-text">매크로</a></li>
                 <li><a href="{% url 'board:board_list' %}" class="waves-effect waves-teal teal-text">자유게시판</a></li>
                 {% endif %}
-                <li><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal teal-text">API</a></li>
-                <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">문서</a></li>
                 <li><a href="{% url 'main:macro_manage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
                 <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">로그</a></li>
                 <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">내정보</a></li>
@@ -78,12 +78,12 @@
                         {% endif %}
                     </div>
                 </li>
+                <li><a class="waves-effect" href="{% url 'drfdocs' subdomain='api' %}"><i class="material-icons">https</i>API</a></li>
+                <li><a class="waves-effect" href="{% url 'introduction' subdomain='docs' %}"><i class="material-icons">description</i>문서</a></li>
                 {% if debug %}
                 <li><a class="waves-effect" href="{% url 'board:macro_list' %}"><i class="material-icons">store</i>매크로</a></li>
                 <li><a class="waves-effect" href="{% url 'board:board_list' %}"><i class="material-icons">forum</i>자유게시판</a></li>
                 {% endif %}
-                <li><a class="waves-effect" href="{% url 'drfdocs' subdomain='api' %}"><i class="material-icons">https</i>API</a></li>
-                <li><a class="waves-effect" href="{% url 'introduction' subdomain='docs' %}"><i class="material-icons">description</i>문서</a></li>
                 <li><a class="waves-effect" href="{% url 'main:macro_manage' %}"><i class="material-icons">recent_actors</i>관리페이지</a></li>
                 <li><a class="waves-effect" href="{% url 'log:main' %}"><i class="material-icons">visibility</i>로그</a></li>
                 <li><a class="waves-effect" href="{% url 'main:mypage' %}"><i class="material-icons">assignment_ind</i>내정보</a></li>
