@@ -24,5 +24,5 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^macro/', views.macro_list, name='macro_list'),
-    url(r'^$', views.board_list, name='board_list'),
+    url(r'^free/', views.board_list, name='board_list'),
 ]

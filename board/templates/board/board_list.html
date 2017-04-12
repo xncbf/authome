@@ -1,4 +1,109 @@
 {% extends 'left_ad_layout.html' %}
 {% load static %}
-{% block content %}
+{% block contents %}
+    <br>
+    <div class="row">
+        <div class="col s12 l12">
+            <nav>
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <table class="highlight">
+                <colgroup>
+                    <col width="10%">
+                    <col width="60%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>등록일</th>
+                    <th>조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>전인 동산에는 긴지라 되는 ? 새 불어 얼마나 위하여, 끝까지 위하여, 힘있다...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>인생에 군영과 능히 웅대한 것이다. 인생의 대고, 장식하는 천하를 대한 군영...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Contrary to popular belief, Lorem Ipsum is not simply random text. It has ...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>전인 동산에는 긴지라 되는 ? 새 불어 얼마나 위하여, 끝까지 위하여, 힘있다...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>인생에 군영과 능히 웅대한 것이다. 인생의 대고, 장식하는 천하를 대한 군영...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Contrary to popular belief, Lorem Ipsum is not simply random text. It has ...</td>
+                    <td>
+                        {% static "images/Jigglypuff.png" as default_profile %}
+                        <img class="circle" style="width:20px;height:20px;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                        덴마크코끼리
+                    </td>
+                    <td>17-04-13 11:12</td>
+                    <td>3</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
+        <i class="material-icons left">mode_edit</i>글쓰기
+    </a>
 {% endblock %}

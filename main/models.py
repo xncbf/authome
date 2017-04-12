@@ -76,3 +76,12 @@ class UserPage(TimeStampedModel):
     @property
     def is_past_due(self):
         return timezone.now() > self.end_date
+
+class board(TimeStampedModel):
+    """
+    게시글의 정보를 저장
+    """
+    id = models.AutoField(primary_key=True)
+    title = models.CharField('제목', max_length=50, null=False)
+    detail = models.TextField()
+    count = models.IntegerField()
