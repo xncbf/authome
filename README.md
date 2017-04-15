@@ -12,7 +12,6 @@
 * python3-dev
 
 ## 패키지 의존성
-* django==1.9.x
 * djangorestframework
 * django-subdomains
 * django-allauth==0.31.0
@@ -28,6 +27,7 @@
 * invoke
 * celery
 * django-celery-beat
+* django-contrib-comments
 
 
 ## 개발 환경 세팅

@@ -14,3 +14,4 @@ pytz
 invoke
 celery
 django-celery-beat
+django-contrib-comments
