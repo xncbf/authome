@@ -92,7 +92,6 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'rest_framework',
     'subdomains',
-    'django_mobile',
     'main',
     'api',
     'api_macro',
@@ -140,8 +139,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_mobile.middleware.MobileDetectionMiddleware',
-    'django_mobile.middleware.SetFlavourMiddleware',
 ]
 
 SITE_ID = 2
@@ -178,7 +175,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django_mobile.context_processors.flavour',
             ],
         },
     },
