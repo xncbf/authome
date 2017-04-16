@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, View, DetailView
+from django.shortcuts import render, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
@@ -43,7 +44,6 @@ class BoardRegister(LoginRequiredMixin, View):
         return render(self.request, self.template_name)
 
     def post(self, *args, **kwargs):
-        # TODO: 게시글 등록 완료시 해당 게시물 페이지로 이동
         board = Board(
             title=self.request.POST.get('board_title'),
             detail=self.request.POST.get('board_detail'),
@@ -51,4 +51,4 @@ class BoardRegister(LoginRequiredMixin, View):
             ip=get_ip(self.request),
         )
         board.save()
-        pass
+        return HttpResponseRedirect(reverse('board:board_detail', kwargs={'pk': board.pk}))
