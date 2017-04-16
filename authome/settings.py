@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'django_celery_beat',
     'django_comments',
+    'hitcount',
 ]
 
 REST_FRAMEWORK = {
