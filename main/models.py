@@ -88,7 +88,7 @@ class Board(TimeStampedModel, HitCountMixin):
     title = models.CharField('제목', max_length=50, null=False)
     detail = models.TextField('내용')
     user = models.ForeignKey(User)
-    count = GenericRelation(
+    hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
     ip = models.GenericIPAddressField()
