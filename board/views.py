@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ipware.ip import get_ip
@@ -20,6 +20,17 @@ class BoardList(LoginRequiredMixin, ListView):
         context = super(BoardList, self).get_context_data(**kwargs)
         context['board_list'] = Board.objects.all().order_by('-created')
         return context
+
+
+# Create your views here.
+class BoardDetail(LoginRequiredMixin, View):
+    login_url = '/accounts/login/'
+    template_name = 'board/board_detail.html'
+
+    def get(self, *args, **kwargs):
+        context = {}
+        context['board'] = get_object_or_404(Board, pk=kwargs.get('board_id'))
+        return render(self.request, self.template_name, context)
 
 
 # Create your views here.
