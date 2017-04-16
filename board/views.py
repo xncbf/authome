@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.list import ListView, View
+from django.views.generic import ListView, View, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
 from main.models import Board
 
@@ -22,15 +23,15 @@ class BoardList(LoginRequiredMixin, ListView):
         return context
 
 
-# Create your views here.
-class BoardDetail(LoginRequiredMixin, View):
+class BoardDetail(LoginRequiredMixin, HitCountDetailView):
     login_url = '/accounts/login/'
     template_name = 'board/board_detail.html'
+    model = Board
+    count_hit = True
 
-    def get(self, *args, **kwargs):
-        context = dict()
-        context['board'] = get_object_or_404(Board, pk=kwargs.get('board_id'))
-        return render(self.request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        context = super(BoardDetail, self).get_context_data(**kwargs)
+        return context
 
 
 # Create your views here.
