@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.contenttypes.fields import GenericRelation
+from hitcount.models import HitCount, HitCountMixin
 
 
 class TimeStampedModel(models.Model):
@@ -78,7 +80,7 @@ class UserPage(TimeStampedModel):
         return timezone.now() > self.end_date
 
 
-class Board(TimeStampedModel):
+class Board(TimeStampedModel, HitCountMixin):
     """
     게시글의 정보를 저장
     """
@@ -86,7 +88,9 @@ class Board(TimeStampedModel):
     title = models.CharField('제목', max_length=50, null=False)
     detail = models.TextField('내용')
     user = models.ForeignKey(User)
-    count = models.IntegerField('조회수', default=0)
+    count = GenericRelation(
+        HitCount, object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
     ip = models.GenericIPAddressField()
 
     class Meta:
