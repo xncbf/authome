@@ -28,7 +28,7 @@ class BoardDetail(LoginRequiredMixin, View):
     template_name = 'board/board_detail.html'
 
     def get(self, *args, **kwargs):
-        context = {}
+        context = dict()
         context['board'] = get_object_or_404(Board, pk=kwargs.get('board_id'))
         return render(self.request, self.template_name, context)
 
