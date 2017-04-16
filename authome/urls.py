@@ -36,5 +36,6 @@ urlpatterns = [
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
