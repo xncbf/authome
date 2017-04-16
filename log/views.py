@@ -1,13 +1,14 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.views.generic.list import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.db import connection
-from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.core.urlresolvers import reverse
+from django.db import connection
+from django.shortcuts import render, HttpResponse
 from django.utils import timezone
+from django.views.generic.list import View
+
 from main.models import MacroLog, UserPage
-from .services import dictfetchall
+from utils.services import dictfetchall
 
 
 class Log(LoginRequiredMixin, View):
