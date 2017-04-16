@@ -24,7 +24,7 @@ class UserPageAdmin(admin.ModelAdmin):
 
 
 class BoardAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'detail', 'user', 'count', 'ip', 'created', 'modified')
+    list_display = ('id', 'title', 'detail', 'user', 'ip', 'created', 'modified')
     list_filter = ('modified',)
     search_fields = ('id', 'user__username', 'title', 'detail', 'ip')
 
