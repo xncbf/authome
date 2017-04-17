@@ -1,3 +1,5 @@
+import markdown2
+
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, View
