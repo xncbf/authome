@@ -5,7 +5,7 @@
     <hr>
     <div id="board_detail" class="flow-text">
     {% autoescape off %}
-        {{ object.detail|markdown }}
+        {{ object.detail|markdown:"STYLE" }}
     {% endautoescape %}
     </div>
 {% endblock %}
