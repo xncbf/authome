@@ -20,17 +20,17 @@
 * django_mobile
 * django-ses
 * boto
+* django-celery-beat
+* celery
+* django-contrib-comments
+* django-hitcount
+* django-markdown-deux
+* markdown2
 * Unipath
 * psycopg2
 * drfdocs
 * pytz
 * invoke
-* celery
-* django-celery-beat
-* django-contrib-comments
-* django-hitcount
-* django-markdown-deux
-* markdown2
 
 
 ## 개발 환경 세팅
