@@ -1,13 +1,11 @@
 {% extends 'left_ad_layout.html' %}
-{% block script %}
-    <script>
-        $(function () {
-            $("#board_detail").html(marked('{{ object.detail }}'))
-        });
-    </script>
-{% endblock %}
+{% load markdown_deux_tags %}
 {% block contents %}
     <h4 class="teal-text text-lighten-1" style="display: inline-block;">{{ object.title }}</h4>
     <hr>
-    <div id="board_detail" class="flow-text"></div>
+    <div id="board_detail" class="flow-text">
+    {% autoescape off %}
+        {{ object.detail|markdown }}
+    {% endautoescape %}
+    </div>
 {% endblock %}

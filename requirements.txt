@@ -15,4 +15,5 @@ celery
 django-celery-beat
 django-contrib-comments
 django-hitcount
+django-markdown-deux
 markdown2

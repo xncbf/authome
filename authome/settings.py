@@ -107,6 +107,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_comments',
     'hitcount',
+    'markdown_deux',
 ]
 
 REST_FRAMEWORK = {
