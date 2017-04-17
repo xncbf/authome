@@ -67,7 +67,7 @@ AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 ```
 
 ### 이메일 환경
-django-ses 를 사용하였습니다.
+회원가입 email confirm 및 비밀번호 찾기를 위해 django-ses 를 사용하였습니다.
 
 ### celery
 ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.  
