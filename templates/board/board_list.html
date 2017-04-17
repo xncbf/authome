@@ -45,6 +45,10 @@
                         <td>{{ board.created|date:"y-m-d H:i" }}</td>
                         <td>{{ board.hit_count.hits }}</td>
                     </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="center-align">아직 게시물이 하나도 없네요. 첫 게시글을 남겨주세요!</td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

@@ -48,6 +48,10 @@
                     </span>
                 </a>
             </li>
+        {% empty %}
+            <li class="collection-item user-list center-align">
+            아직 사용자가 한명도 없습니다!
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
