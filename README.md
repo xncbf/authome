@@ -28,6 +28,9 @@
 * celery
 * django-celery-beat
 * django-contrib-comments
+* django-hitcount
+* django-markdown-deux
+* markdown2
 
 
 ## 개발 환경 세팅
