@@ -34,6 +34,9 @@ class BoardDetail(LoginRequiredMixin, HitCountDetailView):
         context = super(BoardDetail, self).get_context_data(**kwargs)
         return context
 
+    def post(self, *args, **kwargs):
+        pass
+
 
 # Create your views here.
 class BoardRegister(LoginRequiredMixin, View):

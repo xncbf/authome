@@ -43,15 +43,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s12">
-            <img class="circle material-icons prefix" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
-            <input id="comment" type="text" class="validate">
-            <label for="comment">댓글</label>
-        </div>
-        <div class="col s12">
-            <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="float: right">등록
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
+        <form method="post" action=".">
+            {% csrf_token %}
+            <div class="input-field col s12">
+                <img class="circle material-icons prefix" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
+                <input id="comment" type="text" class="validate">
+                <label for="comment">댓글</label>
+            </div>
+            <div class="col s12">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="float: right">등록
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
     </div>
 {% endblock %}
