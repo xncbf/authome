@@ -13,7 +13,8 @@ pytz
 invoke
 celery
 django-celery-beat
-django-contrib-comments
 django-hitcount
 django-markdown-deux
+django-contrib-comments
+django-disqus
 markdown2

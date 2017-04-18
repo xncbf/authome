@@ -49,7 +49,7 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
 
-#### celery 세팅
+#### celery 설정
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_IMPORTS = ('authome.tasks', )
 CELERY_RESULT_BACKEND = 'amqp://'
@@ -108,7 +108,12 @@ INSTALLED_APPS = [
     'django_comments',
     'hitcount',
     'markdown_deux',
+    'disqus',
 ]
+
+# disqus 설정
+DISQUS_API_KEY = 'FOOBARFOOBARFOOBARFOOBARFOOBARF'
+DISQUS_WEBSITE_SHORTNAME = 'foobar'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
