@@ -12,7 +12,6 @@
     {% for userpage in users %}
         <li class="collection-item avatar">
             <a href="{% url "main:auth_modify" macro_id=macro.id username=userpage.user.username %}">
-                {% static "images/Jigglypuff.png" as default_profile %}
                 <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
                 <span class="title">{{ userpage.user }}</span>
             </a>

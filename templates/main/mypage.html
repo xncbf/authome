@@ -5,7 +5,6 @@
     <div class="card-panel">
         <div class="row">
             <div class="col s12 m4">
-                {% static "images/Jigglypuff.png" as default_profile %}
                 <img class="responsive-img"
                      src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"
                      width="150px" height="150px">

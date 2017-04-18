@@ -38,7 +38,6 @@
                         <td>{{ board.pk }}</td>
                         <td><a href="{% url "board:board_detail" pk=board.pk %}">{{ board.title }}</a></td>
                         <td>
-                            {% static "images/Jigglypuff.png" as default_profile %}
                             <img class="circle" style="width:30px;height:30px;" src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                             {{ board.user }}
                         </td>
