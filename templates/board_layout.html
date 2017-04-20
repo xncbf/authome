@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        {#  광고  #}
+        <div class="row">
+            <div class="col s12">
+                <div class="hide-on-med-and-down valign-wrapper">
+                    <!-- 어썸 큰 가로 리더보드 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:970px;height:90px"
+                         data-ad-client="ca-pub-9848654927199314"
+                         data-ad-slot="5621356387"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="hide-on-large-only hide-on-small-and-down valign-wrapper">
+                    <!-- 어썸 중간크기용 상단 바 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:90px;margin:0 auto"
+                         data-ad-client="ca-pub-9848654927199314"
+                         data-ad-slot="3840558786"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="hide-on-med-and-up valign-wrapper">
+                    <!-- 어썸 모바일용 상단 바 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:320px;height:50px;margin:0 auto"
+                         data-ad-client="ca-pub-9848654927199314"
+                         data-ad-slot="6794025182"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+        {#  광고끝  #}
+        <div class="row">
+            <div class="col s12">
+            {% block title %}{% endblock %}
+            </div>
+        </div>
+    <hr>
+        <div class="row">
+            <div class="col s12">
+                {% block detail %}{% endblock %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+            {% block comments %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
