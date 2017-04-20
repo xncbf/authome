@@ -16,5 +16,4 @@ django-celery-beat
 django-hitcount
 django-markdown-deux
 django-contrib-comments
-django-disqus
 markdown2

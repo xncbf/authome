@@ -108,12 +108,7 @@ INSTALLED_APPS = [
     'django_comments',
     'hitcount',
     'markdown_deux',
-    'disqus',
 ]
-
-# disqus 설정
-DISQUS_API_KEY = 'FOOBARFOOBARFOOBARFOOBARFOOBARF'
-DISQUS_WEBSITE_SHORTNAME = 'foobar'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
