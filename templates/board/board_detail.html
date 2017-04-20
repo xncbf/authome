@@ -12,24 +12,30 @@
 {% endblock %}
 {% block comments %}
     <div class="row">
-        <div class="col s12">
-            <ul class="collection">
-                <li class="collection-item avatar">
-                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
-                    <span class="title">기억나니</span>
-                    <p>나니냐나뇨<br>
-                        니냐니뇨뇨니냐
-                    </p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-            </ul>
+        <div class="col s12" style="margin: 15px 0;">
+            <div>
+                <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
+                <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">기억나니</span>
+                <span class="badge" style="float:left">1주일 전</span>
+            </div>
+            <br>
+            <div><span style="margin: 100px 0 0 5px;">아무말 대잔치</span></div>
+        </div>
+        <div class="col s12" style="margin: 15px 35px;">
+            <div>
+                <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
+                <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">기억나니</span>
+                <span class="badge" style="float:left">1주일 전</span>
+            </div>
+            <br>
+            <div><span style="margin: 100px 0 0 5px;">답글이다 함 써바라 직인다 아이가</span></div>
         </div>
     </div>
     <div class="row">
         <form method="post" action=".">
             {% csrf_token %}
             <div class="input-field col s12">
-                <textarea id="comment" class="materialize-textarea"></textarea>
+                <textarea id="comment" class="materialize-textarea" data-length="120"></textarea>
                 <label for="comment">댓글쓰기</label>
             </div>
             <div class="col s12">
