@@ -1,5 +1,6 @@
 {% extends 'board_layout.html' %}
 {% load markdown_deux_tags %}
+{% load comments %}
 {% block title %}
     <h4 class="teal-text text-lighten-1" style="display: inline-block;">{{ object.title }}</h4>
 {% endblock %}
@@ -13,22 +14,24 @@
 {% block comments %}
     <div class="row">
         <div class="col s12" style="margin: 15px 0;">
-            <div>
+            <div style="margin-bottom: 5px">
                 <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
                 <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">기억나니</span>
                 <span class="badge" style="float:left">1주일 전</span>
+                <a href="#"><i class="material-icons" style="float: left;">reply</i></a>
             </div>
             <br>
-            <div><span style="margin: 100px 0 0 5px;">아무말 대잔치</span></div>
+            <div><span style="margin-left:5px;">아무말 대잔치</span></div>
         </div>
-        <div class="col s12" style="margin: 15px 35px;">
-            <div>
+        <div class="col s12" style="margin: 15px 0;">
+            <div style="margin-bottom: 5px">
                 <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
                 <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">기억나니</span>
                 <span class="badge" style="float:left">1주일 전</span>
+                <a href="#"><i class="material-icons" style="float: left;">reply</i></a>
             </div>
             <br>
-            <div><span style="margin: 100px 0 0 5px;">답글이다 함 써바라 직인다 아이가</span></div>
+            <div><span style="margin-left:5px;">답글이다 함 써바라 직인다 아이가</span></div>
         </div>
     </div>
     <div class="row">
