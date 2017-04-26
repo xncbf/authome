@@ -12,27 +12,34 @@
     </div>
 {% endblock %}
 {% block comments %}
+    <hr>
     <div class="row">
-    {% get_comment_list for board object.id as comment_list %}
+    {% get_comment_list for main.board object.pk as comment_list %}
     {% for comment in comment_list %}
-        ...
-    {% endfor %}
         <div class="col s12" style="margin: 15px 0;">
             <div style="margin-bottom: 5px">
-                <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
-                <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">기억나니</span>
-                <span class="badge" style="float:left">1주일 전</span>
-                <a href="#"><i class="material-icons" style="float: left;">reply</i></a>
+                <img class="badge circle" style="width:48px;height:48px;float:left;" src="{{ comment.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
+                <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">{{ comment.user_name }}</span>
+                <span class="badge" style="float:left">{{ comment.submit_date }}</span>
+                {% if debug %}<a href="#"><i class="material-icons" style="float: left;">reply</i></a>{% endif %}
             </div>
             <br>
-            <div><span style="margin-left:5px;">아무말 대잔치</span></div>
+            <div><span style="margin-left:5px;">{{ comment.comment }}</span></div>
         </div>
+    {% endfor %}
     </div>
     <div class="row">
-        <form method="post" action=".">
+{#        <form method="post" action="{% url "board:board_detail" pk=object.id %}">#}
+        {% get_comment_form for object as form %}
+        <form action="{% comment_form_target %}" method="post">
             {% csrf_token %}
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
             <div class="input-field col s12">
-                <textarea id="comment" class="materialize-textarea" data-length="120"></textarea>
+                <input type="text" name="honeypot" size="64" style="display: none;" />
+                <textarea id="comment" name="comment" class="materialize-textarea" data-length="120"></textarea>
                 <label for="comment">댓글쓰기</label>
             </div>
             <div class="col s12">
@@ -40,6 +47,7 @@
                     <i class="material-icons right">send</i>
                 </button>
             </div>
+            <input type="hidden" name="next" value="{% url 'board:board_detail' pk=object.pk %}" />
         </form>
     </div>
 {% endblock %}
