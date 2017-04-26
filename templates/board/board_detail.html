@@ -12,7 +12,6 @@
     </div>
 {% endblock %}
 {% block comments %}
-    <hr>
     <div class="row">
     {% get_comment_list for main.board object.pk as comment_list %}
     {% for comment in comment_list %}
