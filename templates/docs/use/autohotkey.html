@@ -54,7 +54,7 @@ F1::
                     <p>
                         Loop 등 반복적으로 실행되는 매크로인 경우 사용하는 방법입니다.<br>
                         보통 대부분의 매크로에서 이 방법이 주로 사용됩니다.<br>
-                        다음 예제는 인증확인을 1분당 한번씩 호출하는 예제입니다.
+                        다음 예제는 인증확인을 10분당 한번씩 호출하는 예제입니다.
                     </p>
                     <a id="download-source" class="btn waves-effect waves-light" href="{% static "example/example_loop.ahk" %}">
                         예제 다운로드<i class="material-icons right">file_download</i>
@@ -63,10 +63,11 @@ F1::
                         <code class="autohotkey">
 ;이 Uid 를 자신의 매크로 ID 로 변경해줍니다
 global Uid = "3a526973-98cf-4f0e-8791-5ae7759948d7"
+global isCalled = false
 
 setAuth()
 {
-    Settimer, isAuth, 60000
+    Settimer, isAuth, 600000
     return
 }
 
