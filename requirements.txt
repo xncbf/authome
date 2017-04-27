@@ -17,3 +17,4 @@ django-hitcount
 django-markdown-deux
 django-contrib-comments
 markdown2
+django-material

@@ -108,6 +108,7 @@ INSTALLED_APPS = [
     'django_comments',
     'hitcount',
     'markdown_deux',
+    'material',
 ]
 
 REST_FRAMEWORK = {
