@@ -25,8 +25,15 @@ class GetAuth(APIView):
         user = authenticate(username=username, password=password)
         if user:
             userPage = self.get_object(user, macro_id)
+            # 동시 접속 차단 로직
+            lastLog = MacroLog.objects.filter(user=user).order_by('-created').first()
+            lastLogTime = MacroLog.objects.filter(user=user).order_by('-created')[0].created
+            if (timezone.now() - lastLogTime).seconds < 3600:
+                if lastLog.ip != get_ip(request):
+                    MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeded=False)
+                    return Response(status=status.HTTP_403_FORBIDDEN)
             serializer = AuthSerializer(userPage)
-            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request))
+            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeded=True)
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
