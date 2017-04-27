@@ -1,5 +1,6 @@
 {% extends 'left_ad_layout.html' %}
 {% load static %}
+{% load comments %}
 {% block contents %}
     <br>
     <div class="row">
@@ -34,9 +35,10 @@
                 </thead>
                 <tbody>
                 {% for board in board_list %}
+                    {% get_comment_count for board as comment_count %}
                     <tr>
                         <td>{{ board.pk }}</td>
-                        <td><a href="{% url "board:board_detail" pk=board.pk %}">{{ board.title }}</a></td>
+                        <td><a href="{% url "board:board_detail" pk=board.pk %}">{{ board.title }} ({{ comment_count }})</a></td>
                         <td>
                             <img class="circle" style="width:30px;height:30px;" src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                             {{ board.user }}
