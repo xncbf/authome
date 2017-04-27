@@ -29,6 +29,7 @@ If you like this project, please press the 'star' button :heart_eyes:
 * django-hitcount
 * django-markdown-deux
 * markdown2
+* django-material
 * Unipath
 * psycopg2
 * drfdocs
