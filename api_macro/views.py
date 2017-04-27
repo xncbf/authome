@@ -26,7 +26,7 @@ class GetAuth(APIView):
         if lastLog:
             lastLogTime = lastLog.first().created
             if (timezone.now() - lastLogTime).seconds < 3600:
-                if lastLog.ip != get_ip(request):
+                if lastLog.first().ip != get_ip(request):
                     return False
         return True
 
