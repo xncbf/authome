@@ -16,13 +16,14 @@
                     </form>
                 </div>
             </nav>
-            <table class="highlight">
+            {# pc, 테블릿용 #}
+            <table class="highlight hide-on-small-only">
                 <colgroup>
-                    <col width="6%">
-                    <col width="64%">
+                    <col width="12%">
+                    <col width="52%">
                     <col width="12%">
                     <col width="12%">
-                    <col width="6%">
+                    <col width="12%">
                 </colgroup>
                 <thead>
                 <tr>
@@ -53,6 +54,29 @@
                 {% endfor %}
                 </tbody>
             </table>
+            {# 모바일용 #}
+            <ul class="collection with-header user-list hide-on-med-and-up">
+                {% for board in board_list %}
+                    {% get_comment_count for board as comment_count %}
+                    <li class="collection-item user-list">
+                        <a href="{% url "board:board_detail" pk=board.pk %}">
+                            <div>{{ board.pk }}. {{ board.title }} ({{ comment_count }})</div>
+                            <div class="chip">
+                                <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                                {{ board.user.username }}
+                            </div>
+                            <span class="secondary-content">
+                            {{ board.ip }}<br>
+                            <span class="new badge" data-badge-caption=""> {{ board.created|date:"y-m-d H:i" }}</span>
+                        </span>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="collection-item user-list center-align">
+                        아직 게시물이 하나도 없네요. 첫 게시글을 남겨주세요!
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <a href="{% url 'board:board_register' %}" class="waves-effect waves-light btn" style="float: right">

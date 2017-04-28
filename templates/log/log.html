@@ -27,7 +27,6 @@
     <select name="ddlUser" class="select-user" multiple>
         <option value="" disabled selected>사용자 선택(최대 20개 표시)</option>
         {% for user in userPage %}
-            {% static 'images/Jigglypuff.png' as default_profile %}
             <option value="{{ user.user.id }}" data-icon="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
         {% endfor %}
     </select>
@@ -38,7 +37,6 @@
                 <a href="{% url 'main:user_manage' subdomain=None macro_id=log.macro_id %}">
                     <div>{{ log.macro.title|default:"제목없음" }}</div>
                     <div class="chip">
-                        {% static 'images/Jigglypuff.png' as default_profile %}
                         <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                         {{ log.user.username }}
                     </div>
