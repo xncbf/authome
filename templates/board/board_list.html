@@ -1,6 +1,8 @@
 {% extends 'left_ad_layout.html' %}
 {% load static %}
 {% load comments %}
+{% load humanize %}
+{% load board_extras %}
 {% block contents %}
     <br>
     <div class="row">
@@ -16,58 +18,19 @@
                     </form>
                 </div>
             </nav>
-            {# pc, 테블릿용 #}
-            <table class="highlight hide-on-small-only">
-                <colgroup>
-                    <col width="12%">
-                    <col width="52%">
-                    <col width="12%">
-                    <col width="12%">
-                    <col width="12%">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>글번호</th>
-                    <th>제목</th>
-                    <th>글쓴이</th>
-                    <th>등록일</th>
-                    <th>조회수</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for board in board_list %}
-                    {% get_comment_count for board as comment_count %}
-                    <tr>
-                        <td>{{ board.pk }}</td>
-                        <td><a href="{% url "board:board_detail" pk=board.pk %}">{{ board.title }} ({{ comment_count }})</a></td>
-                        <td>
-                            <img class="circle" style="width:30px;height:30px;" src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
-                            {{ board.user }}
-                        </td>
-                        <td>{{ board.created|date:"y-m-d H:i" }}</td>
-                        <td>{{ board.hit_count.hits }}</td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="5" class="center-align">아직 게시물이 하나도 없네요. 첫 게시글을 남겨주세요!</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {# 모바일용 #}
-            <ul class="collection with-header user-list hide-on-med-and-up">
+            <ul class="collection with-header user-list ">
                 {% for board in board_list %}
                     {% get_comment_count for board as comment_count %}
                     <li class="collection-item user-list">
                         <a href="{% url "board:board_detail" pk=board.pk %}">
-                            <div>{{ board.pk }}. {{ board.title }} ({{ comment_count }})</div>
+                            <div>{{ board.title }} ({{ comment_count }})</div>
                             <div class="chip">
                                 <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                                 {{ board.user.username }}
                             </div>
                             <span class="secondary-content">
-                            {{ board.ip }}<br>
-                            <span class="new badge" data-badge-caption=""> {{ board.created|date:"y-m-d H:i" }}</span>
+                                {{ board.ip|truncateip }}<br>
+                            <span class="new badge" data-badge-caption=""> {{ board.created|naturaltime_newly }}</span>
                         </span>
                         </a>
                     </li>
