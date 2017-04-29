@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
 from django.http import Http404
-from .models import UserPage, Macro, CustomUser
+from .models import UserPage, Macro
 from utils.decorators import check_is_my_macro
 
 
@@ -179,9 +179,7 @@ class MyPage(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
 
     def get(self, *args, **kwargs):
-        return render(self.request, 'main/mypage.html', {
-            "CustomUser": CustomUser.objects.filter(pk=self.request.user.pk),
-        })
+        return render(self.request, 'main/mypage.html')
 
     def post(self, *args, **kwargs):
         return HttpResponse('')

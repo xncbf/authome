@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Macro, MacroFeeLog, MacroLog, UserPage, Board, CustomUser
+from .models import Macro, MacroFeeLog, MacroLog, UserPage, Board
 
 
 class MacroAdmin(admin.ModelAdmin):
@@ -34,4 +34,3 @@ admin.site.register(UserPage, UserPageAdmin)
 admin.site.register(MacroFeeLog)
 admin.site.register(MacroLog, MacroLogAdmin)
 admin.site.register(Board, BoardAdmin)
-admin.site.register(CustomUser)
