@@ -2,8 +2,8 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils import timezone
 from hitcount.models import HitCount, HitCountMixin
 
 
@@ -96,3 +96,23 @@ class Board(TimeStampedModel, HitCountMixin):
 
     class Meta:
         verbose_name_plural = '게시판'
+
+
+class CustomUserManager(models.Manager):
+    def uuid_renewal(self):
+        if self.count() == 1:
+            return self.update(token=uuid.uuid4())
+        else:
+            raise ValueError("하나의 대상만 업데이트하세요.")
+
+
+class CustomUser(User):
+    """
+    유저 모델 커스터마이징
+    """
+    objects = CustomUserManager()
+
+    token = models.UUIDField(default=uuid.uuid4, editable=False)
+
+    class Meta:
+        verbose_name_plural = '커스텀 사용자'
