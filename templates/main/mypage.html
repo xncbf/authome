@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static from staticfiles %}
 {% block contents %}
-    <div class="card-panel">
+    <div class="card-panel" style="text-align: center">
         <div class="row">
             <div class="col s12 m4">
                 <img class="responsive-img"
@@ -18,20 +18,28 @@
                         &nbsp; {{ user.email }}
                     </span>
                 </div>
-                <span>
-                    <a class="waves-effect waves-light btn" href="#modal1">
-                        {% if user.has_usable_password %}
-                            비밀번호 변경
-                        {% else %}
-                            비밀번호 설정
-                        {% endif %}
-                    </a>
-                </span>
+            {% if debug %}
+                <a class="waves-effect waves-light btn" href="#modal1" style="width: 170px; margin: 5px">
+                    닉네임 변경
+                </a>
+            {% endif %}
+                <a class="waves-effect waves-light btn" href="#modal2" style="width: 170px; margin: 5px">
+                    {% if user.has_usable_password %}
+                        비밀번호 변경
+                    {% else %}
+                        비밀번호 설정
+                    {% endif %}
+                </a>
             </div>
         </div>
     </div>
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
+        <div class="modal-content">
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
         <div class="modal-content">
             {% if user.has_usable_password %}
                 {% include  "account/password_change.html" %}
