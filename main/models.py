@@ -101,17 +101,18 @@ class Board(TimeStampedModel, HitCountMixin):
 class CustomUserManager(models.Manager):
     def uuid_renewal(self):
         if self.count() == 1:
-            return self.update(token=uuid.uuid4())
+            return self.update_or_create(token=uuid.uuid4())
         else:
             raise ValueError("하나의 대상만 업데이트하세요.")
 
 
-class CustomUser(User):
+class CustomUser(TimeStampedModel):
     """
     유저 모델 커스터마이징
     """
     objects = CustomUserManager()
 
+    user = models.ForeignKey(User)
     token = models.UUIDField(default=uuid.uuid4, editable=False)
 
     class Meta:
