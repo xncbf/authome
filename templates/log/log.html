@@ -33,14 +33,14 @@
     <ul class="collection with-header user-list">
         {# 자바스크립트에서 동적 생성 #}
         {% for log in macroLog %}
-            <li class="collection-item user-list">
+            <li class="collection-item user-list" style="overflow: auto">
                 <a href="{% url 'main:user_manage' subdomain=None macro_id=log.macro_id %}">
                     <div>{{ log.macro.title|default:"제목없음" }}</div>
                     <div class="chip">
                         <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                         {{ log.user.username }}
                     </div>
-                    <span class="secondary-content">
+                    <span class="secondary-content right-align">
                         {{ log.ip }}<br>
                         <span class="new badge" data-badge-caption="접속">최근 {{ log.created|naturaltime }}</span>
                     </span>

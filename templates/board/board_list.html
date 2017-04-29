@@ -21,14 +21,14 @@
             <ul class="collection with-header user-list ">
                 {% for board in board_list %}
                     {% get_comment_count for board as comment_count %}
-                    <li class="collection-item user-list">
+                    <li class="collection-item user-list" style="overflow: auto;">
                         <a href="{% url "board:board_detail" pk=board.pk %}">
                             <div>{{ board.title }} ({{ comment_count }})</div>
                             <div class="chip">
                                 <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
                                 {{ board.user.username }}
                             </div>
-                            <span class="secondary-content">
+                            <span class="secondary-content right-align">
                                 {{ board.ip|truncateip }}<br>
                             <span class="new badge" data-badge-caption=""> {{ board.created|naturaltime_newly }}</span>
                         </span>
