@@ -1,0 +1,34 @@
+<script>
+    $(function () {
+        $("#formChangeNickname").submit(function () {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '{% url 'account_change_nickname' %}',
+                data: $("#formChangeNickname").serialize(),
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (e) {
+                    var errors = JSON.parse(e.responseText).form_errors;
+                    $.each(errors,function(k,v){
+                        for(var i=0;i<v.length;i++){
+                            Materialize.toast(v[i], 3000, 'rounded');
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+{% block content %}
+    <h4>닉네임 변경</h4>
+    <form id="formChangeNickname" method="POST">
+        {% csrf_token %}
+        <p class="input-field">
+            <label for="txtNickname">변경할 닉네임</label>
+            <input id="txtNickname" name="nickname" type="text">
+        </p>
+        <button type="submit" name="action" class="waves-effect waves-light btn">닉네임 변경</button>
+    </form>
+{% endblock %}

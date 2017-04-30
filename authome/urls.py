@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/django-ses/', include('django_ses.urls')),
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
+    url(r'^accounts/nickname/change/', views.nickname_change, name='account_change_nickname'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^macro/', include('main.urls', namespace='main'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),

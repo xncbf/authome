@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
-from django.http import Http404, HttpResponseNotAllowed
+from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError
 from .models import UserPage, Macro
+from .forms import ChangeNicknameForm
 from utils.decorators import check_is_my_macro
+from authome.settings import ACCOUNT_USERNAME_BLACKLIST
 
 
 def update_session(request):
@@ -23,6 +25,17 @@ def update_session(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('intro'))
+
+
+def nickname_change(request):
+    result = {}
+    form = ChangeNicknameForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponse('ok')
+    else:
+        result['form_errors'] = form.errors
+        return HttpResponseServerError(json.dumps(result, ensure_ascii=False))
 
 
 class MacroManage(LoginRequiredMixin, ListView):
