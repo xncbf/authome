@@ -1,5 +1,15 @@
 {% extends 'left_ad_layout.html' %}
 {% load humanize %}
+{% block script %}
+    <script>
+    $(function(){
+        {% if request.session.macro_manage_visited != "true" %}
+            $('.tap-target').tapTarget('open');
+        {% endif %}
+        update_session({'macro_manage_visited': true})
+    })
+    </script>
+{% endblock %}
 {% block contents %}
     {% if macro_list %}
         <ul class="collapsible" data-collapsible="accordion">
@@ -26,9 +36,19 @@
                 </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
-            <i class="material-icons left">cloud</i>매크로 등록
-        </a>
+
+        <!-- Tap Target Structure -->
+        <div class="tap-target" data-activates="menu">
+            <div class="tap-target-content white-text">
+                <h5>매크로 등록</h5>
+                <p>버튼을 눌러서 매크로를 등록해보세요!</p>
+            </div>
+        </div>
+        <div class="fixed-action-btn">
+            <a id="menu" href="{% url 'main:macro_register' %}" class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+        </div>
     {% else %}
         {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
         <div class="row">

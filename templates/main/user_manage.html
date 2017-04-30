@@ -1,6 +1,16 @@
 {% extends 'left_ad_layout.html' %}
 {% load static from staticfiles %}
 {% load humanize %}
+{% block script %}
+    <script>
+    $(function(){
+        {% if request.session.user_manage_visited != "true" %}
+            $('.tap-target').tapTarget('open');
+        {% endif %}
+        update_session({'user_manage_visited': true})
+    })
+    </script>
+{% endblock %}
 {% block contents %}
     <h4 style="display: inline-block;" class="light">{{ macro }}</h4>
     <span id="macro_uuid{{ forloop.counter }}"
@@ -30,7 +40,17 @@
         </li>
     {% endfor %}
     </ul>
-    <a href="{% url 'main:auth_register' macro_id=macro.id %}" class="waves-effect waves-light btn" style="float: right">
-        <i class="material-icons left">cloud</i>유저 등록
-    </a>
+
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content white-text">
+            <h5>유저 등록</h5>
+            <p>버튼을 눌러서 유저를 등록해보세요!</p>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a id="menu" href="{% url 'main:auth_register' macro_id=macro.id %}" class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
 {% endblock %}

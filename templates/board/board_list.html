@@ -3,6 +3,16 @@
 {% load comments %}
 {% load humanize %}
 {% load board_extras %}
+{% block script %}
+    <script>
+    $(function(){
+        {% if request.session.board_list_visited != "true" %}
+            $('.tap-target').tapTarget('open');
+        {% endif %}
+        update_session({'board_list_visited': true})
+    })
+    </script>
+{% endblock %}
 {% block contents %}
     <br>
     <div class="row">
@@ -23,15 +33,20 @@
                     {% get_comment_count for board as comment_count %}
                     <li class="collection-item user-list" style="overflow: auto;">
                         <a href="{% url "board:board_detail" pk=board.pk %}">
-                            <div>{{ board.title }} ({{ comment_count }})</div>
-                            <div class="chip">
-                                <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
-                                {{ board.user.username }}
+                            <div>
+                                {{ board.title }} ({{ comment_count }})
+                                <span class="badge">조회 {{ board.hit_count.hits }}</span>
                             </div>
-                            <span class="secondary-content right-align">
-                                {{ board.ip|truncateip }}<br>
-                            <span class="new badge" data-badge-caption=""> {{ board.created|naturaltime_newly }}</span>
-                        </span>
+                            <div style="margin-top:5px">
+                                <div class="chip">
+                                    <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                                    {{ board.user.username }}
+                                </div>
+                                <span class="secondary-content right-align">
+                                    {{ board.ip|truncateip }}<br>
+                                    <span class="new badge" data-badge-caption=""> {{ board.created|naturaltime_newly }}</span>
+                                </span>
+                            </div>
                         </a>
                     </li>
                 {% empty %}
@@ -42,7 +57,16 @@
             </ul>
         </div>
     </div>
-    <a href="{% url 'board:board_register' %}" class="waves-effect waves-light btn" style="float: right">
-        <i class="material-icons left">mode_edit</i>글쓰기
-    </a>
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content white-text">
+            <h5>글쓰기</h5>
+            <p>버튼을 눌러서 게시글을 작성해보세요!</p>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a id="menu" href="{% url 'board:board_register' %}" class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
 {% endblock %}

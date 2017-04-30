@@ -37,5 +37,6 @@ urlpatterns = [
     url(r'^log/', include('log.urls', namespace='log'), ),
     url(r'^comments/', include('django_comments.urls')),
     url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
+    url(r'update_session/', views.update_session, name='update_session'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
