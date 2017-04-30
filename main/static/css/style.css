@@ -117,9 +117,17 @@ ul.side-nav.fixed li > ul > li.active {
 }
 
 
+@media screen {
+    .board-detail{
+        font-size: 1.22rem;
+    }
+}
 @media screen and (max-width:780px) {
     h2.header {
         font-size: 3.00rem;
+    }
+    .board-title{
+        font-size: 2.00rem;
     }
 }
 
@@ -127,9 +135,15 @@ ul.side-nav.fixed li > ul > li.active {
     h2.header {
         font-size: 2.50rem;
     }
+    .board-title{
+        font-size: 1.75rem;
+    }
 }
 @media screen and (max-width:530px) {
     h2.header {
+        font-size: 1.50rem;
+    }
+    .board-title{
         font-size: 1.50rem;
     }
 }

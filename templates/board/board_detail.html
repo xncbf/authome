@@ -2,7 +2,7 @@
 {% load markdown_deux_tags %}
 {% load comments %}
 {% block title %}
-    <h4 class="teal-text text-lighten-1" style="display: inline-block;">{{ object.title }}</h4><br>
+    <h4 class="teal-text text-lighten-1 board-title" style="display: inline-block;">{{ object.title }}</h4><br>
     <div class="chip">
         <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
         {{ board.user.username }}
@@ -10,7 +10,7 @@
     <span>{{ object.created }}</span>
 {% endblock %}
 {% block detail %}
-    <div id="board_detail" class="flow-text">
+    <div id="board_detail" class="board-detail thin">
     {% autoescape off %}
         {{ object.detail|markdown:"STYLE" }}
     {% endautoescape %}
