@@ -28,7 +28,7 @@ class Macro(TimeStampedModel):
         verbose_name_plural = '매크로'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField('매크로명', max_length=30)
-    detail = models.TextField()
+    detail = models.TextField('간단한 설명')
     user = models.ForeignKey(User)
     # fee = models.IntegerField('가격', default=0)
     # auth_date = models.IntegerField('추가일자', default=30)
