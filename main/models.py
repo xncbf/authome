@@ -86,7 +86,7 @@ class Board(TimeStampedModel, HitCountMixin):
     게시글의 정보를 저장
     """
     id = models.AutoField(primary_key=True)
-    title = models.CharField('제목', max_length=50, null=False)
+    title = models.CharField('제목', max_length=70, null=False)
     detail = models.TextField('내용')
     user = models.ForeignKey(User)
     hit_count_generic = GenericRelation(
