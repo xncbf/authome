@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django import forms
+from django.contrib.auth.models import User
 from authome.settings import ACCOUNT_USERNAME_BLACKLIST
 
 
@@ -41,6 +42,10 @@ class ChangeNicknameForm(forms.Form):
         })
     )
 
+    def __init__(self, user=None, *args, **kwargs):
+        self.user = user
+        super(ChangeNicknameForm, self).__init__(*args, **kwargs)
+
     def clean(self):
         cleaned_data = super(ChangeNicknameForm, self).clean()
         nickname = cleaned_data.get('nickname')
@@ -52,5 +57,6 @@ class ChangeNicknameForm(forms.Form):
         return cleaned_data
 
     def save(self):
-        pass
-        # get_adapter().set_password(self.user, self.cleaned_data["password1"])
+        nickname = self.cleaned_data.get('nickname')
+        User.objects.filter(pk=self.user.pk).update(username=nickname)
+

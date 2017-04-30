@@ -10,7 +10,6 @@ from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError
 from .models import UserPage, Macro
 from .forms import ChangeNicknameForm
 from utils.decorators import check_is_my_macro
-from authome.settings import ACCOUNT_USERNAME_BLACKLIST
 
 
 def update_session(request):
@@ -29,13 +28,14 @@ def user_logout(request):
 
 def nickname_change(request):
     result = {}
-    form = ChangeNicknameForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return HttpResponse('ok')
-    else:
-        result['form_errors'] = form.errors
-        return HttpResponseServerError(json.dumps(result, ensure_ascii=False))
+    if request.is_ajax():
+        form = ChangeNicknameForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('ok')
+        else:
+            result['form_errors'] = form.errors
+            return HttpResponseServerError(json.dumps(result, ensure_ascii=False))
 
 
 class MacroManage(LoginRequiredMixin, ListView):
