@@ -96,3 +96,12 @@ class Board(TimeStampedModel, HitCountMixin):
 
     class Meta:
         verbose_name_plural = '게시판'
+
+
+class CustomUserManager(models.Manager):
+    pass
+
+
+class CustomUser(User):
+    objects = CustomUserManager()
+    token = models.UUIDField(default=uuid.uuid4, editable=False)
