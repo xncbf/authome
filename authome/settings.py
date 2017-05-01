@@ -34,7 +34,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 LOGIN_REDIRECT_URL = '/'
 
-# AUTH_USER_MODEL = 'main.User'
+# AUTH_USER_MODEL = 'main.CustomUser'
 
 # ### 이메일 설정
 
