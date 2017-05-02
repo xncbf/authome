@@ -1,10 +1,17 @@
 import uuid
+import os
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core import validators
 from django.utils import timezone
 from hitcount.models import HitCount, HitCountMixin
+# if os.environ['DJANGO_SETTINGS_MODULE'] == 'authome.settings_local':
+#     from authome import settings_local as settings
+# else:
+#     from authome import settings
 
 
 class TimeStampedModel(models.Model):
@@ -98,22 +105,38 @@ class Board(TimeStampedModel, HitCountMixin):
         verbose_name_plural = '게시판'
 
 
-class CustomUserManager(models.Manager):
-    def uuid_renewal(self):
-        if self.count() == 1:
-            return self.update_or_create(token=uuid.uuid4())
-        else:
-            raise ValueError("하나의 대상만 업데이트하세요.")
-
-
-class CustomUser(User):
-    """
-    유저 모델 커스터마이징
-    """
-    objects = CustomUserManager()
-
-    user = models.ForeignKey(User)
-    token = models.UUIDField(default=uuid.uuid4, editable=False)
-
-    class Meta:
-        verbose_name_plural = '커스텀 사용자'
+# class CustomUserManager(BaseUserManager):
+#     def uuid_renewal(self):
+#         if self.count() == 1:
+#             return self.update_or_create(token=uuid.uuid4())
+#         else:
+#             raise ValueError("하나의 대상만 업데이트하세요.")
+#
+#
+# class CustomUser(AbstractUser):
+#     """
+#     유저 모델 커스터마이징
+#     """
+#     objects = CustomUserManager()
+#     USERNAME_FIELD = 'nickname'
+#     REQUIRED_FIELDS = ['email']
+#     nickname = models.CharField(
+#         '닉네임',
+#         max_length=10,
+#         unique=True,
+#         help_text='필수 항목. 10자 이하. 문자와 숫자 및 @/./+/-/_ 기호만 가능.',
+#         validators=[
+#             validators.RegexValidator(
+#                 r'^[\w.@+-]+$',
+#                 '유효한 닉네임을 입력해주세요. 이 항목은 '
+#                 '문자와 숫자 그리고' ' @/./+/-/_ 기호만 사용 가능합니다.'
+#             ),
+#         ],
+#         error_messages={
+#             'unique': "이미 사용중인 닉네임입니다.",
+#         },
+#     )
+#     token = models.UUIDField(default=uuid.uuid4, editable=False)
+#
+#     class Meta:
+#         verbose_name_plural = '커스텀 사용자'
