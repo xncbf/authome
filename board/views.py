@@ -13,8 +13,7 @@ def macro_list(request):
 
 
 # Create your views here.
-class BoardList(LoginRequiredMixin, ListView):
-    login_url = '/accounts/login/'
+class BoardList(ListView):
     model = Board
     template_name = 'board/board_list.html'
 
