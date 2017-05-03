@@ -1,6 +1,7 @@
 {% extends 'board_layout.html' %}
 {% load markdown_deux_tags %}
 {% load comments %}
+{% load board_extras %}
 {% block title %}
     <h4 class="teal-text text-lighten-1 board-title" style="display: inline-block;">{{ object.title }}</h4><br>
     <div class="chip">
@@ -28,6 +29,7 @@
                     {{ comment.user_name }}
                 </span>
                 <span class="badge" style="float:left">{{ comment.submit_date }}</span>
+                <span class="badge hide-on-small-only">{{ comment.ip_address|truncateip }}</span>
                 {% if debug %}<a href="#"><i class="material-icons" style="float: left;">reply</i></a>{% endif %}
             </div>
             <br>
