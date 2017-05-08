@@ -12,12 +12,15 @@
     </script>
 {% endblock %}
 {% block contents %}
-    <h4 class="board-title" style="display: inline-block;" class="light">{{ macro }}</h4>
-    <span id="macro_uuid{{ forloop.counter }}"
-          class="grey-text text-lighten-1 tooltipped hide-on-small-only"
-          data-position="left" data-tooltip="click to copy" style="float: right;margin-top: 30px"
-          onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
-    <br><br>
+    <div style="line-height:40px;overflow:hidden;">
+        <h4 class="board-title" style="display: inline-block" class="light">{{ macro }}</h4>
+        <span id="macro_uuid{{ forloop.counter }}"
+              class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+              data-position="left" data-tooltip="click to copy"
+              style="float: right; margin-top:25px;"
+              onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');
+              Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+    </div>
     <ul class="collection">
     {% for userpage in users %}
         <li class="collection-item avatar">
