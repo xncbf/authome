@@ -25,6 +25,17 @@ CELERY_RESULT_BACKEND = 'django://'
 #     }
 # }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['AUTHOME_DATABASE_NAME'],
+        'USER': os.environ['AUTHOME_DATABASE_USER'],
+        'PASSWORD': os.environ['AUTHOME_DATABASE_PASSWORD'],
+        'HOST': 'fortest.cqzciqkjmzjq.ap-northeast-2.rds.amazonaws.com',
+        'PORT': os.environ['AUTHOME_DATABASE_PORT'],
+    }
+}
+
 # STATIC_ROOT = BASE_DIR.child("static")
 
 # MEDIA_ROOT = BASE_DIR.child('images')
