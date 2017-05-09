@@ -25,7 +25,7 @@ class GetAuth(APIView):
         """
         동시 접속 차단 로직
         """
-        lastLog = MacroLog.objects.filter(user=user, succeded=True).order_by('-created')
+        lastLog = MacroLog.objects.filter(user=user, succeed=True).order_by('-created')
         if lastLog:
             lastLogTime = lastLog.first().created
             if (timezone.now() - lastLogTime).seconds < 3600:
@@ -40,11 +40,11 @@ class GetAuth(APIView):
 
             # 동시 접속 차단 로직
             if not self.block_duplicate(request, user):
-                MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeded=False)
+                MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeed=False)
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
             serializer = AuthSerializer(userPage)
-            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeded=True)
+            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeed=True)
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
