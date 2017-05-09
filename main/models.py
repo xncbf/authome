@@ -129,4 +129,22 @@ class ExtendsUser(models.Model):
         error_messages={
             'unique': "이미 사용중인 닉네임입니다.",
         },
+        null=True,
     )
+
+
+class CustomUser(User):
+    class Meta:
+        proxy = True
+
+    def _make_new_uuid(self):
+        ExtendsUser.objects.create(user=self)
+
+    def make_new_uuid(self):
+        self._make_new_uuid()
+
+    def save(self, *args, **kwargs):
+        # do anything you need before saving
+        super(CustomUser, self).save(*args, **kwargs)
+        self.make_new_uuid()
+        # do anything you need after saving
