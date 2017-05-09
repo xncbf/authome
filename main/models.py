@@ -59,7 +59,7 @@ class MacroLog(TimeStampedModel):
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
     ip = models.GenericIPAddressField()
-    succeed = models.NullBooleanField()
+    succeeded = models.NullBooleanField()
 
 
 class UserPage(TimeStampedModel):
