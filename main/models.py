@@ -1,11 +1,12 @@
 import uuid
-import os
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core import validators
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from hitcount.models import HitCount, HitCountMixin
 
 
@@ -71,6 +72,7 @@ class UserPage(TimeStampedModel):
     end_date = models.DateTimeField('종료일', default=timezone.now)
     # 의미가 뒤바뀜 활성화 YN으로 생각하자 ㅠㅠ(True 가 활성)
     end_yn = models.BooleanField(default=True)
+
     class Meta:
         verbose_name_plural = '인증정보'
         unique_together = (("user", "macro"), )
@@ -133,18 +135,7 @@ class ExtendsUser(models.Model):
     )
 
 
-class CustomUser(User):
-    class Meta:
-        proxy = True
-
-    def _make_new_uuid(self):
-        ExtendsUser.objects.create(user=self)
-
-    def make_new_uuid(self):
-        self._make_new_uuid()
-
-    def save(self, *args, **kwargs):
-        # do anything you need before saving
-        super(CustomUser, self).save(*args, **kwargs)
-        self.make_new_uuid()
-        # do anything you need after saving
+# User 생성 후 실행되는 signal
+@receiver(post_save, sender=User)
+def make_new_uuid(sender, instance, created, **kwargs):
+    ExtendsUser.objects.create(user=instance)
