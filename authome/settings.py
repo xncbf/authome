@@ -78,10 +78,6 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_BLACKLIST = ["운영자", "관리자", "admin"]
-# ACCOUNT_USER_MODEL_USERNAME_FIELD = 'nickname'
-
-# 기본 User 세팅
-# AUTH_USER_MODEL = 'main.CustomUser'
 
 # Application definition
 

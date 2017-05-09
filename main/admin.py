@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Macro, MacroFeeLog, MacroLog, UserPage, Board
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
+
+from .models import Macro, MacroFeeLog, MacroLog, UserPage, Board, ExtendsUser
 
 
 class MacroAdmin(admin.ModelAdmin):
@@ -29,9 +32,23 @@ class BoardAdmin(admin.ModelAdmin):
     search_fields = ('id', 'user__username', 'title', 'detail', 'ip')
 
 
+class ExtendsUserInline(admin.StackedInline):
+    model = ExtendsUser
+    can_delete = False
+    verbose_name_plural = 'extends user'
+
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (ExtendsUserInline, )
+
+
 admin.site.register(Macro, MacroAdmin)
 admin.site.register(UserPage, UserPageAdmin)
 admin.site.register(MacroFeeLog)
 admin.site.register(MacroLog, MacroLogAdmin)
 admin.site.register(Board, BoardAdmin)
-# admin.site.register(CustomUser)
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

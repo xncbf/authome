@@ -14,11 +14,6 @@
             <label for="id_password">비밀번호</label>
             {{ form.password }}
         </p>
-        <p>
-            <input id="id_remember" name="remember" type="checkbox">
-            <label for="id_remember">아이디 저장</label>
-        </p>
-
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
