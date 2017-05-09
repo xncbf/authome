@@ -138,4 +138,5 @@ class ExtendsUser(models.Model):
 # User 생성 후 실행되는 signal
 @receiver(post_save, sender=User)
 def make_new_uuid(sender, instance, created, **kwargs):
-    ExtendsUser.objects.create(user=instance)
+    if created:
+        ExtendsUser.objects.create(user=instance)
