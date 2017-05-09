@@ -13,9 +13,9 @@ class MacroAdmin(admin.ModelAdmin):
 
 
 class MacroLogAdmin(admin.ModelAdmin):
-    list_display = ('user', 'macro', 'ip', 'created')
-    list_filter = ('created',)
-    readonly_fields = ('user', 'macro', 'ip', 'created')
+    list_display = ('user', 'macro', 'ip', 'created', 'succeeded')
+    list_filter = ('created', 'succeeded')
+    readonly_fields = ('user', 'macro', 'ip', 'created', 'succeeded')
     search_fields = ('user__username', 'macro__title', 'ip')
 
 
