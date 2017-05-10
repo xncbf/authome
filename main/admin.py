@@ -28,6 +28,7 @@ class UserPageAdmin(admin.ModelAdmin):
 
 class BoardAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'detail', 'user', 'ip', 'created', 'modified')
+    list_display_links = ('title', 'detail')
     list_filter = ('modified',)
     search_fields = ('id', 'user__username', 'title', 'detail', 'ip')
 
@@ -41,6 +42,7 @@ class ExtendsUserInline(admin.StackedInline):
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = (ExtendsUserInline, )
+    list_display = ('username', 'extendsuser', 'email', 'is_staff', 'is_active', 'date_joined', 'last_login')
 
 
 admin.site.register(Macro, MacroAdmin)
