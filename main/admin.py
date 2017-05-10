@@ -9,7 +9,7 @@ class MacroAdmin(admin.ModelAdmin):
     list_display = ('title', 'id', 'detail', 'user', 'modified', 'created')
     list_filter = ('modified',)
     readonly_fields = ('title', 'id', 'detail', 'user', 'modified', 'created')
-    search_fields = ( 'user__username', 'title', 'id')
+    search_fields = ('user__username', 'title', 'id')
 
 
 class MacroLogAdmin(admin.ModelAdmin):
@@ -42,7 +42,7 @@ class ExtendsUserInline(admin.StackedInline):
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = (ExtendsUserInline, )
-    list_display = ('username', 'extendsuser', 'email', 'is_staff', 'is_active', 'date_joined', 'last_login')
+    list_display = ('username', 'email', 'is_staff', 'is_active', 'date_joined', 'last_login')
 
 
 admin.site.register(Macro, MacroAdmin)
