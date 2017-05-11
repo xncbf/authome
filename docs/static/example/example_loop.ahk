@@ -1,5 +1,5 @@
 #SingleInstance Force
-;ÀÌ UID ¸¦ ÀÚ½ÅÀÇ ¸ÅÅ©·Î ID ·Î º¯°æÇØÁİ´Ï´Ù
+;ì´ Uid ë¥¼ ìì‹ ì˜ ë§¤í¬ë¡œ ID ë¡œ ë³€ê²½í•´ì¤ë‹ˆë‹¤
 global UID = "fd7fbf5a-2840-49df-a235-74ed9877a1a2"
 global isCalled = false
 class JSON
@@ -202,8 +202,7 @@ class JSON
 }
 
 global url = "https://api.autho.me/macro/auth/"
-InputBox, id, User Name, ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.
-InputBox, pw, Password, ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.
+InputBox, userToken, í† í°, í† í°ì„ ì…ë ¥í•˜ì„¸ìš”.
 
 GetAuth(Token)
 {
@@ -221,9 +220,9 @@ setAuth()
 }
 
 isAuth:
-    if (!GetAuth(id "/" pw))
+    if (!GetAuth(userToken))
     {
-        msgbox, ÀÎÁõ½ÇÆĞ ¸ÅÅ©·Î¸¦ Á¾·áÇÕ´Ï´Ù
+        msgbox, ì¸ì¦ì‹¤íŒ¨ ë§¤í¬ë¡œë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤
 	ExitApp
     }
 return
@@ -233,11 +232,11 @@ Loop
 {
     if(!isCalled)
     {
-        msgbox, ÀÌºÎºĞÀº ÇÑ¹ø¸¸ ½ÇÇàµË´Ï´Ù.
+        msgbox, ì´ë¶€ë¶„ì€ í•œë²ˆë§Œ ì‹¤í–‰ë©ë‹ˆë‹¤.
         setAuth()
         isCalled:=true
     }
 
-    ;ÀÌ°÷¿¡¼­ ¹İº¹¼º ¸ÅÅ©·Î°¡ ½ÇÇàµË´Ï´Ù.
+    ;ì´ê³³ì—ì„œ ë°˜ë³µì„± ë§¤í¬ë¡œê°€ ì‹¤í–‰ë©ë‹ˆë‹¤.
     sleep, 300
 }

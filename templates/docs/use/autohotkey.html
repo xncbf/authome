@@ -37,7 +37,7 @@
 global Uid = "3a526973-98cf-4f0e-8791-5ae7759948d7"
 
 F1::
-    if (GetAuth(id "/" pw))
+    if (GetAuth(userToken))
     {
         msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
     }
@@ -72,7 +72,7 @@ setAuth()
 }
 
 isAuth:
-    if (!GetAuth(id "/" pw))
+    if (!GetAuth(userToken))
     {
         msgbox, 인증실패 매크로를 종료합니다
 	ExitApp
