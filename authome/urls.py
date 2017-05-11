@@ -20,6 +20,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from main import views
+from utils import services
 
 handler404 = 'main.views.page_not_found_view'
 handler500 = 'main.views.error_view'
@@ -39,5 +40,6 @@ urlpatterns = [
     url(r'^comments/', include('django_comments.urls')),
     url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
     url(r'update_session/', views.update_session, name='update_session'),
+    url(r'new_token/', services.new_token, name='new_token'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

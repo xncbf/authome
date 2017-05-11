@@ -1,5 +1,9 @@
 import json
-from uuid import UUID
+import uuid
+
+from django.shortcuts import redirect
+from django.shortcuts import urlresolvers
+from main.models import ExtendsUser
 
 
 def dictfetchall(cursor):
@@ -15,6 +19,11 @@ class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if hasattr(obj, 'isoformat'):
             return obj.isoformat()
-        elif isinstance(obj, UUID):
+        elif isinstance(obj, uuid.UUID):
             return str(obj)
         return json.JSONEncoder.default(self, obj)
+
+
+def new_token(request):
+    ExtendsUser.objects.filter(user=request.user).update(token=uuid.uuid4())
+    return redirect(urlresolvers.reverse('main:mypage'))

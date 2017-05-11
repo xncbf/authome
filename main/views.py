@@ -206,7 +206,6 @@ class MyPage(LoginRequiredMixin, View):
         return HttpResponse('')
 
 
-
 def page_not_found_view(request):
     return render(request, 'error/404.html')
 
