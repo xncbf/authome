@@ -8,5 +8,6 @@ handler403 = 'main.views.permission_denied_view'
 handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
-    url(r'^auth/(?P<username>.*)/(?P<password>.*)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
+    # TODO: 5월20일부터는 토큰으로만 로그인하도록 변경
+    url(r'^auth/(?P<username>.*)/(?P<token>.*)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
 ]

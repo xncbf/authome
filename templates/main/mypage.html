@@ -27,9 +27,7 @@
                           data-tooltip="click to copy"
                           onclick="copyToClipboard('#user_token');Materialize.toast('복사되었습니다', 4000,'rounded')">
                         토큰 복사:
-                        <span id="user_token">
-                            {{ user.extendsuser.token|get_or_create_token:user }}
-                        </span>
+                        <span id="user_token">{{ user.extendsuser.token|get_or_create_token:user }}</span>
                     </span>
                 </div>
                 <div>

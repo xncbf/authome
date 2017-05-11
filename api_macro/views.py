@@ -33,8 +33,11 @@ class GetAuth(APIView):
                     return False
         return True
 
-    def get(self, request, username, password, macro_id, format=None):
-        user = authenticate(username=username, password=password)
+    def get(self, request, username, token, macro_id, format=None):
+        # TODO: 5월20일부터는 토큰으로만 로그인하도록 변경
+        user = authenticate(username=username, password=token)
+        if not user:
+            user = User.objects.get(extendsuser__token=token)
         if user:
             userPage = self.get_object(user, macro_id)
 
