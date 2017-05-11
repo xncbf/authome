@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
-from django.http import Http404, HttpResponseNotAllowed, HttpResponseServerError
+from django.http import HttpResponseNotAllowed, HttpResponseServerError
 from .models import UserPage, Macro
 from .forms import ChangeNicknameForm
 from utils.decorators import check_is_my_macro
