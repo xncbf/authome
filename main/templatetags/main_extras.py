@@ -4,7 +4,9 @@ register = template.Library()
 
 
 @register.filter
-def get_or_create_token(value, user):
-    if not value:
-        value = ExtendsUser.objects.create(user=user)
-    return value
+def get_or_create_token(user):
+    try:
+        result = user.extendsuser.token
+    except ExtendsUser.DoesNotExist:
+        result = ExtendsUser.objects.create(user=user).token
+    return result
