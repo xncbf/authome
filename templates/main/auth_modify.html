@@ -2,11 +2,11 @@
 {% block script %}
     <script>
         function addDate(date){
-            var end_date_obj = $("#end_date");
-            var end_date = end_date_obj.val();
-            var date_arr = end_date.split('-');
-            var end_date_jsformat = new Date(date_arr[0], date_arr[1], date_arr[2]);
-            alert(end_date_jsformat.getDay() + date);
+            var $input = $('.datepicker').pickadate();
+            // Use the picker object directly.
+            var picker = $input.pickadate('picker');
+            var _date = new Date($input.val());
+            picker.set('select', _date.setDate(_date.getDate()+date));
         }
     </script>
 {% endblock %}
@@ -21,7 +21,11 @@
                 <label for="end_date">인증 종료일</label>
             </div>
             <div class="input-field col s12 l6">
-                <a onclick="addDate(30)">
+                <a href="#" onclick="addDate(1)">
+                    <i class="material-icons">add</i> 1일&nbsp;
+                </a>
+
+                <a href="#"onclick="addDate(30)">
                     <i class="material-icons">add</i> 30일
                 </a>
             </div>
