@@ -23,7 +23,7 @@ class GetAuth(APIView):
 class GetAuth2(APIView):
     def get_object(self, user, macro_id):
         try:
-            return UserPage.objects.get(user__username=user, macro=macro_id)
+            return UserPage.objects.get(user__email=user.email, macro=macro_id)
         except UserPage.DoesNotExist:
             raise Http404
 

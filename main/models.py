@@ -102,14 +102,6 @@ class Board(TimeStampedModel, HitCountMixin):
         verbose_name_plural = '게시판'
 
 
-# class CustomUserManager(BaseUserManager):
-#     def uuid_renewal(self):
-#         if self.count() == 1:
-#             return self.update_or_create(token=uuid.uuid4())
-#         else:
-#             raise ValueError("하나의 대상만 업데이트하세요.")
-
-
 class ExtendsUser(models.Model):
     """
     유저 모델 확장
@@ -133,10 +125,11 @@ class ExtendsUser(models.Model):
         },
         null=True,
     )
+    nickname_modified = models.DateTimeField(auto_now=True)
 
 
-# User 생성 후 실행되는 signal
 @receiver(post_save, sender=User)
 def make_new_token(sender, instance, created, **kwargs):
+    # User 생성 후 실행되는 signal
     if created:
         ExtendsUser.objects.create(user=instance)

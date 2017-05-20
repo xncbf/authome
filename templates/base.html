@@ -36,8 +36,12 @@
     </script>
     <script>
         $(function () {
-
             $('.button-collapse').sideNav();
+            {% if messages %}
+                {% for message in messages %}
+                    Materialize.toast('{{ message }}', 3000, 'rounded');
+                {% endfor %}
+            {% endif %}
         })
         function update_session(data){
             $.ajax({
@@ -79,8 +83,7 @@
                             <a href="#"><img class="circle" src="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}"></a>
                             <a href="#!name">
                                 <span class="white-text name">
-                                    {{ user.socialaccount_set.all.0.get_provider_account|default:user.get_username }}
-                                    ({{ user.get_username }})
+                                    {{ user.extendsuser.nickname|default:user.email }}
                                     님
                                 </span>
                             </a>

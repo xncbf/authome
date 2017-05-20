@@ -24,9 +24,9 @@
     <ul class="collection">
     {% for userpage in users %}
         <li class="collection-item avatar">
-            <a href="{% url "main:auth_modify" macro_id=macro.id username=userpage.user.username %}">
+            <a href="{% url "main:auth_modify" macro_id=macro.id email=userpage.user.email %}">
                 <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
-                <span class="title">{{ userpage.user }}</span>
+                <span class="title">{{ userpage.user.email }}</span>
             </a>
             <p>{{ userpage.created }} 시작
 {#                                {{ user.end_date|date:"Y년 m월 d일" }}#}

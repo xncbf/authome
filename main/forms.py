@@ -2,11 +2,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django import forms
 from django.contrib.auth.models import User
+from django.utils import timezone
 from authome.settings import ACCOUNT_USERNAME_BLACKLIST
+from .models import ExtendsUser
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(
+    email = forms.CharField(
         max_length=254,
         widget=forms.TextInput(attrs={
             'class': 'form-control', 'placeholder': 'ID', 'required': 'True',
@@ -19,17 +21,17 @@ class LoginForm(forms.Form):
     )
 
     def clean(self):
-        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
         if not user or not user.is_active:
-            raise forms.ValidationError("Username 또는 Password 가 일치하지 않습니다")
+            raise forms.ValidationError("email 또는 Password 가 일치하지 않습니다")
         return self.cleaned_data
 
     def login(self, request):
-        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
         return user
 
 
@@ -49,7 +51,12 @@ class ChangeNicknameForm(forms.Form):
     def clean(self):
         cleaned_data = super(ChangeNicknameForm, self).clean()
         nickname = cleaned_data.get('nickname')
-
+        nickname_modified = ExtendsUser.objects.filter(user=self.user)[0].nickname_modified
+        # 닉네임 변경한지 30일이 지나지 않았을때 에러 발생
+        if (timezone.now() - nickname_modified).seconds < 3600 * 24 * 30:
+            self.add_error(
+                'nickname', "닉네임을 최근에 변경했습니다."
+            )
         if nickname in ACCOUNT_USERNAME_BLACKLIST:
             self.add_error(
                 'nickname', "해당 닉네임은 사용이 불가능합니다."
@@ -58,5 +65,5 @@ class ChangeNicknameForm(forms.Form):
 
     def save(self):
         nickname = self.cleaned_data.get('nickname')
-        User.objects.filter(pk=self.user.pk).update(username=nickname)
+        ExtendsUser.objects.filter(user=self.user).update(nickname=nickname)
 

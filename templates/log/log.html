@@ -26,8 +26,10 @@
     <h5 class="thin">최근 접속자 목록</h5>
     <select name="ddlUser" class="select-user" multiple>
         <option value="" disabled selected>사용자 선택(최대 20개 표시)</option>
-        {% for user in userPage %}
-            <option value="{{ user.user.id }}" data-icon="{{ user.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.user.username }}</option>
+        {% for e in userPage %}
+            {% with e.user as user %}
+                <option value="{{ user.id }}" data-icon="{{ user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" class="circle">{{ user.extendsuser.nickname|default:user.email }}</option>
+            {% endwith %}
         {% endfor %}
     </select>
     <ul class="collection with-header user-list">
@@ -38,7 +40,7 @@
                     <div>{{ log.macro.title|default:"제목없음" }}</div>
                     <div class="chip">
                         <img src="{{ log.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
-                        {{ log.user.username }}
+                        {{ log.user.extendsuser.nickname|default:log.user.email }}
                     </div>
                     <span class="secondary-content right-align">
                         {{ log.ip }}<br>

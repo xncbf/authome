@@ -9,28 +9,28 @@ class MacroAdmin(admin.ModelAdmin):
     list_display = ('title', 'id', 'detail', 'user', 'modified', 'created')
     list_filter = ('modified',)
     readonly_fields = ('title', 'id', 'detail', 'user', 'modified', 'created')
-    search_fields = ('user__username', 'title', 'id')
+    search_fields = ('user__email', 'title', 'id')
 
 
 class MacroLogAdmin(admin.ModelAdmin):
     list_display = ('user', 'macro', 'ip', 'created', 'succeeded')
     list_filter = ('created', 'succeeded')
     readonly_fields = ('user', 'macro', 'ip', 'created', 'succeeded')
-    search_fields = ('user__username', 'macro__title', 'ip')
+    search_fields = ('user__email', 'macro__title', 'ip')
 
 
 class UserPageAdmin(admin.ModelAdmin):
     list_display = ('user', 'macro', 'end_date', 'end_yn')
     list_filter = ('modified',)
     readonly_fields = ('user', 'macro')
-    search_fields = ('user__username', 'macro__title')
+    search_fields = ('user__email', 'macro__title')
 
 
 class BoardAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'detail', 'user', 'ip', 'created', 'modified')
     list_display_links = ('title', 'detail')
     list_filter = ('modified',)
-    search_fields = ('id', 'user__username', 'title', 'detail', 'ip')
+    search_fields = ('id', 'user__email', 'title', 'detail', 'ip')
 
 
 class ExtendsUserInline(admin.StackedInline):

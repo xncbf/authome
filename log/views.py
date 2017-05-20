@@ -36,7 +36,7 @@ class Log(LoginRequiredMixin, View):
                 ML.created,
                 ML.ip,
                 M.title,
-                U.username
+                U.email
                 FROM main_macrolog ML
                 LEFT JOIN main_macro M ON M.id = ML.macro_id
                 LEFT JOIN auth_user U ON U.id = ML.user_id
@@ -49,7 +49,7 @@ class Log(LoginRequiredMixin, View):
 
     def set_html(self, obj, html=''):
         for e in obj:
-            user = User.objects.get(username=e.get('username'))
+            user = User.objects.get(email=e.get('email'))
             local_time = timezone.localtime(e.get('created'))
 
             if user.socialaccount_set.all():
@@ -67,7 +67,7 @@ class Log(LoginRequiredMixin, View):
                     </li>""".format(reverse('main:user_manage', kwargs={'macro_id': e.get('macro_id')}),
                                     e.get('title') or '제목없음',
                                     profile_url,
-                                    e.get('username'),
+                                    e.get('email'),
                                     e.get('ip'),
                                     local_time.strftime('%y-%m-%d %H:%M'))
         if len(obj) == 0:
