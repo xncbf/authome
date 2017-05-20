@@ -79,7 +79,7 @@ class GetAuth2(APIView):
             # 동시 접속 차단 로직
             if not self.block_duplicate(request, user):
                 MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=False)
-                return Response(status=status.HTTP_403_FORBIDDEN)
+                return Response(status=status.HTTP_423_LOCKED)
 
             serializer = AuthSerializer(userPage)
             MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=True)
