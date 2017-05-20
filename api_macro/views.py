@@ -17,6 +17,7 @@ class GetAuth(APIView):
     """
     def get(self, request, username, password, macro_id, format=None):
         # TODO: 5월20일부터는 토큰으로만 로그인하도록 변경
+        MacroLog.objects.create(ip=get_ip(request), succeeded=False)
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 class GetAuth2(APIView):
