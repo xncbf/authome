@@ -2,9 +2,10 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
-from main.models import Board
+from main.models import Board, ExtendsUser
 
 
 # Create your views here.
@@ -43,7 +44,14 @@ class BoardRegister(LoginRequiredMixin, View):
     template_name = 'board/board_register.html'
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+        context = {}
+        try:
+            if not self.request.user.extendsuser.nickname:
+                raise ExtendsUser.DoesNotExist
+        except ExtendsUser.DoesNotExist:
+            messages.add_message(self.request, messages.INFO, "닉네임을 설정해야 글을 작성할 수 있습니다.")
+            return HttpResponseRedirect(reverse('main:mypage'))
+        return render(self.request, self.template_name, context=context)
 
     def post(self, *args, **kwargs):
         board = Board(

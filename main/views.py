@@ -3,6 +3,7 @@ import json
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
@@ -125,35 +126,35 @@ class AuthRegister(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
         if request.is_ajax():
-            user_id = request.POST.get('user_id')
+            user_email = request.POST.get('user_email')
             macro_id = kwargs.get('macro_id')
             result = {}
-            if User.objects.filter(username=user_id):
-                if not UserPage.objects.filter(user__username=user_id, macro=macro_id):
+            if User.objects.filter(email=user_email):
+                if not UserPage.objects.filter(user__email=user_email, macro=macro_id):
                     result['result'] = True
                 else:
                     result['result'] = False
-                    result['error'] = "이미 등록된 사용자입니다."
+                    messages.add_message(self.request, messages.INFO, "이미 등록된 사용자입니다.")
             else:
                 result['result'] = False
-                result['error'] = "존재하지 않는 사용자입니다"
+                messages.add_message(self.request, messages.INFO, "존재하지 않는 사용자입니다")
             return HttpResponse(json.dumps(result, ensure_ascii=False))
         # ajax 요청이 아닌 경우
         else:
             create = {}
-            user_id = self.request.POST.get('user_id', False)
+            user_email = self.request.POST.get('user_email', False)
             end_date = self.request.POST.get('end_date', False)
             if end_date:
                 create['end_date'] = end_date
             try:
-                create['user'] = User.objects.get(username=user_id)
+                create['user'] = User.objects.get(email=user_email)
                 create['macro'] = macro
                 user_page = UserPage(**create)
                 user_page.save()
             except:
+                messages.add_message(self.request, messages.INFO, "등록 실패")
                 return render(self.request, 'main/auth_register.html', {
                     'macro': macro,
-                    'error': '등록 실패',
                 })
             return redirect('main:user_manage', macro_id=kwargs['macro_id'])
 
@@ -171,7 +172,7 @@ class AuthModify(LoginRequiredMixin, View):
     @check_is_my_macro(macro_id='macro_id')
     def post(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        user = User.objects.get(username=kwargs['username'])
+        user = User.objects.get(email=kwargs['email'])
         end_date = self.request.POST.get('end_date')
 
         updateDict = {}
@@ -187,8 +188,8 @@ class AuthModify(LoginRequiredMixin, View):
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
         macro = kwargs['macro_id']
-        user = User.objects.get(username=kwargs['username'])
-        userpage = UserPage.objects.get(user__username=kwargs['username'], macro=macro)
+        user = User.objects.get(email=kwargs['email'])
+        userpage = UserPage.objects.get(user__email=kwargs['email'], macro=macro)
         return render(self.request, 'main/auth_modify.html', {
             'macro': macro,
             'user': user,

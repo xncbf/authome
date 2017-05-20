@@ -32,17 +32,19 @@
                 </div>
                 <div>
                     <h2 style="display: inline-block;">
-                        {{ user.get_username }}
+                        {{ user.extendsuser.nickname|default:"닉네임을 설정하세요" }}
                     </h2>
                     <span style="font-size:18px;">
                         &nbsp; {{ user.email }}
                     </span>
                 </div>
-                {% if debug %}
-                    <a class="waves-effect waves-light btn" href="#modal1" style="width: 170px; margin: 5px">
+                <a class="waves-effect waves-light btn" href="#modal1" style="width: 170px; margin: 5px">
+                    {% if user.extendsuser.nickname %}
                         닉네임 변경
-                    </a>
-                {% endif %}
+                    {% else %}
+                        닉네임 설정
+                    {% endif %}
+                </a>
                 <a class="waves-effect waves-light btn" href="#modal2" style="width: 170px; margin: 5px">
                     {% if user.has_usable_password %}
                         비밀번호 변경
