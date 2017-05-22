@@ -1,28 +1,43 @@
 {% extends 'left_ad_layout.html' %}
 {% load static %}
-{% block content %}
+{% load comments %}
+{% load humanize %}
+{% block contents %}
     <br>
-    <div class="container">
-        <nav>
-            <div class="nav-wrapper">
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </div>
-        </nav>
-        <div class="collection">
-            <a href="#!" class="collection-item"><span class="badge">1</span>Alan</a>
-            <a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>
-            <a href="#!" class="collection-item">Alan</a>
-            <a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>
-            <a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>
+    <div class="row">
+        <div class="col s12 l12">
+            <nav>
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <ul class="collection with-header user-list ">
+                {% for macro in macro_list %}
+                    <li class="collection-item user-list" style="overflow: auto;">
+                        <a href="{% url "macro:macro_detail" pk=macro.pk %}">
+                            <div>
+                                {{ macro.title }}
+                            </div>
+                            <div style="margin-top:5px">
+                                <div class="chip">
+                                    <img src="{{ macro.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                                    {{ macro.user.extendsuser.nickname }}
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="collection-item user-list center-align">
+                        아직 구독중인 매크로가 하나도 없네요. 매크로를 구독해주세요!
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-        <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn" style="float: right">
-            <i class="material-icons left">mode_edit</i>글쓰기
-        </a>
     </div>
 {% endblock %}
