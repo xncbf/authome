@@ -97,6 +97,7 @@ class Board(TimeStampedModel, HitCountMixin):
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
     ip = models.GenericIPAddressField()
+    category = models.CharField('카테고리', max_length=50, null=True)
 
     class Meta:
         verbose_name_plural = '게시판'
