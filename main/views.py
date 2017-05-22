@@ -40,7 +40,6 @@ def nickname_change(request):
 
 
 class MacroManage(LoginRequiredMixin, ListView):
-    login_url = '/accounts/login/'
     model = Macro
     template_name = 'main/macro_manage.html'
 
@@ -60,7 +59,6 @@ def intro(request):
 
 
 class MacroRegister(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
     model = Macro
 
     def post(self, *args, **kwargs):
@@ -81,7 +79,6 @@ class MacroRegister(LoginRequiredMixin, View):
 
 
 class MacroModify(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
     model = Macro
 
     @check_is_my_macro(macro_id='macro_id')
@@ -105,7 +102,6 @@ class MacroModify(LoginRequiredMixin, View):
 
 
 class UserManage(LoginRequiredMixin, ListView):
-    login_url = '/accounts/login/'
     model = UserPage
     template_name = 'main/user_manage.html'
 
@@ -120,8 +116,6 @@ class UserManage(LoginRequiredMixin, ListView):
 
 
 class AuthRegister(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
-
     @check_is_my_macro(macro_id='macro_id')
     def post(self, request, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
@@ -167,8 +161,6 @@ class AuthRegister(LoginRequiredMixin, View):
 
 
 class AuthModify(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
-
     @check_is_my_macro(macro_id='macro_id')
     def post(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
@@ -198,8 +190,6 @@ class AuthModify(LoginRequiredMixin, View):
 
 
 class MyPage(LoginRequiredMixin, View):
-    login_url = '/accounts/login/'
-
     def get(self, *args, **kwargs):
         return render(self.request, 'main/mypage.html')
 
