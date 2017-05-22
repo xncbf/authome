@@ -100,6 +100,7 @@ class Board(TimeStampedModel, HitCountMixin):
 
     class Meta:
         verbose_name_plural = '게시판'
+        ordering = ['-created']
 
 
 class ExtendsUser(models.Model):
