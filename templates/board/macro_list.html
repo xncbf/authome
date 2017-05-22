@@ -18,16 +18,16 @@
                 </div>
             </nav>
             <ul class="collection with-header user-list ">
-                {% for macro in macro_list %}
+                {% for macro in object_list %}
                     <li class="collection-item user-list" style="overflow: auto;">
-                        <a href="{% url "macro:macro_detail" pk=macro.pk %}">
+                        <a href="{% url "board:macro_board_free" pk=macro.macro.pk %}">
                             <div>
-                                {{ macro.title }}
+                                {{ macro.macro.title }}
                             </div>
                             <div style="margin-top:5px">
                                 <div class="chip">
                                     <img src="{{ macro.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
-                                    {{ macro.user.extendsuser.nickname }}
+                                    {{ macro.macro.user.extendsuser.nickname }}
                                 </div>
                             </div>
                         </a>

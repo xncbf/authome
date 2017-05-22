@@ -24,3 +24,11 @@ def natural_time_newly(value):
         return value
     else:
         return naturaltime(value)
+
+
+@register.filter(name='split')
+def split(value, key):
+    """
+        Returns the value turned into a list.
+    """
+    return value.split(key)
