@@ -98,6 +98,8 @@ class Board(TimeStampedModel, HitCountMixin):
         related_query_name='hit_count_generic_relation')
     ip = models.GenericIPAddressField()
     category = models.CharField('카테고리', max_length=50)
+    display = models.BooleanField('표시', default=True)
+    removed = models.BooleanField('삭제', default=False)
 
     class Meta:
         verbose_name_plural = '게시판'
