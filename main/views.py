@@ -111,7 +111,7 @@ class UserManage(LoginRequiredMixin, ListView):
         context = super(UserManage, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['macro'] = Macro.objects.get(id=self.kwargs['macro_id'])
-        context['users'] = UserPage.objects.filter(macro=self.kwargs['macro_id'])
+        context['users'] = UserPage.objects.filter(macro=self.kwargs['macro_id']).order_by('-end_date')
         return context
 
 

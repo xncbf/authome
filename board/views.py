@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db.models import Q
 from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
 from main.models import Board, ExtendsUser, UserPage, Macro
@@ -13,7 +14,7 @@ class MacroList(LoginRequiredMixin, ListView):
     template_name = 'board/macro_list.html'
 
     def get_queryset(self, **kwargs):
-        return UserPage.objects.filter(user=self.request.user.pk)
+        return UserPage.objects.filter(Q(user=self.request.user.pk) | Q(macro__user=self.request.user.pk))
 
 
 class MacroBoardFree(LoginRequiredMixin, ListView):
