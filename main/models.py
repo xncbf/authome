@@ -30,7 +30,7 @@ class Macro(TimeStampedModel):
     class Meta:
         verbose_name_plural = '매크로'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField('매크로명', max_length=30)
+    title = models.CharField('매크로명', max_length=30, blank=False)
     detail = models.TextField('간단한 설명')
     user = models.ForeignKey(User)
     # fee = models.IntegerField('가격', default=0)
@@ -90,14 +90,14 @@ class Board(TimeStampedModel, HitCountMixin):
     게시글의 정보를 저장
     """
     id = models.AutoField(primary_key=True)
-    title = models.CharField('제목', max_length=70, null=False)
-    detail = models.TextField('내용')
+    title = models.CharField('제목', max_length=70, blank=False)
+    detail = models.TextField('내용', blank=False)
     user = models.ForeignKey(User)
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
     ip = models.GenericIPAddressField()
-    category = models.CharField('카테고리', max_length=50, null=True)
+    category = models.CharField('카테고리', max_length=50)
 
     class Meta:
         verbose_name_plural = '게시판'
