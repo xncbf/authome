@@ -69,11 +69,21 @@ class BoardList(ListView):
 
 class BoardDetail(LoginRequiredMixin, HitCountDetailView):
     template_name = 'board/board_detail.html'
-    model = Board
     count_hit = True
 
-    def get_context_data(self, **kwargs):
-        return super(BoardDetail, self).get_context_data(**kwargs)
+    def get_queryset(self, **kwargs):
+        query_set = Board.objects.filter(pk=self.kwargs.get('pk'))
+        # 자유게시판이 아닐 때 (매크로 게시판일 때)
+        if query_set.first().category != 'free':
+            macro = Macro.objects.filter(id=query_set.first().category).first()
+            user_page = UserPage.objects.filter(macro_id=query_set.first().category).first()
+            # 해당 매크로의 주인이거나 인증받은 내역이 있을 때
+            if macro.user.pk == self.request.user.pk or user_page.user.pk == self.request.user.pk:
+                return query_set
+            else:
+                raise Http404
+        return query_set
+        # return super(BoardDetail, self).get_context_data(**kwargs)
 
 
 # Create your views here.
