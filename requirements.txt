@@ -10,7 +10,6 @@ Unipath
 psycopg2
 drfdocs
 pytz
-invoke
 celery
 django-celery-beat
 django-hitcount
