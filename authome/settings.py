@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).ancestor(2)
 SECRET_KEY = os.environ['AUTHOME_SECRET_KEY']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
