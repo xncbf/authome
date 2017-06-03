@@ -26,7 +26,7 @@
                 <img class="badge circle" style="width:48px;height:48px;float:left;margin-right:10px;"
                      src="{{ comment.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
                 <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">
-                    {{ comment.user.extendsuser.nickname }}
+                    {{ comment.user.extendsuser.nickname|default:comment.user.username }}
                 </span>
                 <span class="badge" style="float:left">{{ comment.submit_date }}</span>
                 <span class="badge hide-on-small-only">{{ comment.ip_address|truncateip }}</span>
