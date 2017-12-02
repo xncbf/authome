@@ -35,11 +35,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 LOGIN_REDIRECT_URL = '/'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-   }
-}
 
 # ### 이메일 설정
 
