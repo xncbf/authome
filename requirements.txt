@@ -11,7 +11,7 @@ psycopg2
 drfdocs
 pytz
 celery
-django-celery-beat
+django-celery-beat==1.0
 django-hitcount
 django-markdown-deux
 django-contrib-comments
