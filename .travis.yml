@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.4"
+  - "3.6"
 
 services:
   - postgresql
@@ -23,7 +23,7 @@ env:
     - BOTO_CONFIG=/tmp/nowhere
 
   matrix:
-    - DJANGO_VERSION=1.9.12 DB=postgresql
+    - DJANGO_VERSION=1.11.8 DB=postgresql
 
 before_install:
   - sudo apt-get -qq update
