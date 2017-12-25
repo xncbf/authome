@@ -13,3 +13,8 @@ MANIFEST
 db.sqlite3
 /static/
 *.pid
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
