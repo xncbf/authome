@@ -1,6 +1,6 @@
-django==1.9.13
+django==1.11.8
 djangorestframework
-django-subdomains
+subdomains
 django-allauth==0.31.0
 django-admin-honeypot
 django-ipware
@@ -9,7 +9,6 @@ boto
 Unipath
 psycopg2
 drfdocs
-pytz
 celery
 django-celery-beat==1.0
 django-hitcount

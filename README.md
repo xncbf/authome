@@ -6,8 +6,8 @@ If you like this project, please press the 'star' button :heart_eyes:
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
-* python==3.4.x
-* django==1.9.x
+* python==3.6.x
+* django==1.11.8
 
 ## 시스템 의존성
 패키지 의존성을 설치하기 전에 앞서 설치가 필요합니다.
@@ -15,26 +15,25 @@ If you like this project, please press the 'star' button :heart_eyes:
 * python3-dev
 
 ## 패키지 의존성
+* django==1.11.8
 * djangorestframework
-* django-subdomains
+* subdomains
 * django-allauth==0.31.0
 * django-admin-honeypot
 * django-ipware
-* django_mobile
 * django-ses
 * boto
-* django-celery-beat
-* celery
-* django-contrib-comments
-* django-hitcount
-* django-markdown-deux
-* markdown2
-* django-material
 * Unipath
 * psycopg2
 * drfdocs
-* pytz
-* invoke
+* celery
+* django-celery-beat==1.0
+* django-hitcount
+* django-markdown-deux
+* django-contrib-comments
+* markdown2
+* django-material
+
 
 
 ## 개발 환경 세팅
