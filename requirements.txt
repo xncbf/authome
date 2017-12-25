@@ -1,7 +1,7 @@
 django==1.11.8
 djangorestframework
 subdomains
-django-allauth==0.31.0
+django-allauth
 django-admin-honeypot
 django-ipware
 django-ses
@@ -10,7 +10,7 @@ Unipath
 psycopg2
 drfdocs
 celery
-django-celery-beat==1.0
+django-celery-beat
 django-hitcount
 django-markdown-deux
 django-contrib-comments
