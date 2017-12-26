@@ -26,8 +26,6 @@ If you like this project, please press the 'star' button :heart_eyes:
 * Unipath
 * psycopg2
 * drfdocs
-* celery
-* django-celery-beat==1.0
 * django-hitcount
 * django-markdown-deux
 * django-contrib-comments
@@ -72,9 +70,9 @@ AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 ### 이메일 환경
 회원가입 email confirm 및 비밀번호 찾기를 위해 django-ses 를 사용하였습니다.
 
-### celery
-ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.  
-broker는 product 환경에서 rabbitmq 를 사용합니다.
+### 스케줄
+ses 통계와 유저 인증의 end_yn 검증을 위해 스케줄링을 사용합니다.
+스케줄링은 zappa schedule 을 통해 동작합니다.
 
 ### 개발환경
 #### URL

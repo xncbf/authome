@@ -13,3 +13,4 @@ MANIFEST
 db.sqlite3
 /static/
 *.pid
+venv/

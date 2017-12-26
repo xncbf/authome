@@ -1,6 +1,5 @@
 from django.core.management import call_command
 from django.utils import timezone
-from authome.celery import app
 from main.models import UserPage
 
 

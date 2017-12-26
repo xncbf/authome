@@ -15,7 +15,6 @@ import os
 from unipath import Path
 from boto.ses import SESConnection
 from datetime import timedelta
-from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
@@ -52,25 +51,21 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 
 
 #### celery 설정
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
-CELERY_IMPORTS = ('authome.tasks', )
-CELERY_RESULT_BACKEND = 'amqp://'
 
-# CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
-CELERYBEAT_SCHEDULE = {
-    'get_ses_statistics': {
-        'task': 'authome.tasks.get_ses_statistics',
-        'schedule': timedelta(days=1),
-    },
-    'verify_end_yn': {
-        'task': 'authome.tasks.verify_end_yn',
-        "schedule": timedelta(seconds=30),
-    },
-    'celery.backend_cleanup': {
-        'task': 'celery.backend_cleanup',
-        "schedule": crontab(minute='0'),
-    }
-}
+# CELERYBEAT_SCHEDULE = {
+#     'get_ses_statistics': {
+#         'task': 'authome.tasks.get_ses_statistics',
+#         'schedule': timedelta(days=1),
+#     },
+#     'verify_end_yn': {
+#         'task': 'authome.tasks.verify_end_yn',
+#         "schedule": timedelta(seconds=30),
+#     },
+#     'celery.backend_cleanup': {
+#         'task': 'celery.backend_cleanup',
+#         "schedule": crontab(minute='0'),
+#     }
+# }
 
 
 # allauth 설정
@@ -110,7 +105,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
-    'django_celery_beat',
     'django_comments',
     'hitcount',
     'markdown_deux',

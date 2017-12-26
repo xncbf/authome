@@ -9,8 +9,6 @@ boto
 Unipath
 psycopg2
 drfdocs
-celery
-django-celery-beat
 django-hitcount
 django-markdown-deux
 django-contrib-comments
