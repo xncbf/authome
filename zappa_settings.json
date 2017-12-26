@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "ap-northeast-2",
+        "django_settings": "authome.settings",
+        "profile_name": "default",
+        "project_name": "authome",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-uj1edzgk7"
+    }
+}
