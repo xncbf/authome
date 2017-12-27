@@ -232,3 +232,7 @@ STATIC_ROOT = BASE_DIR.child('static')
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR.child('media')
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'authome'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
