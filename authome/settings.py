@@ -109,6 +109,7 @@ INSTALLED_APPS = [
     'hitcount',
     'markdown_deux',
     'material',
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -224,7 +225,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Imag®es)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -236,3 +237,5 @@ MEDIA_ROOT = BASE_DIR.child('media')
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'authome'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
