@@ -11,7 +11,7 @@
     <span>{{ object.created }}</span>
 {% endblock %}
 {% block detail %}
-    <div id="board_detail" class="board-detail thin">
+    <div id="board_detail" class="board-detail light">
     {% autoescape off %}
         {{ object.detail|markdown:"STYLE" }}
     {% endautoescape %}
