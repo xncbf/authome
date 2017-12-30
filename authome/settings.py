@@ -50,24 +50,6 @@ SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
 # AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
 
 
-#### celery 설정
-
-# CELERYBEAT_SCHEDULE = {
-#     'get_ses_statistics': {
-#         'task': 'authome.tasks.get_ses_statistics',
-#         'schedule': timedelta(days=1),
-#     },
-#     'verify_end_yn': {
-#         'task': 'authome.tasks.verify_end_yn',
-#         "schedule": timedelta(seconds=30),
-#     },
-#     'celery.backend_cleanup': {
-#         'task': 'celery.backend_cleanup',
-#         "schedule": crontab(minute='0'),
-#     }
-# }
-
-
 # allauth 설정
 ACCOUNT_AUTHENTICATION_METHOD ="email"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
