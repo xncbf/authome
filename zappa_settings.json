@@ -8,7 +8,7 @@
         "s3_bucket": "zappa-uj1edzgk7",
         "domain": "autho.me",
         "certificate_arn": "arn:aws:acm:us-east-1:494890851710:certificate/5e708522-1717-4ee6-a29d-bec397dac9f9"
-        "event": [{
+        "events": [{
             "function": "tasks.verify_end_yn",
             "expression": "rate(1 minute)"
         },{
