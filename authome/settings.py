@@ -135,6 +135,7 @@ REST_FRAMEWORK_DOCS = {
 }
 
 MIDDLEWARE_CLASSES = [
+    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'subdomains.middleware.SubdomainURLRoutingMiddleware',
