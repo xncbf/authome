@@ -16,9 +16,6 @@
         "events": [{
             "function": "tasks.verify_end_yn",
             "expression": "rate(1 minute)"
-        },{
-            "function": "tasks.get_ses_statistics",
-            "expression": "rate(1 day)"
         }]
     }
 }

@@ -1,10 +1,5 @@
-from django.core.management import call_command
 from django.utils import timezone
 from main.models import UserPage
-
-
-def get_ses_statistics():
-    call_command('get_ses_statistics')
 
 
 def verify_end_yn():
