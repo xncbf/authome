@@ -136,6 +136,8 @@ SUBDOMAIN_URLCONFS = {
     'www': 'authome.urls',
     'api': 'api.urls',
     'docs': 'docs.urls',
+    'test': 'authome.urls',
+    'api-test': 'api.urls',
 }
 SESSION_COOKIE_DOMAIN = '.autho.me'
 
