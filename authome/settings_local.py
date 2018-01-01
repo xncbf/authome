@@ -13,7 +13,7 @@ SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_DOMAIN = '.example.com'
 INTERNAL_IPS = ['127.0.0.1']
 BROKER_URL = 'django://'
-
+print('LOCAL!!!!')
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
