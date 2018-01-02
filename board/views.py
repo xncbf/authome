@@ -59,7 +59,6 @@ class MacroBoardRegister(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('board:board_detail', kwargs={'pk': board.pk}))
 
 
-
 class BoardList(ListView):
     template_name = 'board/board_list.html'
 
