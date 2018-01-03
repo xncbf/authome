@@ -21,7 +21,7 @@ class MacroBoardFree(LoginRequiredMixin, ListView):
     template_name = 'board/board_list.html'
 
     def get_queryset(self, **kwargs):
-        query_set = Board.objects.filter(category=self.kwargs.get('pk'))
+        query_set = Board.objects.filter(category=self.kwargs.get('pk'), display=True)
         if UserPage.objects.filter(macro_id=self.kwargs.get('pk')):
             return query_set
         else:
@@ -63,7 +63,7 @@ class BoardList(ListView):
     template_name = 'board/board_list.html'
 
     def get_queryset(self, **kwargs):
-        return Board.objects.filter(category='free')
+        return Board.objects.filter(category='free', display=True)
 
 
 class BoardDetail(LoginRequiredMixin, HitCountDetailView):
@@ -71,7 +71,7 @@ class BoardDetail(LoginRequiredMixin, HitCountDetailView):
     count_hit = True
 
     def get_queryset(self, **kwargs):
-        query_set = Board.objects.filter(pk=self.kwargs.get('pk'))
+        query_set = Board.objects.filter(pk=self.kwargs.get('pk'), display=True)
         # 자유게시판이 아닐 때 (매크로 게시판일 때)
         if query_set.first().category != 'free':
             macro = Macro.objects.filter(id=query_set.first().category).first()
