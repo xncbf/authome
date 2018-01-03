@@ -1,4 +1,5 @@
 django==1.11.8
+psycopg2
 djangorestframework
 subdomains
 django-allauth
@@ -7,7 +8,6 @@ django-ipware
 django-ses
 boto
 Unipath
-psycopg2
 drfdocs
 django-hitcount
 django-markdown-deux
