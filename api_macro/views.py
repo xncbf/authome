@@ -1,12 +1,10 @@
 from django.http import Http404
 from django.utils import timezone
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from ipware.ip import get_ip
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from allauth.socialaccount.models import SocialAccount, SocialToken
 from api_macro.serializers import AuthSerializer
 from main.models import UserPage, MacroLog
 

@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.db.models import Q
 from hitcount.views import HitCountDetailView
-from ipware.ip import get_ip
+from ipware.ip import get_real_ip
 from main.models import Board, ExtendsUser, UserPage, Macro
 
 
@@ -52,7 +52,7 @@ class MacroBoardRegister(LoginRequiredMixin, View):
             title=self.request.POST.get('board_title'),
             detail=self.request.POST.get('board_detail'),
             user=self.request.user,
-            ip=get_ip(self.request),
+            ip=get_real_ip(self.request),
             category=kwargs.get('pk'),
         )
         board.save()
@@ -100,11 +100,17 @@ class BoardRegister(LoginRequiredMixin, View):
         return render(self.request, self.template_name, context=context)
 
     def post(self, *args, **kwargs):
+        try:
+            if not self.request.user.extendsuser.nickname:
+                raise ExtendsUser.DoesNotExist
+        except ExtendsUser.DoesNotExist:
+            messages.add_message(self.request, messages.INFO, "닉네임을 설정해야 글을 작성할 수 있습니다.")
+            return HttpResponseRedirect(reverse('main:mypage'))
         board = Board(
             title=self.request.POST.get('board_title'),
             detail=self.request.POST.get('board_detail'),
             user=self.request.user,
-            ip=get_ip(self.request),
+            ip=get_real_ip(self.request),
             category='free',
         )
         board.save()

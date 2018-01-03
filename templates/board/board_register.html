@@ -11,10 +11,10 @@
     <h4 class="teal-text text-lighten-1">게시글 등록</h4>
     <form method="post" action="
     {% if "/board/macro/free/register/" in request.path %}
-{% url 'board:macro_board_register' pk=request.path|split:"/"|slice:"5:6"|first %}
-{% else %}
-{% url 'board:board_register' %}
-{% endif %}
+        {% url 'board:macro_board_register' pk=request.path|split:"/"|slice:"5:6"|first %}
+    {% else %}
+        {% url 'board:board_register' %}
+    {% endif %}
 " class="col s12">
         {% csrf_token %}
         <div class="row">
