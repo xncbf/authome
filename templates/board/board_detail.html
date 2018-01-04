@@ -42,6 +42,7 @@
     <div class="row">
 {#        <form method="post" action="{% url "board:board_detail" pk=object.id %}">#}
         {% get_comment_form for object as form %}
+{#        TODO: 비활성 댓글은 없애는 대신, 비활성된 댓글입니다 라고 표시하기. #}
         <form action="{% comment_form_target %}" method="post">
             {% csrf_token %}
             {{ form.content_type }}
