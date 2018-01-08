@@ -1,5 +1,5 @@
 django==1.11.8
-psycopg2
+psycopg2==2.7.3.2
 djangorestframework
 subdomains
 django-allauth
