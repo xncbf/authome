@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=master)](https://travis-ci.org/xncbf/authome)
+[![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=django1.11)](https://travis-ci.org/xncbf/authome)
 
 [![alt text](https://authome.s3.amazonaws.com/images/logo/facebook_cover.png)](https://autho.me) 
 # 매크로 사용자 관리 사이트
