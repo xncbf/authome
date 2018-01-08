@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 from unipath import Path
-from boto.ses import SESConnection
 from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -37,17 +36,10 @@ LOGIN_REDIRECT_URL = '/'
 
 # ### 이메일 설정
 
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_SES_REGION_NAME = os.environ['AWS_SES_REGION_NAME']
-AWS_SES_REGION_ENDPOINT = os.environ['AWS_SES_REGION_ENDPOINT']
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_SES_RETURN_PATH = 'xncbf12@gmail.com'
+EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
 SERVER_EMAIL = 'xncbf12@gmail.com'
 DEFAULT_FROM_EMAIL = 'noreply@autho.me'
-SESConnection.DefaultRegionName = AWS_SES_REGION_NAME
-SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
-# AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
+ACCOUNT_ADAPTER = 'allauth_djrill.adapter.DjrillAccountAdapter'
 
 
 # allauth 설정
@@ -70,7 +62,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
-    'django_ses',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
@@ -87,6 +78,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
+    'allauth_djrill',
     'django_comments',
     'hitcount',
     'markdown_deux',
@@ -224,3 +216,6 @@ AWS_STORAGE_BUCKET_NAME = 'authome'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
