@@ -41,6 +41,7 @@ SERVER_EMAIL = 'xncbf12@gmail.com'
 DEFAULT_FROM_EMAIL = 'noreply@autho.me'
 ACCOUNT_ADAPTER = 'allauth_djrill.adapter.DjrillAccountAdapter'
 
+MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 
 # allauth 설정
 ACCOUNT_AUTHENTICATION_METHOD = "email"
@@ -72,6 +73,7 @@ INSTALLED_APPS = [
     'docs',
     'board',
     'log',
+    'djrill',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
