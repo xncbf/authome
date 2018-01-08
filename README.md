@@ -1,6 +1,3 @@
-이 프로젝트가 마음에 드신다면, star 버튼을 눌러주세요 :heart_eyes:  
-If you like this project, please press the 'star' button :heart_eyes:
-  
 [![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=master)](https://travis-ci.org/xncbf/authome)
 
 [![alt text](https://authome.s3.amazonaws.com/images/logo/facebook_cover.png)](https://autho.me) 
