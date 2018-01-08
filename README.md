@@ -7,31 +7,7 @@
 ## Requirements
 * python==3.6.x
 * django==1.11.8
-
-## 시스템 의존성
-패키지 의존성을 설치하기 전에 앞서 설치가 필요합니다.
-* libpq-dev
-* python3-dev
-
-## 패키지 의존성
-* django==1.11.8
-* djangorestframework
-* subdomains
-* django-allauth==0.31.0
-* django-admin-honeypot
-* django-ipware
-* django-ses
-* boto
-* Unipath
-* psycopg2
-* drfdocs
-* django-hitcount
-* django-markdown-deux
-* django-contrib-comments
-* markdown2
-* django-material
-
-
+* zappa>=0.45.1
 
 ## 개발 환경 세팅
 ### 의존성 패키지 설치 및 모델 migration
@@ -60,14 +36,12 @@ AUTHOME_DATABASE_PASSWORD = 디비 패스워드
 AUTHOME_DATABASE_HOST = 디비 호스트
 AUTHOME_DATABASE_PORT = 디비 포트
 AUTHOME_ADMIN_URL = 관리자페이지 url
-AWS_SES_REGION_NAME = AWS 리전 네임
-AWS_SES_REGION_ENDPOINT = AWS SES 리전 엔드포인트
 AWS_ACCESS_KEY_ID = AWS 엑세스 키
 AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 ```
 
 ### 이메일 환경
-회원가입 email confirm 및 비밀번호 찾기를 위해 django-ses 를 사용하였습니다.
+회원가입 email confirm 및 비밀번호 찾기를 위해 mailchimp, mandrill 을 사용하였습니다.
 
 ### 스케줄
 ses 통계와 유저 인증의 end_yn 검증을 위해 스케줄링을 사용합니다.
