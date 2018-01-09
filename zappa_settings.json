@@ -16,7 +16,7 @@
     },
     "stage": {
         "aws_region": "ap-northeast-2",
-        "django_settings": "authome.settings",
+        "django_settings": "authome.settings_stage",
         "profile_name": "default",
         "project_name": "authome",
         "runtime": "python3.6",
