@@ -11,7 +11,7 @@ from main.models import UserPage, MacroLog
 
 class GetAuth(APIView):
     """
-    5월 21일부로 사용 불가능합니다.
+    17년 5월 21일부로 사용 불가능합니다.
     """
     def get_object(self, user, macro_id):
         try:
