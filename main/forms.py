@@ -1,7 +1,5 @@
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django import forms
-from django.contrib.auth.models import User
 from django.utils import timezone
 from authome.settings import ACCOUNT_USERNAME_BLACKLIST
 from .models import ExtendsUser
