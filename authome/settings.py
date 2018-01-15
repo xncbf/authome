@@ -13,15 +13,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 from unipath import Path
-from datetime import timedelta
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['AUTHOME_SECRET_KEY']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -63,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'aws_xray_sdk.ext.django',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
@@ -86,7 +81,6 @@ INSTALLED_APPS = [
     'markdown_deux',
     'material',
     'storages',
-    'aws_xray_sdk.ext.django',
 ]
 
 XRAY_RECORDER = {
