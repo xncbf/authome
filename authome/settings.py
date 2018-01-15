@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
-    'aws_xray_sdk.ext.django',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
@@ -81,17 +80,18 @@ INSTALLED_APPS = [
     'markdown_deux',
     'material',
     'storages',
+    'aws_xray_sdk.ext.django',
 ]
 
 XRAY_RECORDER = {
-    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
+    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:3000',
     'AUTO_INSTRUMENT': True,
     'AWS_XRAY_CONTEXT_MISSING': 'RUNTIME_ERROR',
     'PLUGINS': (),
     'SAMPLING': True,
     'SAMPLING_RULES': None,
     'AWS_XRAY_TRACING_NAME': 'authome',
-    'DYNAMIC_NAMING': None,
+    'DYNAMIC_NAMING': '*.autho.me',
 }
 
 REST_FRAMEWORK = {
@@ -116,7 +116,7 @@ REST_FRAMEWORK_DOCS = {
     'HIDE_DOCS': False
 }
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
