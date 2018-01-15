@@ -20,6 +20,7 @@ env:
     - AWS_SECRET_ACCESS_KEY=aU/AWSSECRETACCESSKEY
     - BOTO_CONFIG=/tmp/nowhere
     - MANDRILL_API_KEY=MANDRILLAPIKEY
+    - DJANGO_SETTINGS_MODULE=authome.settings_local
 
   matrix:
     - DJANGO_VERSION=1.11.8 DB=postgresql
