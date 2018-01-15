@@ -86,7 +86,19 @@ INSTALLED_APPS = [
     'markdown_deux',
     'material',
     'storages',
+    'aws_xray_sdk.ext.django',
 ]
+
+XRAY_RECORDER = {
+    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
+    'AUTO_INSTRUMENT': True,
+    'AWS_XRAY_CONTEXT_MISSING': 'RUNTIME_ERROR',
+    'PLUGINS': (),
+    'SAMPLING': True,
+    'SAMPLING_RULES': None,
+    'AWS_XRAY_TRACING_NAME': None,
+    'DYNAMIC_NAMING': None,
+}
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -111,7 +123,7 @@ REST_FRAMEWORK_DOCS = {
 }
 
 MIDDLEWARE_CLASSES = [
-    # 'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
+    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'subdomains.middleware.SubdomainURLRoutingMiddleware',
