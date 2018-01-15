@@ -90,7 +90,7 @@ XRAY_RECORDER = {
     'PLUGINS': (),
     'SAMPLING': True,
     'SAMPLING_RULES': None,
-    'AWS_XRAY_TRACING_NAME': None,
+    'AWS_XRAY_TRACING_NAME': 'authome',
     'DYNAMIC_NAMING': None,
 }
 
