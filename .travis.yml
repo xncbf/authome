@@ -40,5 +40,5 @@ before_script:
   - python manage.py makemigrations
 
 script:
-  - find . -name \*.py -exec pep8 --ignore=E402 {} +
+  - find . -name \*.py -exec pep8 --max-line-length=120 --ignore=E402 {} +
   - python manage.py migrate
