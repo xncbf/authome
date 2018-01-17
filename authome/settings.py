@@ -44,6 +44,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_BLACKLIST = ["운영자", "관리자", "admin"]
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_DISPLAY = "main.utils.get_account_user_display"
 
 # Application definition
 

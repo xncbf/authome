@@ -110,7 +110,7 @@ class ExtendsUser(models.Model):
     """
     유저 모델 확장
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='extends_user')
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     nickname = models.CharField(
         '닉네임',
