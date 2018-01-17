@@ -116,12 +116,13 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('token', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
                 ('nickname',
-                 models.CharField(error_messages={'unique': '이미 사용중인 닉네임입니다.'}, help_text='필수 항목. 10자 이하. 문자와 숫자만 가능.',
-                                  max_length=10, null=True, unique=True, validators=[
-                         django.core.validators.RegexValidator('^[\\w]+$', '유효한 닉네임을 입력해주세요. 이 항목은 문자와 숫자만 사용 가능합니다.')],
-                                  verbose_name='닉네임')),
-                (
-                    'user',
+                 models.CharField(
+                     error_messages={'unique': '이미 사용중인 닉네임입니다.'}, help_text='필수 항목. 10자 이하. 문자와 숫자만 가능.',
+                     max_length=10, null=True, unique=True, validators=[
+                         django.core.validators.RegexValidator(
+                             '^[\\w]+$', '유효한 닉네임을 입력해주세요. 이 항목은 문자와 숫자만 사용 가능합니다.')],
+                     verbose_name='닉네임')),
+                ('user',
                     models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('nickname_modified', models.DateTimeField(auto_now=True)),
             ],
