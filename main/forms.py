@@ -64,4 +64,3 @@ class ChangeNicknameForm(forms.Form):
     def save(self):
         nickname = self.cleaned_data.get('nickname')
         ExtendsUser.objects.filter(user=self.user).update(nickname=nickname)
-
