@@ -110,7 +110,7 @@ class ExtendsUser(models.Model):
     """
     유저 모델 확장
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='extends_user')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='extendsuser')
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     nickname = models.CharField(
         '닉네임',
@@ -120,7 +120,7 @@ class ExtendsUser(models.Model):
         validators=[
             validators.RegexValidator(
                 r'^[\w]+$',
-                '유효한 닉네임을 입력해주세요. 이 항목은 '
+                '유효한 닉네임을 입력해주세요. 이 항목은® '
                 '문자와 숫자만 사용 가능합니다.'
             ),
         ],

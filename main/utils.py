@@ -1,5 +1,5 @@
 def get_account_user_display(user):
-    if user.extends_user.nickname:
-        return user.extends_user.nickname
+    if user.extendsuser.nickname:
+        return user.extendsuser.nickname
     else:
         return user.username
