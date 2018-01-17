@@ -2,7 +2,7 @@
     "dev": {
         "aws_region": "ap-northeast-2",
         "django_settings": "authome.settings",
-        "profile_name": "default",
+        "profile_name": "zappa",
         "project_name": "authome",
         "runtime": "python3.6",
         "s3_bucket": "zappa-uj1edzgk7",
@@ -18,7 +18,7 @@
     "stage": {
         "aws_region": "ap-northeast-2",
         "django_settings": "authome.settings_stage",
-        "profile_name": "default",
+        "profile_name": "zappa",
         "project_name": "authome",
         "runtime": "python3.6",
         "s3_bucket": "zappa-uj1edzgk7",
