@@ -19,11 +19,11 @@
         {% csrf_token %}
         <div class="row">
             <div class="input-field col s12">
-                <input id="board_title" name="board_title" type="text" maxlength="70" data-length="70">
+                <input id="board_title" name="board_title" type="text" maxlength="70" data-length="70" required>
                 <label for="board_title">제목</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="board_detail" name="board_detail"></textarea>
+                <textarea id="board_detail" name="board_detail" required></textarea>
             </div>
         </div>
         <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="float: right">등록
