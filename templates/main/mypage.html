@@ -38,14 +38,14 @@
                         &nbsp; {{ user.email }}
                     </span>
                 </div>
-                <a class="waves-effect waves-light btn" href="#modal1" style="width: 170px; margin: 5px">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="width: 170px; margin: 5px">
                     {% if user.extendsuser.nickname %}
                         닉네임 변경
                     {% else %}
                         닉네임 설정
                     {% endif %}
                 </a>
-                <a class="waves-effect waves-light btn" href="#modal2" style="width: 170px; margin: 5px">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal2" style="width: 170px; margin: 5px">
                     {% if user.has_usable_password %}
                         비밀번호 변경
                     {% else %}
