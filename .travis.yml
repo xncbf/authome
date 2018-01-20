@@ -42,3 +42,4 @@ before_script:
 script:
   - find . -name \*.py -exec pep8 --max-line-length=120 --ignore=E402 {} +
   - python manage.py migrate
+  - python manage.py test
