@@ -35,19 +35,20 @@
                 </div>
 
                 <div class="col s12 m6">
-                    <div class="card-panel teal" style="height:300px; padding-top:10px;">
-                        <span class="white-text">
-                            <div class="card-panel grey lighten-5 z-depth-1 row valign-wrapper" style="padding:5px;">
-                                <div class="col s2">
-                                    <img src="{% static 'images/Jigglypuff.png' %}" alt="" class="circle responsive-img">
-                                </div>
-                                <div class="col s10">
-                                    <span class="black-text">
-                                        This is a square image.
-                                    </span>
-                                </div>
+                    <div class="card-panel teal" style="height:300px; padding-top:10px; overflow: auto">
+                        {% for e in "0123456789" %}
+                        <div class="card-panel grey lighten-5 z-depth-1 row valign-wrapper"
+                             style="padding:5px; margin-bottom: 0">
+                            <div class="col s2">
+                                <img src="{% static 'images/Jigglypuff.png' %}" alt="" class="circle responsive-img">
                             </div>
-                        </span>
+                            <div class="col s10">
+                                <span class="black-text">
+                                    This is a square image.
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
 
