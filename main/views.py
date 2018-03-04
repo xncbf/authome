@@ -64,12 +64,11 @@ class MacroRegister(LoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         macro_name = self.request.POST.get('macro_name', False)
         macro_detail = self.request.POST.get('macro_detail', False)
-        macro = Macro(
+        Macro.ob(
             title=macro_name,
             detail=macro_detail,
             user=self.request.user
         )
-        macro.save()
         return HttpResponseRedirect(reverse('main:macro_manage'))
 
     def get(self, *args, **kwargs):
@@ -143,8 +142,7 @@ class AuthRegister(LoginRequiredMixin, View):
             try:
                 create['user'] = User.objects.get(email=user_email)
                 create['macro'] = macro
-                user_page = UserPage(**create)
-                user_page.save()
+                UserPage.objects.create(**create)
             except:
                 messages.add_message(self.request, messages.INFO, "등록 실패")
                 return render(self.request, 'main/auth_register.html', {

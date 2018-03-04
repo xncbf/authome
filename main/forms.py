@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate
 from django import forms
 from django.utils import timezone
 from authome.settings import ACCOUNT_USERNAME_BLACKLIST
-from .models import ExtendsUser
 
 
 class LoginForm(forms.Form):
@@ -49,11 +48,11 @@ class ChangeNicknameForm(forms.Form):
     def clean(self):
         cleaned_data = super(ChangeNicknameForm, self).clean()
         nickname = cleaned_data.get('nickname')
-        nickname_modified = ExtendsUser.objects.filter(user=self.user)[0].nickname_modified
-        # 닉네임 변경한지 30일이 지나지 않았을때 에러 발생
-        if (timezone.now() - nickname_modified).seconds < 3600 * 24 * 30:
+        nickname_modified = self.user.extendsuser.nickname_modified
+        # 닉네임 변경한지 1일이 지나지 않았을때 에러 발생
+        if (timezone.now() - nickname_modified).seconds < 3600 * 24 * 1 and self.user.extendsuser.nickname is not None:
             self.add_error(
-                'nickname', "닉네임을 최근에 변경했습니다."
+                'nickname', "닉네임을 최근 24시간 이내에 변경했습니다."
             )
         if nickname in ACCOUNT_USERNAME_BLACKLIST:
             self.add_error(
@@ -63,4 +62,6 @@ class ChangeNicknameForm(forms.Form):
 
     def save(self):
         nickname = self.cleaned_data.get('nickname')
-        ExtendsUser.objects.filter(user=self.user).update(nickname=nickname)
+        user = self.user.extendsuser
+        user.nickname = nickname
+        user.save()
