@@ -1,10 +1,16 @@
-from django.shortcuts import render, HttpResponseRedirect, Http404
-from django.urls import reverse
-from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db.models import Q
+from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import ListView, View
+
+
 from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
+
+from authome.settings import SERVER_EMAIL
+
 from main.models import Board
 
 
@@ -14,11 +20,11 @@ class BoardList(ListView):
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), display=True)
         if self.kwargs.get('category') == 'qna':
-            query_set.filter(user=self.request.user.pk)
+            query_set.filter(Q(user=self.request.user.pk) | Q(user__email=SERVER_EMAIL))
         return query_set
 
     def get_context_data(self, **kwargs):
-        context = super(BoardList,self).get_context_data(**kwargs)
+        context = super(BoardList, self).get_context_data(**kwargs)
         context['category'] = self.kwargs.get('category')
         return context
 
@@ -30,8 +36,13 @@ class BoardDetail(LoginRequiredMixin, HitCountDetailView):
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), pk=self.kwargs.get('pk'), display=True)
         if self.kwargs.get('category') == 'qna':
-            query_set.filter(user=self.request.user.pk)
+            query_set.filter(Q(user=self.request.user.pk) | Q(user__email=SERVER_EMAIL))
         return query_set
+
+    def get_context_data(self, **kwargs):
+        context = super(BoardDetail, self).get_context_data(**kwargs)
+        context['category'] = self.kwargs.get('category')
+        return context
 
 
 # Create your views here.
