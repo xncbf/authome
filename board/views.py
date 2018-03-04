@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.db.models import Q
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, View
@@ -20,7 +19,8 @@ class BoardList(ListView):
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), display=True)
         if self.kwargs.get('category') == 'qna':
-            query_set.filter(Q(user=self.request.user.pk) | Q(user__email=SERVER_EMAIL))
+            if self.request.user.email != SERVER_EMAIL:
+                query_set = query_set.filter(user=self.request.user.pk)
         return query_set
 
     def get_context_data(self, **kwargs):
@@ -36,7 +36,8 @@ class BoardDetail(LoginRequiredMixin, HitCountDetailView):
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), pk=self.kwargs.get('pk'), display=True)
         if self.kwargs.get('category') == 'qna':
-            query_set.filter(Q(user=self.request.user.pk) | Q(user__email=SERVER_EMAIL))
+            if self.request.user.email != SERVER_EMAIL:
+                query_set = query_set.filter(user=self.request.user.pk)
         return query_set
 
     def get_context_data(self, **kwargs):
