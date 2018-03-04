@@ -9,13 +9,7 @@
 {% endblock %}
 {% block contents %}
     <h4 class="teal-text text-lighten-1">게시글 등록</h4>
-    <form method="post" action="
-    {% if "/board/macro/free/register/" in request.path %}
-        {% url 'board:macro_board_register' pk=request.path|split:"/"|slice:"5:6"|first %}
-    {% else %}
-        {% url 'board:board_register' %}
-    {% endif %}
-" class="col s12">
+    <form method="post" action="{% url 'board:board_editor' %}" class="col s12">
         {% csrf_token %}
         <div class="row">
             <div class="input-field col s12">
@@ -23,7 +17,7 @@
                 <label for="board_title">제목</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="board_detail" name="board_detail" required></textarea>
+                <textarea id="board_detail" name="board_detail"></textarea>
             </div>
         </div>
         <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="float: right">등록

@@ -23,10 +23,7 @@ handler400 = 'main.views.bad_request_view'
 
 
 urlpatterns = [
-    url(r'^macro/free/register/(?P<pk>[0-9a-z-]+)/', views.MacroBoardRegister.as_view(), name='macro_board_register'),
-    url(r'^macro/free/(?P<pk>[0-9a-z-]+)/$', views.MacroBoardFree.as_view(), name='macro_board_free'),
-    url(r'^macro/', views.MacroList.as_view(), name='macro_list'),
-    url(r'^free/register/', views.BoardRegister.as_view(), name='board_register'),
+    url(r'^free/editor/', views.BoardRegister.as_view(), name='board_editor'),
     url(r'^free/(?P<pk>\d+)/$', views.BoardDetail.as_view(), name='board_detail'),
     url(r'^free/', views.BoardList.as_view(), name='board_list'),
 ]

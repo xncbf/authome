@@ -9,6 +9,9 @@ handler400 = 'main.views.bad_request_view'
 
 urlpatterns = [
     url(r'^', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^macro/', view=include('api_macro.urls', namespace='accounts')),
     url(r'^$', views.DRFDocsView.as_view(), name='drfdocs'),
+
+    # 17년 5월부터 사용금지인데 기존에 쓰고있는 사람때문에 지울수가없다 ㅠ
+    url(r'^macro/auth/(?P<username>.*)/(?P<password>.*)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth.as_view()),
+    url(r'^macro/auth/(?P<token>.*)/(?P<macro_id>[0-9a-z-]+)/$', views.GetAuth2.as_view(), name='auth'),
 ]

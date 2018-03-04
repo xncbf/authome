@@ -65,13 +65,7 @@
         </div>
     </div>
     <div class="fixed-action-btn">
-        <a id="menu" href="
-        {% if '/board/macro/free/' in request.path %}
-{% url 'board:macro_board_register' pk=request.path|split:"/"|slice:"4:5"|first %}
-        {% else %}
-{% url 'board:board_register' %}
-        {% endif %}
-" class="btn-floating btn-large red">
+        <a id="menu" href="{% url 'board:board_editor' %}" class="btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
         </a>
     </div>

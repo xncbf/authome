@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'subdomains',
     'main',
     'api',
-    'api_macro',
     'docs',
     'board',
     'log',
