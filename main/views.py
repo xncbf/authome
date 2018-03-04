@@ -19,7 +19,7 @@ def update_session(request):
 
     for e in request.POST.keys():
         request.session[e] = request.POST.get(e)
-    return HttpResponse('ok')
+    return HttpResponse(status=201)
 
 
 def user_logout(request):
@@ -33,7 +33,7 @@ def nickname_change(request):
         form = ChangeNicknameForm(data=request.POST, user=request.user)
         if form.is_valid():
             form.save()
-            return HttpResponse('ok')
+            return HttpResponse(status=201)
         else:
             result['form_errors'] = form.errors
             return HttpResponseServerError(json.dumps(result, ensure_ascii=False))
