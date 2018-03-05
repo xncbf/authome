@@ -33,9 +33,7 @@ class DRFDocsView(TemplateView):
 
 
 class GetAuth(APIView):
-    """
-    17년 5월 21일부로 사용 불가능합니다.
-    """
+    """17년 5월 21일부로 사용 불가능합니다."""
     def get_object(self, user, macro_id):
         try:
             return UserPage.objects.get(user__email=user.email, macro=macro_id)
@@ -43,9 +41,7 @@ class GetAuth(APIView):
             raise Http404
 
     def block_duplicate(self, request, user):
-        """
-        동시 접속 차단 로직
-        """
+        """동시 접속 차단 로직"""
         lastLog = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
         if lastLog:
             lastLogTime = lastLog.first().created
