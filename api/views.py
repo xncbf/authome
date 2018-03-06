@@ -33,19 +33,10 @@ class DRFDocsView(TemplateView):
 
 
 class GetAuth(APIView):
-    """
-    17년 5월 21일부로 사용 불가능합니다.
-    """
-    def get_object(self, user, macro_id):
-        try:
-            return UserPage.objects.get(user__email=user.email, macro=macro_id)
-        except UserPage.DoesNotExist:
-            raise Http404
+    """17년 5월 21일부로 사용 불가능합니다."""
 
-    def block_duplicate(self, request, user):
-        """
-        동시 접속 차단 로직
-        """
+    def _block_duplicate(self, request, user):
+        """동시 접속 차단 로직"""
         lastLog = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
         if lastLog:
             lastLogTime = lastLog.first().created
@@ -54,14 +45,19 @@ class GetAuth(APIView):
                     return False
         return True
 
-    def get(self, request, username, password, macro_id, format=None):
+    def get_object(self, user, macro_id):
+        try:
+            return UserPage.objects.get(user__email=user.email, macro=macro_id)
+        except UserPage.DoesNotExist:
+            raise Http404
+
+    def get(self, request, username, password, macro_id):
         user = User.objects.get(extendsuser__token=password)
-        # TODO: 토큰이 번거로운사람 또는 OTP 이용하고싶은사람을 위해 OTP 기능 추가 예정
         if user:
             userPage = self.get_object(user, macro_id)
 
             # 동시 접속 차단 로직
-            if not self.block_duplicate(request, user):
+            if not self._block_duplicate(request, user):
                 MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=False)
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
@@ -73,16 +69,8 @@ class GetAuth(APIView):
 
 
 class GetAuth2(APIView):
-    def get_object(self, user, macro_id):
-        try:
-            return UserPage.objects.get(user__email=user.email, macro=macro_id)
-        except UserPage.DoesNotExist:
-            raise Http404
-
-    def block_duplicate(self, request, user):
-        """
-        동시 접속 차단 로직
-        """
+    def _block_duplicate(self, request, user):
+        """동시 접속 차단 로직"""
         lastLog = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
         if lastLog:
             lastLogTime = lastLog.first().created
@@ -91,14 +79,20 @@ class GetAuth2(APIView):
                     return False
         return True
 
-    def get(self, request, token, macro_id, format=None):
+    def get_object(self, user, macro_id):
+        try:
+            return UserPage.objects.get(user__email=user.email, macro=macro_id)
+        except UserPage.DoesNotExist:
+            raise Http404
+
+    def get(self, request, token, macro_id):
         user = User.objects.get(extendsuser__token=token)
         # TODO: 토큰이 번거로운사람 또는 OTP 이용하고싶은사람을 위해 OTP 기능 추가 예정
         if user:
             userPage = self.get_object(user, macro_id)
 
             # 동시 접속 차단 로직
-            if not self.block_duplicate(request, user):
+            if not self._block_duplicate(request, user):
                 MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=False)
                 return Response(status=status.HTTP_423_LOCKED)
 

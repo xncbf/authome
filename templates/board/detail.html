@@ -29,7 +29,7 @@
                     {{ comment.user.extendsuser.nickname|default:comment.user.username }}
                 </span>
                 <span class="badge" style="float:left">{{ comment.submit_date }}</span>
-                <span class="badge hide-on-small-only">{{ comment.ip_address|truncateip }}</span>
+                <span class="badge hide-on-small-only">{{ comment.ip_address|truncate_ip }}</span>
                 {% if debug %}<a href="#"><i class="material-icons" style="float: left;">reply</i></a>{% endif %}
             </div>
             <br>

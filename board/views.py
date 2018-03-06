@@ -19,8 +19,11 @@ class BoardList(ListView):
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), display=True)
         if self.kwargs.get('category') == 'qna':
-            if self.request.user.email != SERVER_EMAIL:
-                query_set = query_set.filter(user=self.request.user.pk)
+            if not self.request.user.id:
+                query_set = Board.objects.filter(id=-1)
+            else:
+                if self.request.user.email != SERVER_EMAIL:
+                    query_set = query_set.filter(user=self.request.user.pk)
         return query_set
 
     def get_context_data(self, **kwargs):

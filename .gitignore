@@ -15,3 +15,4 @@ db.sqlite3
 *.pid
 venv/
 .DS_Store
+.env

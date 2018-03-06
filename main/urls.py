@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from utils.decorators import check_is_my_macro
 from . import views
 
 urlpatterns = [
