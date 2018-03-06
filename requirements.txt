@@ -9,6 +9,7 @@ django-hitcount
 django-ipware
 django-markdown-deux
 django-material
+django-pure-pagination
 django-storages
 djangorestframework
 drfdocs

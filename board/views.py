@@ -5,7 +5,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, View
 
-
+from pure_pagination.mixins import PaginationMixin
 from hitcount.views import HitCountDetailView
 from ipware.ip import get_ip
 
@@ -14,8 +14,9 @@ from authome.settings import SERVER_EMAIL
 from main.models import Board
 
 
-class BoardList(ListView):
+class BoardList(PaginationMixin, ListView):
     template_name = 'board/list.html'
+    paginate_by = 10
 
     def get_queryset(self):
         query_set = Board.objects.filter(category=self.kwargs.get('category'), display=True)

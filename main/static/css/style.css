@@ -148,7 +148,6 @@ ul.side-nav.fixed li > ul > li.active {
     }
 }
 
-.fixed-table-pagination li.active a {
-    background: #26a69a;
-    color: #fff;
+.pagination li.active {
+    background-color: #26a69a !important;
 }

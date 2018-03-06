@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'markdown_deux',
     'material',
     'storages',
+    'pure_pagination',
     'aws_xray_sdk.ext.django',
 ]
 
@@ -92,6 +93,12 @@ XRAY_RECORDER = {
     'SAMPLING_RULES': None,
     'AWS_XRAY_TRACING_NAME': 'authome',
     'DYNAMIC_NAMING': '*.autho.me',
+}
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 5,
+    'MARGIN_PAGES_DISPLAYED': 1,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
 
 REST_FRAMEWORK = {

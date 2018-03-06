@@ -1,4 +1,5 @@
 {% extends 'left_ad_layout.html' %}
+{% load i18n %}
 {% load static %}
 {% load comments %}
 {% load humanize %}
@@ -62,13 +63,33 @@
                 {% endfor %}
             </ul>
             <ul class="pagination center">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                {% if page_obj.has_previous %}
+                    <li class="waves-effect">
+                    <a href="?{{ page_obj.previous_page_number.querystring }}"
+                       class="prev"><i class="material-icons">chevron_left</i></a></li>
+                {% else %}
+                    <li class="disabled"><span class="disabled prev">
+                        <i class="material-icons" style="color:#999">chevron_left</i></span></li>
+                {% endif %}
+                {% for page in page_obj.pages %}
+                    {% if page %}
+                        {% ifequal page page_obj.number %}
+                            <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                        {% else %}
+                            <li><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                        {% endifequal %}
+                    {% else %}
+                        ...
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="waves-effect">
+                    <a href="?{{ page_obj.next_page_number.querystring }}"
+                       class="prev"><i class="material-icons">chevron_right</i></a></li>
+                {% else %}
+                    <li class="disabled"><span class="disabled prev">
+                        <i class="material-icons" style="color:#999">chevron_right</i></span></li>
+                {% endif %}
             </ul>
         </div>
     </div>
