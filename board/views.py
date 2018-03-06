@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, View
@@ -24,6 +25,9 @@ class BoardList(ListView):
             else:
                 if self.request.user.email != SERVER_EMAIL:
                     query_set = query_set.filter(user=self.request.user.pk)
+        s = self.request.GET.get('s')
+        if s:
+            query_set = query_set.filter(Q(title__icontains=s) | Q(detail__icontains=s))
         return query_set
 
     def get_context_data(self, **kwargs):

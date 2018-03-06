@@ -147,3 +147,8 @@ ul.side-nav.fixed li > ul > li.active {
         font-size: 1.50rem;
     }
 }
+
+.fixed-table-pagination li.active a {
+    background: #26a69a;
+    color: #fff;
+}

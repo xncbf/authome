@@ -21,7 +21,7 @@
                 <div class="nav-wrapper">
                     <form>
                         <div class="input-field">
-                            <input id="search" type="search" required>
+                            <input id="search" name="s" type="search" placeholder="{{ request.GET.s }}" required>
                             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
@@ -53,11 +53,22 @@
                     <li class="collection-item user-list center-align">
                     {% if 'qna' in request.path %}
                         문의 게시판은 본인글만 볼 수 있습니다.
+                    {% elif 's' in request.GET %}
+                        검색결과가 없습니다.
                     {% else %}
                         아직 게시물이 하나도 없네요. 첫 게시글을 남겨주세요!
                     {% endif %}
                     </li>
                 {% endfor %}
+            </ul>
+            <ul class="pagination center">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>
     </div>
