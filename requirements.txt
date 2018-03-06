@@ -16,3 +16,4 @@ markdown2
 psycopg2==2.7.3.2
 subdomains
 Unipath
+python-dotenv
