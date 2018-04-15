@@ -64,7 +64,7 @@ class MacroRegister(LoginRequiredMixin, View):
     def post(self, *args, **kwargs):
         macro_name = self.request.POST.get('macro_name', False)
         macro_detail = self.request.POST.get('macro_detail', False)
-        Macro.ob(
+        Macro.objects.create(
             title=macro_name,
             detail=macro_detail,
             user=self.request.user

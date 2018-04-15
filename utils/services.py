@@ -24,7 +24,7 @@ class JSONEncoder(json.JSONEncoder):
 
 
 def new_token(request):
-    user = request.user.extensuser
+    user = request.user.extendsuser
     user.token = uuid.uuid4()
     user.save()
     return redirect(reverse('main:mypage'))
