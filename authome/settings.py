@@ -93,7 +93,8 @@ GOOGLE_ANALYTICS_SITE_SPEED = True
 
 TRACK_AJAX_REQUESTS = False
 TRACK_PAGEVIEWS = True
-TRACK_IGNORE_URLS = ['/macro/auth/[0-9a-z-]+/[0-9a-z-]+/[0-9a-z-]+)/', '/macro/auth/[0-9a-z-]+/[0-9a-z-]+/']
+TRACK_IGNORE_URLS = ['/%s/' % os.environ['AUTHOME_TRACKER_URL'], '/macro/auth/[0-9a-z-]+/[0-9a-z-]+/[0-9a-z-]+)/',
+                     '/macro/auth/[0-9a-z-]+/[0-9a-z-]+/']
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
 TRACK_REFERER = True
 TRACK_QUERY_STRING = True
