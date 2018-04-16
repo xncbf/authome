@@ -4,6 +4,7 @@ django==1.11.8
 django-admin-honeypot
 django-allauth
 django-allauth-mandrill
+django-analytical
 django-contrib-comments
 django-hitcount
 django-ipware

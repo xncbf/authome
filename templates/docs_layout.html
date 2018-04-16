@@ -1,8 +1,11 @@
 {% load static %}
 {% load subdomainurls %}
+{% load analytical %}
+{% load google_analytics %}
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+{% analytical_head_top %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>AUTHOME</title>
@@ -23,16 +26,7 @@
     <script src="{% static 'js/highlight.pack.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-92615741-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
     <script>
         hljs.initHighlightingOnLoad();
         $(function () {
@@ -47,8 +41,11 @@
             $(".button-collapse").sideNav();
         });
     </script>
+{% google_analytics %}
+{% analytical_head_bottom %}
 </head>
 <body class="opacity-background">
+{% analytical_body_top %}
 <header>
     <nav class="top-nav teal lighten-1">
         <div class="container">
@@ -116,5 +113,6 @@
         <div class="container">© 2017 Authome, All rights reserved. <a class="grey-text text-lighten-4 right" href="https://github.com/xncbf/authome/blob/master/LICENSE">MIT License</a> </div>
       </div>
     </footer>
+{% analytical_body_bottom %}
 </body>
 </html>
