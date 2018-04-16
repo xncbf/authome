@@ -48,14 +48,3 @@ BROKER_URL = 'django://'
 # STATIC_ROOT = BASE_DIR.child("static")
 
 # MEDIA_ROOT = BASE_DIR.child('images')
-
-XRAY_RECORDER = {
-    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:3000',
-    'AUTO_INSTRUMENT': False,
-    'AWS_XRAY_CONTEXT_MISSING': 'RUNTIME_ERROR',
-    'PLUGINS': (),
-    'SAMPLING': True,
-    'SAMPLING_RULES': None,
-    'AWS_XRAY_TRACING_NAME': 'authome',
-    'DYNAMIC_NAMING': '*.autho.me',
-}

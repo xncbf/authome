@@ -1,4 +1,3 @@
-aws-xray-sdk
 boto
 django==1.11.8
 django-admin-honeypot
@@ -12,6 +11,7 @@ django-markdown-deux
 django-material
 django-pure-pagination
 django-storages
+django-tracking2
 djangorestframework
 drfdocs
 markdown2

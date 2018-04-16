@@ -30,6 +30,7 @@ handler400 = 'main.views.bad_request_view'
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
+    url(r'^' + os.environ['AUTHOME_TRACKER_URL'] + '/', include('tracking.urls')),
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
     url(r'^accounts/nickname/change/', views.nickname_change, name='account_change_nickname'),
     url(r'^accounts/', include('allauth.urls')),

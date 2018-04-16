@@ -81,8 +81,8 @@ INSTALLED_APPS = [
     'material',
     'storages',
     'pure_pagination',
-    'aws_xray_sdk.ext.django',
     'analytical',
+    'tracking',
 ]
 
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-92615741-1'
@@ -91,18 +91,10 @@ GOOGLE_ANALYTICS_DOMAIN = 'autho.me'
 GOOGLE_ANALYTICS_DISPLAY_ADVERTISING = True
 GOOGLE_ANALYTICS_SITE_SPEED = True
 
-CLICKY_SITE_ID = '101112610'
-
-XRAY_RECORDER = {
-    'AWS_XRAY_DAEMON_ADDRESS': '127.0.0.1:2000',
-    'AUTO_INSTRUMENT': True,
-    'AWS_XRAY_CONTEXT_MISSING': 'RUNTIME_ERROR',
-    'PLUGINS': (),
-    'SAMPLING': True,
-    'SAMPLING_RULES': None,
-    'AWS_XRAY_TRACING_NAME': 'authome',
-    'DYNAMIC_NAMING': '*.autho.me',
-}
+TRACK_AJAX_REQUESTS = False
+TRACK_PAGEVIEWS = True
+TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
+TRACK_REFERER = True
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 5,
@@ -133,7 +125,7 @@ REST_FRAMEWORK_DOCS = {
 }
 
 MIDDLEWARE = [
-    'aws_xray_sdk.ext.django.middleware.XRayMiddleware',
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'subdomains.middleware.SubdomainURLRoutingMiddleware',
