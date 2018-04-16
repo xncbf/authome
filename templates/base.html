@@ -9,7 +9,6 @@
 <!--suppress ALL -->
 <html lang="kr">
 <head>
-{% analytical_head_top %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>AUTHOME</title>
@@ -57,10 +56,8 @@
     </script>
 {% block script %}{% endblock %}
 {% google_analytics %}
-{% analytical_head_bottom %}
 </head>
 <body class="opacity-background">
-{% analytical_body_top %}
 <header>
     <nav class="grey lighten-5" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="{% url 'intro' %}" class="brand-logo"><span class="teal-text">AUTH</span><span
@@ -143,6 +140,5 @@
         </div>
     </footer>
 {% endblock %}
-{% analytical_body_bottom %}
 </body>
 </html>
