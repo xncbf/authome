@@ -144,10 +144,12 @@ ROOT_URLCONF = 'api.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
-    'api': 'api.urls',
-    'docs': 'docs.urls',
     'test': 'authome.urls',
+    'dev': 'main.urls',
+    'dev-test': 'main.urls',
+    'api': 'api.urls',
     'api-test': 'api.urls',
+    'docs': 'docs.urls',
 }
 SESSION_COOKIE_DOMAIN = '.autho.me'
 

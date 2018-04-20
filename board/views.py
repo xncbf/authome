@@ -62,14 +62,14 @@ class BoardEditor(LoginRequiredMixin, View):
         context = {}
         if not self.request.user.extendsuser.nickname:
             messages.add_message(self.request, messages.INFO, "닉네임을 설정해야 글을 작성할 수 있습니다.")
-            return HttpResponseRedirect(reverse('main:mypage'))
+            return HttpResponseRedirect(reverse('mypage'))
         context['category'] = self.kwargs.get('category')
         return render(self.request, self.template_name, context=context)
 
     def post(self, *args, **kwargs):
         if not self.request.user.extendsuser.nickname:
             messages.add_message(self.request, messages.INFO, "닉네임을 설정해야 글을 작성할 수 있습니다.")
-            return HttpResponseRedirect(reverse('main:mypage'))
+            return HttpResponseRedirect(reverse('mypage'))
         board = Board.objects.create(
             title=self.request.POST.get('board_title'),
             detail=self.request.POST.get('board_detail'),

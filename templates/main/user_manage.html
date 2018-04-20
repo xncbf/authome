@@ -24,7 +24,7 @@
     <ul class="collection">
     {% for userpage in users %}
         <li class="collection-item avatar">
-            <a href="{% url "main:auth_modify" macro_id=macro.id email=userpage.user.email %}">
+            <a href="{% url "auth_modify" macro_id=macro.id email=userpage.user.email %}">
                 <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
                 <span class="title">{{ userpage.user.email }}</span>
             </a>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="fixed-action-btn">
-        <a id="menu" href="{% url 'main:auth_register' macro_id=macro.id %}" class="btn-floating btn-large red">
+        <a id="menu" href="{% url 'auth_register' macro_id=macro.id %}" class="btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
         </a>
     </div>

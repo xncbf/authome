@@ -17,9 +17,9 @@
                 <li>
                     <div class="collapsible-header">
                         <i class="material-icons">filter_drama</i><span style="flex:1">{{ macro.title }}</span>
-                        <a href="{% url 'main:user_manage' macro_id=macro.id %}"
+                        <a href="{% url 'user_manage' macro_id=macro.id %}"
                            class="waves-effect waves-light" style="margin-left:10px">관리</a>
-                        <a href="{% url 'main:macro_modify' macro_id=macro.id %}"
+                        <a href="{% url 'macro_modify' macro_id=macro.id %}"
                            class="waves-effect waves-light" style="margin-left:10px">수정</a>
                     </div>
                     <div class="collapsible-body">
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a id="menu" href="{% url 'main:macro_register' %}" class="btn-floating btn-large red">
+            <a id="menu" href="{% url 'macro_register' %}" class="btn-floating btn-large red">
                 <i class="large material-icons">mode_edit</i>
             </a>
         </div>
@@ -48,7 +48,7 @@
         <div class="row">
             <div style="text-align: center; width:100%">
                 <br><br><br>
-                <a href="{% url 'main:macro_register' %}" class="waves-effect waves-light btn-large">
+                <a href="{% url 'macro_register' %}" class="waves-effect waves-light btn-large">
                     <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
                 </a>
             </div>

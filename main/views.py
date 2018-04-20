@@ -69,7 +69,7 @@ class MacroRegister(LoginRequiredMixin, View):
             detail=macro_detail,
             user=self.request.user
         )
-        return HttpResponseRedirect(reverse('main:macro_manage'))
+        return HttpResponseRedirect(reverse('macro_manage'))
 
     def get(self, *args, **kwargs):
         return render(self.request, 'main/macro_register.html', {
@@ -90,7 +90,7 @@ class MacroModify(LoginRequiredMixin, View):
             title=macro_name,
             detail=macro_detail,
         )
-        return HttpResponseRedirect(reverse('main:macro_manage'))
+        return HttpResponseRedirect(reverse('macro_manage'))
 
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
@@ -148,7 +148,7 @@ class AuthRegister(LoginRequiredMixin, View):
                 return render(self.request, 'main/auth_register.html', {
                     'macro': macro,
                 })
-            return redirect('main:user_manage', macro_id=kwargs['macro_id'])
+            return redirect('user_manage', macro_id=kwargs['macro_id'])
 
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
@@ -173,7 +173,7 @@ class AuthModify(LoginRequiredMixin, View):
         user_page = UserPage.objects.filter(macro=macro, user=user)
         user_page.update(**updateDict)
 
-        return redirect('main:user_manage', macro_id=kwargs['macro_id'])
+        return redirect('user_manage', macro_id=kwargs['macro_id'])
 
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
