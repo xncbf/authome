@@ -1,4 +1,4 @@
-boto
+boto3
 django==1.11.8
 django-admin-honeypot
 django-allauth
