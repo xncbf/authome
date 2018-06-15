@@ -46,13 +46,6 @@
                 {% endfor %}
             {% endif %}
         })
-        function update_session(data){
-            $.ajax({
-                type: "POST",
-                url: '/update_session/',
-                data: data,
-            });
-        }
     </script>
 {% block script %}{% endblock %}
 {% google_analytics %}
@@ -69,7 +62,7 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'board:list' category='qna'%}" class="waves-effect waves-teal teal-text">문의게시판</a></li>
                 <li><a href="{% url 'macro_manage' subdomain='dev' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
-                <li><a href="{% url 'log:dev' %}" class="waves-effect waves-teal teal-text">로그</a></li>
+{#                <li><a href="{% url 'log:dev' %}" class="waves-effect waves-teal teal-text">로그</a></li>#}
 {#                <li><a href="{% url 'dev:mypage' %}" class="waves-effect waves-teal teal-text">내정보</a></li>#}
                     <li><a href="{% url 'account_logout' subdomain='dev' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}

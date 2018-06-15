@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from dev import views
+from . import views
 from utils import services
 
 handler404 = 'dev.views.page_not_found_view'
@@ -32,14 +32,10 @@ urlpatterns = [
     url(r'^' + os.environ['AUTHOME_ADMIN_URL'] + '/', include(admin.site.urls)),
     url(r'^' + os.environ['AUTHOME_TRACKER_URL'] + '/', include('tracking.urls')),
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
-    url(r'^accounts/nickname/change/', views.nickname_change, name='account_change_nickname'),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^macro/', include('dev.urls', namespace='dev'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
-    url(r'^log/', include('log.urls', namespace='log'), ),
     url(r'^comments/', include('django_comments.urls')),
     url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
-    url(r'update_session/', views.update_session, name='update_session'),
     url(r'new_token/', services.new_token, name='new_token'),
     url(r'^$', views.intro, name='intro'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

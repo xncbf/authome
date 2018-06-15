@@ -7,19 +7,10 @@ from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
-from django.http import HttpResponseNotAllowed, HttpResponseServerError
+from django.http import HttpResponseServerError
 from .models import UserPage, Macro
 from .forms import ChangeNicknameForm
 from utils.decorators import check_is_my_macro
-
-
-def update_session(request):
-    if not request.is_ajax() or not request.method == 'POST':
-        return HttpResponseNotAllowed(['POST'])
-
-    for e in request.POST.keys():
-        request.session[e] = request.POST.get(e)
-    return HttpResponse(status=201)
 
 
 def user_logout(request):

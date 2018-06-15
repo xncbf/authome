@@ -4,10 +4,11 @@
 {% block script %}
     <script>
     $(function(){
-        {% if request.session.user_manage_visited != "true" %}
+        var user_manage_visited = getCookie('user_manage_visited');
+        if (!user_manage_visited){
             $('.tap-target').tapTarget('open');
-        {% endif %}
-        update_session({'user_manage_visited': true})
+        }
+        setCookie('user_manage_visited', true, 365)
     })
     </script>
 {% endblock %}

@@ -46,13 +46,6 @@
                 {% endfor %}
             {% endif %}
         })
-        function update_session(data){
-            $.ajax({
-                type: "POST",
-                url: '/update_session/',
-                data: data,
-            });
-        }
     </script>
 {% block script %}{% endblock %}
 {% google_analytics %}

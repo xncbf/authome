@@ -3,10 +3,11 @@
 {% block script %}
     <script>
     $(function(){
-        {% if request.session.macro_manage_visited != "true" %}
+        var macro_manage_visited = getCookie('macro_manage_visited');
+        if (!macro_manage_visited){
             $('.tap-target').tapTarget('open');
-        {% endif %}
-        update_session({'macro_manage_visited': true})
+        }
+        setCookie('macro_manage_visited', true, 365)
     })
     </script>
 {% endblock %}

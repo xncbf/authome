@@ -7,10 +7,11 @@
 {% block script %}
     <script>
     $(function(){
-        {% if request.session.board_list_visited != "true" %}
+        var board_list_visited = getCookie('board_list_visited');
+        if (!board_list_visited){
             $('.tap-target').tapTarget('open');
-        {% endif %}
-        update_session({'board_list_visited': true})
+        }
+        setCookie('board_list_visited', true, 365)
     })
     </script>
 {% endblock %}
