@@ -27,4 +27,4 @@ def new_token(request):
     user = request.user.extendsuser
     user.token = uuid.uuid4()
     user.save()
-    return redirect(reverse('main:mypage'))
+    return redirect(reverse('dev:mypage'))

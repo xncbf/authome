@@ -1,5 +1,5 @@
 from django.utils import timezone
-from main.models import UserPage
+from dev.models import UserPage
 
 
 def verify_end_yn():

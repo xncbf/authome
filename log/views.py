@@ -7,7 +7,7 @@ from django.shortcuts import render, HttpResponse
 from django.utils import timezone
 from django.views.generic.list import View
 
-from main.models import MacroLog, UserPage
+from dev.models import MacroLog, UserPage
 from utils.services import dictfetchall
 
 

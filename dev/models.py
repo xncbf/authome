@@ -27,8 +27,6 @@ class Macro(TimeStampedModel):
     """
     등록된 매크로 정보를 저장
     """
-    class Meta:
-        verbose_name_plural = '매크로'
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField('매크로명', max_length=30, blank=False)
     detail = models.TextField('간단한 설명')
@@ -39,28 +37,36 @@ class Macro(TimeStampedModel):
     def __str__(self):
         return "%s" % self.title
 
+    class Meta:
+        verbose_name_plural = '매크로'
+        db_table = 'main_macro'
+
 
 class MacroFeeLog(TimeStampedModel):
     """
     유저의 매크로 결제 내역을 저장
     """
-    class Meta:
-        verbose_name_plural = '결제로그'
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
+
+    class Meta:
+        verbose_name_plural = '결제로그'
+        db_table = 'main_macrofeelog'
 
 
 class MacroLog(TimeStampedModel):
     """
     매크로 사용 로그를 저장
     """
-    class Meta:
-        verbose_name_plural = '사용로그'
     user = models.ForeignKey(User)
     macro = models.ForeignKey(Macro)
     ip = models.GenericIPAddressField()
     succeeded = models.NullBooleanField()
+
+    class Meta:
+        verbose_name_plural = '사용로그'
+        db_table = 'main_macrolog'
 
 
 class UserPage(TimeStampedModel):
@@ -76,6 +82,7 @@ class UserPage(TimeStampedModel):
     class Meta:
         verbose_name_plural = '인증정보'
         unique_together = (("user", "macro"), )
+        db_table = 'main_userpage'
 
     def __str__(self):
         return "%s" % self.user
@@ -104,6 +111,7 @@ class Board(TimeStampedModel, HitCountMixin):
     class Meta:
         verbose_name_plural = '게시판'
         ordering = ['-created']
+        db_table = 'main_board'
 
 
 class ExtendsUser(models.Model):
@@ -130,6 +138,9 @@ class ExtendsUser(models.Model):
         null=True,
     )
     nickname_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'main_extendsuser'
 
 
 @receiver(post_save, sender=User)

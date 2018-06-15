@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from ipware.ip import get_ip
 
 from .serializers import AuthSerializer
-from main.models import UserPage, MacroLog
+from dev.models import UserPage, MacroLog
 
 
 class DRFDocsView(TemplateView):

@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('ip', models.GenericIPAddressField()),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('succeeded', models.NullBooleanField()),
             ],
@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('end_date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='종료일')),
                 ('end_yn', models.BooleanField(default=True)),
-                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Macro')),
+                ('macro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dev.Macro')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

@@ -19,13 +19,13 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from main import views
+from dev import views
 from utils import services
 
-handler404 = 'main.views.page_not_found_view'
-handler500 = 'main.views.error_view'
-handler403 = 'main.views.permission_denied_view'
-handler400 = 'main.views.bad_request_view'
+handler404 = 'dev.views.page_not_found_view'
+handler500 = 'dev.views.error_view'
+handler403 = 'dev.views.permission_denied_view'
+handler400 = 'dev.views.bad_request_view'
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^accounts/logout/', views.user_logout, name='account_logout'),
     url(r'^accounts/nickname/change/', views.nickname_change, name='account_change_nickname'),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^macro/', include('main.urls', namespace='main'), ),
+    url(r'^macro/', include('dev.urls', namespace='dev'), ),
     url(r'^board/', include('board.urls', namespace='board'), ),
     url(r'^log/', include('log.urls', namespace='log'), ),
     url(r'^comments/', include('django_comments.urls')),

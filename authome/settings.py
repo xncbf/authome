@@ -44,7 +44,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_BLACKLIST = ["운영자", "관리자", "admin"]
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_USER_DISPLAY = "main.utils.get_account_user_display"
+ACCOUNT_USER_DISPLAY = "dev.utils.get_account_user_display"
 
 # Application definition
 
@@ -62,10 +62,10 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'rest_framework',
     'subdomains',
-    'main',
     'api',
-    'docs',
     'board',
+    'dev',
+    'docs',
     'log',
     'djrill',
     'allauth',
@@ -145,8 +145,8 @@ SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
     'test': 'authome.urls',
-    'dev': 'main.urls',
-    'dev-test': 'main.urls',
+    'dev': 'dev.urls',
+    'dev-test': 'dev.urls',
     'api': 'api.urls',
     'api-test': 'api.urls',
     'docs': 'docs.urls',

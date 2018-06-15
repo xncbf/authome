@@ -41,7 +41,7 @@ def nickname_change(request):
 
 class MacroManage(LoginRequiredMixin, ListView):
     model = Macro
-    template_name = 'main/macro_manage.html'
+    template_name = 'dev/macro_manage.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -55,7 +55,7 @@ def intro(request):
     """
      macro_manage 인덱스페이지
     """
-    return render(request, 'main/intro.html', {})
+    return render(request, 'dev/intro.html', {})
 
 
 class MacroRegister(LoginRequiredMixin, View):
@@ -72,7 +72,7 @@ class MacroRegister(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('macro_manage'))
 
     def get(self, *args, **kwargs):
-        return render(self.request, 'main/macro_register.html', {
+        return render(self.request, 'dev/macro_register.html', {
 
         })
 
@@ -95,14 +95,14 @@ class MacroModify(LoginRequiredMixin, View):
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        return render(self.request, 'main/macro_modify.html', {
+        return render(self.request, 'dev/macro_modify.html', {
             'macro': macro,
         })
 
 
 class UserManage(LoginRequiredMixin, ListView):
     model = UserPage
-    template_name = 'main/user_manage.html'
+    template_name = 'dev/user_manage.html'
 
     @check_is_my_macro('macro_id')
     def get_context_data(self, **kwargs):
@@ -145,7 +145,7 @@ class AuthRegister(LoginRequiredMixin, View):
                 UserPage.objects.create(**create)
             except:
                 messages.add_message(self.request, messages.INFO, "등록 실패")
-                return render(self.request, 'main/auth_register.html', {
+                return render(self.request, 'dev/auth_register.html', {
                     'macro': macro,
                 })
             return redirect('user_manage', macro_id=kwargs['macro_id'])
@@ -153,7 +153,7 @@ class AuthRegister(LoginRequiredMixin, View):
     @check_is_my_macro(macro_id='macro_id')
     def get(self, *args, **kwargs):
         macro = Macro.objects.get(id=kwargs['macro_id'])
-        return render(self.request, 'main/auth_register.html', {
+        return render(self.request, 'dev/auth_register.html', {
             'macro': macro,
         })
 
@@ -180,7 +180,7 @@ class AuthModify(LoginRequiredMixin, View):
         macro = kwargs['macro_id']
         user = User.objects.get(email=kwargs['email'])
         userpage = UserPage.objects.get(user__email=kwargs['email'], macro=macro)
-        return render(self.request, 'main/auth_modify.html', {
+        return render(self.request, 'dev/auth_modify.html', {
             'macro': macro,
             'user': user,
             'userpage': userpage,
@@ -189,7 +189,7 @@ class AuthModify(LoginRequiredMixin, View):
 
 class MyPage(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'main/mypage.html')
+        return render(self.request, 'dev/mypage.html')
 
     def post(self, *args, **kwargs):
         return HttpResponse('')

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework.test import APITestCase, APIRequestFactory
 
-from main.models import Macro, UserPage
+from dev.models import Macro, UserPage
 from .views import GetAuth2
 
 

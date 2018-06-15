@@ -11,7 +11,7 @@ from ipware.ip import get_ip
 
 from authome.settings import SERVER_EMAIL
 
-from main.models import Board
+from dev.models import Board
 
 
 class BoardList(PaginationMixin, ListView):

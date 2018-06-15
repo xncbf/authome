@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.models import UserPage
+from dev.models import UserPage
 
 
 class AuthSerializer(serializers.ModelSerializer):
