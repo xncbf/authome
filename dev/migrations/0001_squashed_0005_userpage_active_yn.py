@@ -129,9 +129,10 @@ class Migration(migrations.Migration):
                                               max_length=10, null=True,
                                               unique=True,
                                               validators=[
-                        django.core.validators.RegexValidator('^[\\w]+$',
-                                                              '유효한 닉네임을 입력해주세요. '
-                                                              '이 항목은® 문자와 숫자만 사용 가능합니다.')],
+                                                  django.core.validators.RegexValidator('^[\\w]+$',
+                                                                                        '유효한 닉네임을 입력해주세요. '
+                                                                                        '이 항목은® 문자와 숫자만 사용 '
+                                                                                        '가능합니다.')],
                                               verbose_name='닉네임')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='extendsuser',
                                               to=settings.AUTH_USER_MODEL)),
