@@ -5,4 +5,4 @@ from dev.models import UserPage
 class AuthSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserPage
-        fields = ('macro', 'end_date', 'end_yn', 'active_yn')
+        fields = ('macro', 'end_date', 'end_yn', 'is_active')

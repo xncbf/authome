@@ -210,7 +210,7 @@ GetAuth(Token)
     FileRead, var, result.txt
     result := JSON.load(var)
     FileDelete result.txt
-    return result.active_yn
+    return result.is_active
 }
 
 setAuthTimer()

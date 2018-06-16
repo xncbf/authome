@@ -147,7 +147,7 @@ class AuthModify(LoginRequiredMixin, View):
         _user['user'] = user
         _user['end_date'] = end_date
         _user['end_yn'] = False
-        _user['active_yn'] = False
+        _user['is_active'] = False
 
         user_page = UserPage.objects.filter(macro=macro, user=user)
         user_page.update(**_user)

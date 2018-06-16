@@ -69,6 +69,20 @@ class MacroLog(TimeStampedModel):
         db_table = 'main_macrolog'
 
 
+class MacroLog2(TimeStampedModel):
+    """
+    매크로 사용 로그를 저장
+    """
+    user = models.ForeignKey(User)
+    macro = models.ForeignKey(Macro)
+    ip = models.GenericIPAddressField()
+    succeeded = models.NullBooleanField()
+
+    class Meta:
+        verbose_name_plural = '사용로그'
+        db_table = 'main_macrolog2'
+
+
 class UserPage(TimeStampedModel):
     """
     유저의 인증정보를 저장
@@ -78,7 +92,7 @@ class UserPage(TimeStampedModel):
     end_date = models.DateTimeField('종료일', default=timezone.now)
     # 의미가 뒤바뀜 활성화 YN으로 생각하자 ㅠㅠ(True 가 활성)
     end_yn = models.BooleanField(default=True)
-    active_yn = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = '인증정보'

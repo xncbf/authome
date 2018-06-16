@@ -20,7 +20,7 @@ class MacroLogAdmin(admin.ModelAdmin):
 
 
 class UserPageAdmin(admin.ModelAdmin):
-    list_display = ('user', 'macro', 'end_date', 'end_yn', 'active_yn')
+    list_display = ('user', 'macro', 'end_date', 'end_yn', 'is_active')
     list_filter = ('modified',)
     readonly_fields = ('user', 'macro')
     search_fields = ('user__email', 'macro__title')
