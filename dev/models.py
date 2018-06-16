@@ -78,6 +78,7 @@ class UserPage(TimeStampedModel):
     end_date = models.DateTimeField('종료일', default=timezone.now)
     # 의미가 뒤바뀜 활성화 YN으로 생각하자 ㅠㅠ(True 가 활성)
     end_yn = models.BooleanField(default=True)
+    active_yn = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = '인증정보'

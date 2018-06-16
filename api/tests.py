@@ -24,4 +24,4 @@ class Tests(APITestCase):
         view = GetAuth2.as_view()
         request = factory.get('/')
         response = view(request, token=str(token), macro_id=macro_id)
-        self.assertEqual(response.data.get('end_yn'), True)
+        self.assertEqual(response.data.get('active_yn'), True)

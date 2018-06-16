@@ -3,12 +3,6 @@
 {% block left_nav %}
     <li class="bold active"><a href="{% url 'introduction' %}" class="waves-effect waves-teal">Authome 소개</a></li>
     <li class="bold"><a href="{% url 'quick_start' %}" class="waves-effect waves-teal">처음 시작하기</a></li>
-    <li class="bold">
-        <a class="waves-effect waves-teal"><i class="material-icons" style="margin:0 10px 0 0;">arrow_drop_down</i>인증 활용하기</a>
-        <ul>
-            <li><a href="{% url 'use_ahk' %}" class="waves-effect waves-teal">오토핫키</a></li>
-        </ul>
-    </li>
     <li class="bold"><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal">전체 API 문서</a></li>
 {% endblock %}
 {% block title %}Authome 소개{% endblock %}

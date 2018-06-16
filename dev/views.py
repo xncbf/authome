@@ -7,9 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import render, HttpResponseRedirect, redirect, HttpResponse
 from django.views.generic.list import ListView, View
-from django.http import HttpResponseServerError
 from .models import UserPage, Macro
-from .forms import ChangeNicknameForm
 from utils.decorators import check_is_my_macro
 
 
@@ -17,17 +15,6 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('intro'))
 
-
-def nickname_change(request):
-    result = {}
-    if request.is_ajax():
-        form = ChangeNicknameForm(data=request.POST, user=request.user)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(status=201)
-        else:
-            result['form_errors'] = form.errors
-            return HttpResponseServerError(json.dumps(result, ensure_ascii=False))
 
 
 class MacroManage(LoginRequiredMixin, ListView):
@@ -156,13 +143,14 @@ class AuthModify(LoginRequiredMixin, View):
         user = User.objects.get(email=kwargs['email'])
         end_date = self.request.POST.get('end_date')
 
-        updateDict = {}
-        updateDict['user'] = user
-        updateDict['end_date'] = end_date
-        updateDict['end_yn'] = False
+        _user = dict()
+        _user['user'] = user
+        _user['end_date'] = end_date
+        _user['end_yn'] = False
+        _user['active_yn'] = False
 
         user_page = UserPage.objects.filter(macro=macro, user=user)
-        user_page.update(**updateDict)
+        user_page.update(**_user)
 
         return redirect('user_manage', macro_id=kwargs['macro_id'])
 
@@ -177,13 +165,6 @@ class AuthModify(LoginRequiredMixin, View):
             'userpage': userpage,
         })
 
-
-class MyPage(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        return render(self.request, 'dev/mypage.html')
-
-    def post(self, *args, **kwargs):
-        return HttpResponse('')
 
 
 def page_not_found_view(request):

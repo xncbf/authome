@@ -37,11 +37,11 @@ class GetAuth(APIView):
 
     def _block_duplicate(self, request, user):
         """동시 접속 차단 로직"""
-        lastLog = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
-        if lastLog:
-            lastLogTime = lastLog.first().created
-            if (timezone.now() - lastLogTime).seconds < 3600:
-                if lastLog.first().ip != get_ip(request):
+        last_log = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
+        if last_log:
+            last_log_time = last_log.first().created
+            if (timezone.now() - last_log_time).seconds < 3600:
+                if last_log.first().ip != get_ip(request):
                     return False
         return True
 
@@ -54,15 +54,15 @@ class GetAuth(APIView):
     def get(self, request, username, password, macro_id):
         user = User.objects.get(extendsuser__token=password)
         if user:
-            userPage = self.get_object(user, macro_id)
+            user_page = self.get_object(user, macro_id)
 
             # 동시 접속 차단 로직
             if not self._block_duplicate(request, user):
-                MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=False)
+                MacroLog.objects.create(user=user, macro=user_page.macro, ip=get_ip(request), succeeded=False)
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
-            serializer = AuthSerializer(userPage)
-            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=True)
+            serializer = AuthSerializer(user_page)
+            MacroLog.objects.create(user=user, macro=user_page.macro, ip=get_ip(request), succeeded=True)
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
@@ -71,11 +71,11 @@ class GetAuth(APIView):
 class GetAuth2(APIView):
     def _block_duplicate(self, request, user):
         """동시 접속 차단 로직"""
-        lastLog = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
-        if lastLog:
-            lastLogTime = lastLog.first().created
-            if (timezone.now() - lastLogTime).seconds < 3600:
-                if lastLog.first().ip != get_ip(request):
+        last_log = MacroLog.objects.filter(user=user, succeeded=True).order_by('-created')
+        if last_log:
+            last_log_time = last_log.first().created
+            if (timezone.now() - last_log_time).seconds < 3600:
+                if last_log.first().ip != get_ip(request):
                     return False
         return True
 
@@ -89,15 +89,15 @@ class GetAuth2(APIView):
         user = User.objects.get(extendsuser__token=token)
         # TODO: 토큰이 번거로운사람 또는 OTP 이용하고싶은사람을 위해 OTP 기능 추가 예정
         if user:
-            userPage = self.get_object(user, macro_id)
+            user_page = self.get_object(user, macro_id)
 
             # 동시 접속 차단 로직
             if not self._block_duplicate(request, user):
-                MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=False)
+                MacroLog.objects.create(user=user, macro=user_page.macro, ip=get_ip(request), succeeded=False)
                 return Response(status=status.HTTP_423_LOCKED)
 
-            serializer = AuthSerializer(userPage)
-            MacroLog.objects.create(user=user, macro=userPage.macro, ip=get_ip(request), succeeded=True)
+            serializer = AuthSerializer(user_page)
+            MacroLog.objects.create(user=user, macro=user_page.macro, ip=get_ip(request), succeeded=True)
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)

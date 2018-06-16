@@ -9,6 +9,5 @@ handler400 = 'dev.views.bad_request_view'
 
 urlpatterns = [
     url(r'^(?i)quickstart/', views.quick_start, name='quick_start'),
-    url(r'^(?i)use/autohotkey/', views.use_auth, name='use_ahk'),
     url(r'^$', views.introduction, name='introduction'),
 ]

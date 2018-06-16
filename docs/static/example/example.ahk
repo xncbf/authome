@@ -1,7 +1,7 @@
 #SingleInstance Force
 ;이 Uid 를 자신의 매크로 ID 로 변경해줍니다
-global UID = "fd7fbf5a-2840-49df-a235-74ed9877a1a2"
-
+global UID = "fdcb7c8e-f14f-4ebc-a948-4bb08bfb930a"
+global isCalled = false
 class JSON
 {
 	class Load extends JSON.Functor
@@ -210,16 +210,24 @@ GetAuth(Token)
     FileRead, var, result.txt
     result := JSON.load(var)
     FileDelete result.txt
-    return result.end_yn
+    return result.active_yn
 }
 
-if (GetAuth(userToken))
+setAuthTimer()
 {
-    msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
+    Settimer, isAuth, 600000
+    return
 }
-else
-{
-    msgbox, 인증실패
-;ExitApp
-}
-return
+
+isAuth:
+    if(!isCalled)
+    {
+        setAuthTimer()
+        isCalled:=true
+    }
+    if (!GetAuth(userToken))
+    {
+        msgbox, 인증실패 매크로를 종료합니다
+        ExitApp
+    }
+    return
