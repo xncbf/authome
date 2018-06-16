@@ -16,7 +16,6 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('intro'))
 
 
-
 class MacroManage(LoginRequiredMixin, ListView):
     model = Macro
     template_name = 'dev/macro_manage.html'
@@ -164,7 +163,6 @@ class AuthModify(LoginRequiredMixin, View):
             'user': user,
             'userpage': userpage,
         })
-
 
 
 def page_not_found_view(request):
