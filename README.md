@@ -5,8 +5,8 @@
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
-* python==3.6.x
-* django==1.11.8
+* python>=3.6.x
+* django==2.2
 * zappa>=0.45.1
 
 ## 개발 환경 세팅
