@@ -1,5 +1,5 @@
 boto3
-django==1.11.8
+django
 django-admin-honeypot
 django-allauth
 django-allauth-mandrill
@@ -15,7 +15,7 @@ django-tracking2
 djangorestframework
 drfdocs
 markdown2
-psycopg2==2.7.3.2
+psycopg2
 subdomains
 Unipath
 python-dotenv
