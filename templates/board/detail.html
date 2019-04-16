@@ -1,0 +1,64 @@
+{% extends 'board_layout.html' %}
+{% load markdown_deux_tags %}
+{% load comments %}
+{% load board_extras %}
+{% block title %}
+    <h4 class="teal-text text-lighten-1 board-title" style="display: inline-block;">{{ object.title }}</h4><br>
+    <div class="chip">
+        <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+        {{ board.user.extendsuser.nickname }}
+    </div>
+    <span>{{ object.created }}</span>
+{% endblock %}
+{% block detail %}
+    <div id="board_detail" class="board-detail light">
+    {% autoescape off %}
+        {{ object.detail|markdown:"STYLE" }}
+    {% endautoescape %}
+    </div>
+{% endblock %}
+{% block comments %}
+    <div class="row">
+    {% get_comment_list for main.board object.pk as comment_list %}
+    {% for comment in comment_list %}
+        <div class="col s12" style="margin: 15px 0;">
+            <div style="margin-bottom: 5px">
+                <img class="badge circle" style="width:48px;height:48px;float:left;margin-right:10px;"
+                     src="{{ comment.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" />
+                <span class="new badge teal lighten-1 white-text" data-badge-caption="" style="margin-left:5px;float:left;">
+                    {{ comment.user.extendsuser.nickname|default:comment.user.username }}
+                </span>
+                <span class="badge" style="float:left">{{ comment.submit_date }}</span>
+                <span class="badge hide-on-small-only">{{ comment.ip_address|truncate_ip }}</span>
+                {% if debug %}<a href="#"><i class="material-icons" style="float: left;">reply</i></a>{% endif %}
+            </div>
+            <br>
+            <div style="margin-top:3px">
+                <span style="margin-left:5px;">{{ comment.comment }}</span>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="row">
+        {% get_comment_form for object as form %}
+{#        TODO: 비활성 댓글은 없애는 대신, 비활성된 댓글입니다 라고 표시하기. #}
+        <form action="{% comment_form_target %}" method="post">
+            {% csrf_token %}
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
+            <div class="input-field col s12">
+                <input type="text" name="honeypot" size="64" style="display: none;" />
+                <textarea id="comment" name="comment" class="materialize-textarea" data-length="120"></textarea>
+                <label for="comment">댓글쓰기</label>
+            </div>
+            <div class="col s12">
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="float: right">등록
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <input type="hidden" name="next" value="{% url 'board:detail' pk=object.pk category=category%}" />
+        </form>
+    </div>
+{% endblock %}

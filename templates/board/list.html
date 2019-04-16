@@ -1,0 +1,81 @@
+{% extends 'left_ad_layout.html' %}
+{% load i18n %}
+{% load static %}
+{% load comments %}
+{% load humanize %}
+{% load board_extras %}
+{% block script %}
+    <script>
+    $(function(){
+        var board_list_visited = getCookie('board_list_visited');
+        if (!board_list_visited){
+            $('.tap-target').tapTarget('open');
+        }
+        setCookie('board_list_visited', true, 365)
+    })
+    </script>
+{% endblock %}
+{% block contents %}
+    <br>
+    <div class="row">
+        <div class="col s12 l12">
+            <nav>
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" name="s" type="search" placeholder="{{ request.GET.s }}" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <ul class="collection with-header user-list ">
+                {% for board in object_list %}
+                    {% get_comment_count for board as comment_count %}
+                    <li class="collection-item user-list" style="overflow: auto;">
+                        <a href="{% url "board:detail" pk=board.pk category=category%}">
+                            <div>
+                                {{ board.title }}
+                                <span class="new badge" data-badge-caption="">조회 {{ board.hit_count.hits }}</span>
+                                <span class="new badge" data-badge-caption="">댓글 {{ comment_count }}</span>
+                            </div>
+                            <div style="margin-top:5px">
+                                <div class="chip">
+                                    <img src="{{ board.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}">
+                                    {{ board.user.extendsuser.nickname }}
+                                </div>
+                                <span class="secondary-content right-align">
+                                    {{ board.created|natural_time_for_new }}
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="collection-item user-list center-align">
+                    {% if 'qna' in request.path %}
+                        문의 게시판은 본인글만 볼 수 있습니다.
+                    {% elif 's' in request.GET %}
+                        검색결과가 없습니다.
+                    {% else %}
+                        아직 게시물이 하나도 없네요. 첫 게시글을 남겨주세요!
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% include "_pagination.html" %}
+        </div>
+    </div>
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content white-text">
+            <h5>글쓰기</h5>
+            <p>버튼을 눌러서 게시글을 작성해보세요!</p>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a id="menu" href="{% url 'board:editor' category=category%}" class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+{% endblock %}

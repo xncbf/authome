@@ -1,0 +1,60 @@
+{% extends 'left_ad_layout.html' %}
+{% load static from staticfiles %}
+{% load humanize %}
+{% block script %}
+    <script>
+    $(function(){
+        var user_manage_visited = getCookie('user_manage_visited');
+        if (!user_manage_visited){
+            $('.tap-target').tapTarget('open');
+        }
+        setCookie('user_manage_visited', true, 365)
+    })
+    </script>
+{% endblock %}
+{% block contents %}
+    <div style="line-height:40px;overflow:hidden;">
+        <h4 class="board-title" style="display: inline-block" class="light">{{ macro }}</h4>
+        <span id="macro_uuid{{ forloop.counter }}"
+              class="grey-text text-lighten-1 tooltipped hide-on-small-only"
+              data-position="left" data-tooltip="click to copy"
+              style="float: right; margin-top:25px;"
+              onclick="copyToClipboard('#macro_uuid{{ forloop.counter }}');
+              Materialize.toast('복사되었습니다', 4000,'rounded')">{{ macro.id }}</span>
+    </div>
+    <ul class="collection">
+    {% for userpage in users %}
+        <li class="collection-item avatar">
+            <a href="{% url "auth_modify" macro_id=macro.id email=userpage.user.email %}">
+                <img src="{{ userpage.user.socialaccount_set.all.0.get_avatar_url|default:default_profile }}" alt="" class="circle">
+                <span class="title">{{ userpage.user.email }}</span>
+            </a>
+            <p>{{ userpage.created }} 시작
+{#                                {{ user.end_date|date:"Y년 m월 d일" }}#}
+            </p>
+{#                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>#}
+            <a href="#!" class="secondary-content grey-text"><i class="material-icons">grade</i></a>
+            {% if not userpage.is_past_due %}
+                <span class="new badge" data-badge-caption="남음">{{ userpage.end_date|naturaltime }}</span>
+             {% endif %}
+        </li>
+    {% empty %}
+        <li class="collection-item avatar center-align">
+            <br>등록된 유저가 없습니다
+        </li>
+    {% endfor %}
+    </ul>
+
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content white-text">
+            <h5>유저 등록</h5>
+            <p>버튼을 눌러서 유저를 등록해보세요!</p>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a id="menu" href="{% url 'auth_register' macro_id=macro.id %}" class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+{% endblock %}

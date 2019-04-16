@@ -1,13 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import connection
 from django.shortcuts import render, HttpResponse
 from django.utils import timezone
 from django.views.generic.list import View
 
-from main.models import MacroLog, UserPage
+from dev.models import MacroLog, UserPage
 from utils.services import dictfetchall
 
 
@@ -17,7 +17,8 @@ class Log(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         context = {}
-        qs = MacroLog.objects.filter(macro__user=request.user).order_by('macro', 'user', '-created').distinct('macro', 'user')
+        qs = MacroLog.objects.filter(macro__user=request.user).order_by('macro', 'user', '-created').distinct('macro',
+                                                                                                              'user')
         unsorted_results = qs.all()
         context['macroLog'] = sorted(unsorted_results, key=lambda t: t.created, reverse=True)
         context['userPage'] = UserPage.objects.filter(macro__user=request.user).distinct('user')
@@ -64,7 +65,7 @@ class Log(LoginRequiredMixin, View):
                             </div>
                             <span class="secondary-content">{4}<br>{5}</span>
                         </a>
-                    </li>""".format(reverse('main:user_manage', kwargs={'macro_id': e.get('macro_id')}),
+                    </li>""".format(reverse('user_manage', kwargs={'macro_id': e.get('macro_id')}),
                                     e.get('title') or '제목없음',
                                     profile_url,
                                     e.get('email'),

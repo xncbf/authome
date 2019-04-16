@@ -6,9 +6,8 @@ from ipware.ip import is_valid_ip
 register = template.Library()
 
 
-@register.filter(name='truncateip')
+@register.filter(name='truncate_ip')
 def truncate_ip(value):
-    result = ''
     if is_valid_ip(value):
         result = ".".join(value.split('.')[:-1])
         result += ".xxx"
@@ -17,9 +16,8 @@ def truncate_ip(value):
     return result
 
 
-@register.filter(name='naturaltime_newly')
-def natural_time_newly(value):
-    # 오늘로부터 하루 이상 지난 조건
+@register.filter(name='natural_time_for_new')
+def natural_time_for_new(value):
     if (timezone.now() - value).days >= 1:
         return value
     else:

@@ -1,4 +1,4 @@
-from main.models import Macro
+from dev.models import Macro
 from django.http import Http404
 
 

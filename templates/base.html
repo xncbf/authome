@@ -1,6 +1,8 @@
 {% load static %}
 {% load subdomainurls %}
 {% load material_form %}
+{% load analytical %}
+{% load google_analytics %}
 
 {% static "images/Jigglypuff.png" as default_profile %}
 <!DOCTYPE html>
@@ -12,28 +14,29 @@
     <title>AUTHOME</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+
+    <!-- facebook -->
+    <meta property="og:url" content="https://autho.me" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="매크로 유저 관리 시스템" />
+    <meta property="og:description" content="누구나 쉽게 자신의 매크로에 인증 체계를 만들 수 있습니다." />
+    <meta property="og:image" content="{% static 'images/logo/facebook_ad.png' %}" />
+    <meta property="og:locale" content="ko_KR" />
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="{% static 'js/init.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-92615741-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
     <script>
         $(function () {
             $('.button-collapse').sideNav();
@@ -43,16 +46,9 @@
                 {% endfor %}
             {% endif %}
         })
-        function update_session(data){
-            $.ajax({
-                type: "POST",
-                url: '/update_session/',
-                data: data,
-            });
-        }
     </script>
 {% block script %}{% endblock %}
-
+{% google_analytics %}
 </head>
 <body class="opacity-background">
 <header>
@@ -62,11 +58,11 @@
             <ul class="right hide-on-med-and-down animated fadeIn">
                 <li><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal teal-text">API</a></li>
                 <li><a href="{% url 'introduction' subdomain='docs' %}" class="waves-effect waves-teal teal-text">문서</a></li>
-                <li><a href="{% url 'board:macro_list' %}" class="waves-effect waves-teal teal-text">매크로게시판</a></li>
-                <li><a href="{% url 'board:board_list' %}" class="waves-effect waves-teal teal-text">자유게시판</a></li>
-                <li><a href="{% url 'main:macro_manage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
-                <li><a href="{% url 'log:main' %}" class="waves-effect waves-teal teal-text">로그</a></li>
-                <li><a href="{% url 'main:mypage' %}" class="waves-effect waves-teal teal-text">내정보</a></li>
+                <li><a href="{% url 'board:list' category='free'%}" class="waves-effect waves-teal teal-text">자유게시판</a></li>
+                <li><a href="{% url 'board:list' category='qna'%}" class="waves-effect waves-teal teal-text">문의게시판</a></li>
+                <li><a href="{% url 'dev:macro_manage' %}" class="waves-effect waves-teal teal-text">관리페이지</a></li>
+                <li><a href="{% url 'log:dev' %}" class="waves-effect waves-teal teal-text">로그</a></li>
+                <li><a href="{% url 'dev:mypage' %}" class="waves-effect waves-teal teal-text">내정보</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'account_logout' %}" class="waves-effect waves-teal teal-text">로그아웃</a></li>
                 {% else %}
@@ -94,11 +90,11 @@
                 </li>
                 <li><a class="waves-effect" href="{% url 'drfdocs' subdomain='api' %}"><i class="material-icons">https</i>API</a></li>
                 <li><a class="waves-effect" href="{% url 'introduction' subdomain='docs' %}"><i class="material-icons">description</i>문서</a></li>
-                <li><a class="waves-effect" href="{% url 'board:macro_list' %}"><i class="material-icons">store</i>매크로게시판</a></li>
-                <li><a class="waves-effect" href="{% url 'board:board_list' %}"><i class="material-icons">forum</i>자유게시판</a></li>
-                <li><a class="waves-effect" href="{% url 'main:macro_manage' %}"><i class="material-icons">recent_actors</i>관리페이지</a></li>
-                <li><a class="waves-effect" href="{% url 'log:main' %}"><i class="material-icons">visibility</i>로그</a></li>
-                <li><a class="waves-effect" href="{% url 'main:mypage' %}"><i class="material-icons">assignment_ind</i>내정보</a></li>
+                <li><a class="waves-effect" href="{% url 'board:list' category='free'%}"><i class="material-icons">forum</i>자유게시판</a></li>
+                <li><a class="waves-effect" href="{% url 'board:list' category='qna'%}"><i class="material-icons">forum</i>문의게시판</a></li>
+                <li><a class="waves-effect" href="{% url 'dev:macro_manage'%}"><i class="material-icons">recent_actors</i>관리페이지</a></li>
+{#                <li><a class="waves-effect" href="{% url 'log:dev' %}"><i class="material-icons">visibility</i>로그</a></li>#}
+                <li><a class="waves-effect" href="{% url 'dev:mypage' %}"><i class="material-icons">assignment_ind</i>내정보</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>

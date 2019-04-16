@@ -1,0 +1,58 @@
+{% extends 'left_ad_layout.html' %}
+{% load humanize %}
+{% block script %}
+    <script>
+    $(function(){
+        var macro_manage_visited = getCookie('macro_manage_visited');
+        if (!macro_manage_visited){
+            $('.tap-target').tapTarget('open');
+        }
+        setCookie('macro_manage_visited', true, 365)
+    })
+    </script>
+{% endblock %}
+{% block contents %}
+    {% if macro_list %}
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for macro in macro_list %}
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">filter_drama</i><span style="flex:1">{{ macro.title }}</span>
+                        <a href="{% url 'user_manage' macro_id=macro.id %}"
+                           class="waves-effect waves-light" style="margin-left:10px">관리</a>
+                        <a href="{% url 'macro_modify' macro_id=macro.id %}"
+                           class="waves-effect waves-light" style="margin-left:10px">수정</a>
+                    </div>
+                    <div class="collapsible-body">
+                        <p>
+                            <span>{{ macro.detail|linebreaksbr }}</span>
+                        </p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Tap Target Structure -->
+        <div class="tap-target" data-activates="menu">
+            <div class="tap-target-content white-text">
+                <h5>매크로 등록</h5>
+                <p>버튼을 눌러서 매크로를 등록해보세요!</p>
+            </div>
+        </div>
+        <div class="fixed-action-btn">
+            <a id="menu" href="{% url 'macro_register' %}" class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+        </div>
+    {% else %}
+        {# TODO: 모달폼에 AJAX 로 받아서 처리 예정 #}
+        <div class="row">
+            <div style="text-align: center; width:100%">
+                <br><br><br>
+                <a href="{% url 'macro_register' %}" class="waves-effect waves-light btn-large">
+                    <i class="material-icons left">cloud</i>첫 매크로를 등록해보세요!
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

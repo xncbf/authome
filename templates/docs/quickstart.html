@@ -4,12 +4,6 @@
 {% block left_nav %}
     <li class="bold"><a href="{% url 'introduction' %}" class="waves-effect waves-teal">Authome 소개</a></li>
     <li class="bold active"><a href="{% url 'quick_start' %}" class="waves-effect waves-teal">처음 시작하기</a></li>
-    <li class="bold">
-        <a class="waves-effect waves-teal"><i class="material-icons" style="margin:0 10px 0 0;">arrow_drop_down</i>인증 활용하기</a>
-        <ul>
-            <li><a href="{% url 'use_ahk' %}" class="waves-effect waves-teal">오토핫키</a></li>
-        </ul>
-    </li>
     <li class="bold"><a href="{% url 'drfdocs' subdomain='api' %}" class="waves-effect waves-teal">전체 API 문서</a></li>
 {% endblock %}
 {% block title %}처음 시작하기{% endblock %}
@@ -26,28 +20,28 @@
                     </p>
                 </div>
                 <div id="part2" class="section scrollspy">
-                    <h3 class="header teal-text">매크로에 인증 삽입하기</h3>
+                    <h3 class="header teal-text">매크로에 로그인 기능 삽입하기</h3>
                     <h5>오토핫키</h5>
                     <p>
-                        다음은 오토핫키에서 유저인증을 받아 msgbox 를 띄우는 예제의 일부분입니다.<br>
+                        다음 소스코드를 다운받아서 제일 상단에 붙여 넣어주세요<br>
                     </p>
                     <a id="download-source" class="btn waves-effect waves-light" href="{% static "example/example.ahk" %}">
                         예제 다운로드<i class="material-icons right">file_download</i>
                     </a>
                     <pre>
                         <code class="autohotkey">
-;이 Uid 를 자신의 매크로 ID 로 변경해줍니다
-global Uid = "3a526973-98cf-4f0e-8791-5ae7759948d7"
+;#(샵) 이 포함된 다음과 같은 소스코드가 있다면 반드시 제일 상단에 넣어줍니다.
+#SingleInstance Force
 
-if (GetAuth(userToken))
-{
-    msgbox, 인증성공!`n이 부분을 지우고 필요한 기능을 넣어주세요
-}
-else
-{
-    msgbox, 인증실패
-    ExitApp
-}
+;다운받은 소스코드
+;이 Uid 를 자신의 매크로 ID 로 변경해줍니다
+global UID = "fdcb7c8e-f14f-4ebc-a948-4bb08bfb930a"
+~~~~
+
+;본인이 작성한 소스코드
+TODO:
+    FooBar()
+
                         </code>
                     </pre>
                 </div>
@@ -64,7 +58,10 @@ else
                 <div id="part4" class="section scrollspy">
                     <h3 class="header teal-text">유저가 인증받는 과정</h3>
                     <p>
-                        위의 과정을 다 마쳤다면 인증받는 과정을 눈으로 확인할 수 있습니다.<br><br>
+                        위의 과정을 다 마쳤다면 인증받는 과정을 눈으로 확인할 수 있습니다.
+                        이미지에서는 설명을 위해 편의상 메세지박스를 띄웠습니다.
+                        실제로는 아무 반응이 없으면 성공입니다.
+                        <br><br>
                         <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial3.gif' %}" >
                         <br>
                     </p>
@@ -72,7 +69,7 @@ else
                 <div id="part5" class="section scrollspy">
                     <h3 class="header teal-text">비밀번호 설정</h3>
                     <p>
-                        비밀번호는 <a href="{% url "main:mypage" subdomain=None %}">내정보 탭</a>에서 설정할 수 있습니다.<br><br>
+                        비밀번호는 <a href="{% url "mypage" subdomain=None %}">내정보 탭</a>에서 설정할 수 있습니다.<br><br>
                         <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial4.gif' %}" >
                         <br>
                     </p>
@@ -80,7 +77,7 @@ else
                 <div id="part6" class="section scrollspy">
                     <h3 class="header teal-text">유저 토큰 얻기</h3>
                     <p>
-                        토큰은 <a href="{% url "main:mypage" subdomain=None %}">내정보 탭</a>에서 얻거나 변경할 수 있습니다.<br><br>
+                        토큰은 <a href="{% url "mypage" subdomain=None %}">내정보 탭</a>에서 얻거나 변경할 수 있습니다.<br><br>
                         <img class="materialboxed responsive-img z-depth-3" src="{% static 'images/tutorial4.gif' %}" >
                         <br>
                     </p>

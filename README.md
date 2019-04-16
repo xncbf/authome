@@ -1,41 +1,13 @@
-이 프로젝트가 마음에 드신다면, star 버튼을 눌러주세요 :heart_eyes:  
-If you like this project, please press the 'star' button :heart_eyes:
-  
-[![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=master)](https://travis-ci.org/xncbf/authome)
-# [AUTHOME](https://autho.me) 매크로 사용자 관리 사이트
+[![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=django1.11)](https://travis-ci.org/xncbf/authome)
+
+[![alt text](https://authome.s3.amazonaws.com/images/logo/facebook_cover.png)](https://autho.me) 
+# 매크로 사용자 관리 사이트
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
-* python==3.4.x
-* django==1.9.x
-
-## 시스템 의존성
-패키지 의존성을 설치하기 전에 앞서 설치가 필요합니다.
-* libpq-dev
-* python3-dev
-
-## 패키지 의존성
-* djangorestframework
-* django-subdomains
-* django-allauth==0.31.0
-* django-admin-honeypot
-* django-ipware
-* django_mobile
-* django-ses
-* boto
-* django-celery-beat
-* celery
-* django-contrib-comments
-* django-hitcount
-* django-markdown-deux
-* markdown2
-* django-material
-* Unipath
-* psycopg2
-* drfdocs
-* pytz
-* invoke
-
+* python==3.6.x
+* django==1.11.8
+* zappa>=0.45.1
 
 ## 개발 환경 세팅
 ### 의존성 패키지 설치 및 모델 migration
@@ -64,18 +36,16 @@ AUTHOME_DATABASE_PASSWORD = 디비 패스워드
 AUTHOME_DATABASE_HOST = 디비 호스트
 AUTHOME_DATABASE_PORT = 디비 포트
 AUTHOME_ADMIN_URL = 관리자페이지 url
-AWS_SES_REGION_NAME = AWS 리전 네임
-AWS_SES_REGION_ENDPOINT = AWS SES 리전 엔드포인트
 AWS_ACCESS_KEY_ID = AWS 엑세스 키
 AWS_SECRET_ACCESS_KEY = AWS 시크릿 엑세스 키
 ```
 
 ### 이메일 환경
-회원가입 email confirm 및 비밀번호 찾기를 위해 django-ses 를 사용하였습니다.
+회원가입 email confirm 및 비밀번호 찾기를 위해 mailchimp, mandrill 을 사용하였습니다.
 
-### celery
-ses 통계와 유저 인증의 end_yn 검증을 위해 django-celery-beat 를 사용합니다.  
-broker는 product 환경에서 rabbitmq 를 사용합니다.
+### 스케줄
+유저 인증의 end_yn 검증을 위해 스케줄링을 사용합니다.
+스케줄링은 zappa schedule 을 통해 동작합니다.
 
 ### 개발환경
 #### URL

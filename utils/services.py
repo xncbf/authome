@@ -2,8 +2,7 @@ import json
 import uuid
 
 from django.shortcuts import redirect
-from django.shortcuts import urlresolvers
-from main.models import ExtendsUser
+from django.urls import reverse
 
 
 def dictfetchall(cursor):
@@ -12,7 +11,7 @@ def dictfetchall(cursor):
     return [
         dict(zip(columns, row))
         for row in cursor.fetchall()
-        ]
+    ]
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -25,5 +24,7 @@ class JSONEncoder(json.JSONEncoder):
 
 
 def new_token(request):
-    ExtendsUser.objects.filter(user=request.user).update(token=uuid.uuid4())
-    return redirect(urlresolvers.reverse('main:mypage'))
+    user = request.user.extendsuser
+    user.token = uuid.uuid4()
+    user.save()
+    return redirect(reverse('dev:mypage'))

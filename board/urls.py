@@ -16,17 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from . import views
 
-handler404 = 'main.views.page_not_found_view'
-handler500 = 'main.views.error_view'
-handler403 = 'main.views.permission_denied_view'
-handler400 = 'main.views.bad_request_view'
+handler404 = 'dev.views.page_not_found_view'
+handler500 = 'dev.views.error_view'
+handler403 = 'dev.views.permission_denied_view'
+handler400 = 'dev.views.bad_request_view'
 
 
 urlpatterns = [
-    url(r'^macro/free/register/(?P<pk>[0-9a-z-]+)/', views.MacroBoardRegister.as_view(), name='macro_board_register'),
-    url(r'^macro/free/(?P<pk>[0-9a-z-]+)/$', views.MacroBoardFree.as_view(), name='macro_board_free'),
-    url(r'^macro/', views.MacroList.as_view(), name='macro_list'),
-    url(r'^free/register/', views.BoardRegister.as_view(), name='board_register'),
-    url(r'^free/(?P<pk>\d+)/$', views.BoardDetail.as_view(), name='board_detail'),
-    url(r'^free/', views.BoardList.as_view(), name='board_list'),
+    url(r'^(?P<category>.*)/editor/', views.BoardEditor.as_view(), name='editor'),
+    url(r'^(?P<category>.*)/(?P<pk>\d+)/$', views.BoardDetail.as_view(), name='detail'),
+    url(r'^(?P<category>.*)/', views.BoardList.as_view(), name='list'),
 ]

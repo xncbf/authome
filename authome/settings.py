@@ -13,17 +13,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 from unipath import Path
-from boto.ses import SESConnection
-from datetime import timedelta
-from celery.schedules import crontab
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['AUTHOME_SECRET_KEY']
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -38,48 +30,21 @@ LOGIN_REDIRECT_URL = '/'
 
 # ### 이메일 설정
 
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_SES_REGION_NAME = os.environ['AWS_SES_REGION_NAME']
-AWS_SES_REGION_ENDPOINT = os.environ['AWS_SES_REGION_ENDPOINT']
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_SES_RETURN_PATH = 'xncbf12@gmail.com'
+EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
 SERVER_EMAIL = 'xncbf12@gmail.com'
 DEFAULT_FROM_EMAIL = 'noreply@autho.me'
-SESConnection.DefaultRegionName = AWS_SES_REGION_NAME
-SESConnection.DefaultRegionEndpoint = AWS_SES_REGION_ENDPOINT
-# AWS_SES_AUTO_THROTTLE = 1.0  # 속도 조절 (초당 갯수)
+ACCOUNT_ADAPTER = 'allauth_djrill.adapter.DjrillAccountAdapter'
 
-
-#### celery 설정
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
-CELERY_IMPORTS = ('authome.tasks', )
-CELERY_RESULT_BACKEND = 'amqp://'
-
-# CELERY_ANNOTATIONS = {'authome.tasks.get_ses_statistics': {'rate_limit': '10/s'}}
-CELERYBEAT_SCHEDULE = {
-    'get_ses_statistics': {
-        'task': 'authome.tasks.get_ses_statistics',
-        'schedule': timedelta(days=1),
-    },
-    'verify_end_yn': {
-        'task': 'authome.tasks.verify_end_yn',
-        "schedule": timedelta(seconds=30),
-    },
-    'celery.backend_cleanup': {
-        'task': 'celery.backend_cleanup',
-        "schedule": crontab(minute='0'),
-    }
-}
-
+MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
 
 # allauth 설정
-ACCOUNT_AUTHENTICATION_METHOD ="email"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_BLACKLIST = ["운영자", "관리자", "admin"]
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_DISPLAY = "dev.utils.get_account_user_display"
 
 # Application definition
 
@@ -93,29 +58,51 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
-    'django_ses',
     'admin_honeypot',
     'rest_framework_docs',
     'rest_framework',
     'subdomains',
-    'main',
     'api',
-    'api_macro',
-    'docs',
     'board',
+    'dev',
+    'docs',
     'log',
+    'djrill',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
-    'django_celery_beat',
+    'allauth_djrill',
     'django_comments',
     'hitcount',
     'markdown_deux',
     'material',
+    'storages',
+    'pure_pagination',
+    'analytical',
+    'tracking',
 ]
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-92615741-1'
+GOOGLE_ANALYTICS_TRACKING_STYLE = 2
+GOOGLE_ANALYTICS_DOMAIN = 'autho.me'
+GOOGLE_ANALYTICS_DISPLAY_ADVERTISING = True
+GOOGLE_ANALYTICS_SITE_SPEED = True
+
+TRACK_AJAX_REQUESTS = False
+TRACK_PAGEVIEWS = True
+TRACK_IGNORE_URLS = [os.environ['AUTHOME_TRACKER_URL'], 'macro/auth', 'favicon.ico', 'robots.txt']
+TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
+TRACK_REFERER = True
+TRACK_QUERY_STRING = True
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 5,
+    'MARGIN_PAGES_DISPLAYED': 1,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -123,6 +110,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.AnonRateThrottle',
@@ -138,7 +126,8 @@ REST_FRAMEWORK_DOCS = {
     'HIDE_DOCS': False
 }
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'tracking.middleware.VisitorTrackingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'subdomains.middleware.SubdomainURLRoutingMiddleware',
@@ -155,7 +144,11 @@ ROOT_URLCONF = 'api.urls'
 SUBDOMAIN_URLCONFS = {
     None: 'authome.urls',  # no subdomain, e.g. ``example.com``
     'www': 'authome.urls',
+    'test': 'authome.urls',
+    'dev': 'dev.urls',
+    'dev-test': 'dev.urls',
     'api': 'api.urls',
+    'api-test': 'api.urls',
     'docs': 'docs.urls',
 }
 SESSION_COOKIE_DOMAIN = '.autho.me'
@@ -229,7 +222,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Imag®es)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -237,3 +230,12 @@ STATIC_ROOT = BASE_DIR.child('static')
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR.child('media')
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'authome'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']

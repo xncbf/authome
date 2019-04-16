@@ -1,0 +1,24 @@
+{% extends 'left_ad_layout.html' %}
+{% block contents %}
+    <h4 class="teal-text text-lighten-1">매크로 수정</h4>
+    <form method="post" action="{% url 'macro_modify' macro_id=macro.id %}" class="col s12">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">done</i>
+                <input id="macro_name" name="macro_name" type="text" value="{{ macro.title }}" maxlength="30">
+                <label for="macro_name">프로그램명</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">done</i>
+                <textarea id="macro_detail" name="macro_detail" class="materialize-textarea">{{ macro.detail }}</textarea>
+                <label for="macro_detail">간단한 설명</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light btn-large" type="submit" name="action">수정
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+{% endblock %}

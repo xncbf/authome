@@ -1,0 +1,153 @@
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+/*백그라운드 이미지 투명하게만들기*/
+.opacity-background {
+    position: relative;
+    z-index: 1;
+}
+
+.opacity-background:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background: url('/images/test.jpg') center center;*/
+    opacity: .4;
+}
+
+.table-of-contents a:hover{
+    border-left: 1px solid #26a69a !important;
+}
+
+.table-of-contents a.active{
+    border-left: 2px solid #26a69a !important;
+}
+
+#nav-mobile > li > a > i{
+    height: 45px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+.errorlist{
+    color: #FF1744 !important;
+}
+
+blockquote{
+    border-left: 5px solid #009688 !important;
+}
+
+.promo i{
+    font-size: 7rem !important;
+}
+
+.docs > div h3 {
+    font-size: 2.12rem !important;
+    line-height: 110% !important;
+    margin: 1.46rem 0 1.168rem 0 !important;
+}
+
+.docs > div h4 {
+    font-size: 1.52rem !important;
+    line-height: 110% !important;
+    margin: 1.14rem 0 .912rem 0 !important;
+}
+
+.docs > div h5 {
+    font-size: 1.22rem !important;
+    line-height: 110% !important;
+    margin: .82rem 0 .656rem 0 !important;
+}
+
+nav {
+    color: #fff;
+    background-color: #26a69a !important;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+}
+
+ul.user-list li {
+    padding: 10px !important;
+}
+
+ul.user-list li a {
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+ul.user-list li:hover {
+    background-color: gainsboro;
+}
+
+.btn-login{
+    margin: 5px;
+}
+
+.beta{
+    font-size: 15px;
+    margin: -6px 0 0 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+ul > li > ul > li > a{
+    padding-left: 70px !important;
+}
+
+ul.side-nav.fixed li > ul > li.active {
+    background-color: rgba(0,0,0,0.05);
+}
+
+
+@media screen {
+    .board-detail{
+        font-size: 1.22rem;
+    }
+}
+@media screen and (max-width:780px) {
+    h2.header {
+        font-size: 3.00rem;
+    }
+    .board-title{
+        font-size: 2.00rem;
+    }
+}
+
+@media screen and (max-width:672px) {
+    h2.header {
+        font-size: 2.50rem;
+    }
+    .board-title{
+        font-size: 1.75rem;
+    }
+}
+@media screen and (max-width:530px) {
+    h2.header {
+        font-size: 1.50rem;
+    }
+    .board-title{
+        font-size: 1.50rem;
+    }
+}
+
+.pagination li.active {
+    background-color: #26a69a !important;
+}

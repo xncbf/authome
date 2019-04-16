@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.4"
+  - "3.6"
 
 services:
   - postgresql
@@ -15,20 +15,22 @@ env:
     - AUTHOME_DATABASE_HOST=localhost
     - AUTHOME_DATABASE_PORT=5432
     - AUTHOME_ADMIN_URL=travisadmin
+    - AUTHOME_TRACKER_URL=travisadmin
     - EMAIL_PORT=587
-    - AWS_SES_REGION_NAME=us-east-1
-    - AWS_SES_REGION_ENDPOINT=email.us-east-1.amazonaws.com
     - AWS_ACCESS_KEY_ID=AWSACCESSKEYID
     - AWS_SECRET_ACCESS_KEY=aU/AWSSECRETACCESSKEY
     - BOTO_CONFIG=/tmp/nowhere
+    - MANDRILL_API_KEY=MANDRILLAPIKEY
+    - DJANGO_SETTINGS_MODULE=authome.settings_local
 
   matrix:
-    - DJANGO_VERSION=1.9.12 DB=postgresql
+    - DJANGO_VERSION=1.11.8 DB=postgresql
 
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libpq-dev
   - sudo apt-get install -y python3-dev
+  - pip install pep8
 
 install:
   - pip install -r requirements.txt
@@ -39,4 +41,6 @@ before_script:
   - python manage.py makemigrations
 
 script:
+  - find . -name \*.py -exec pep8 --max-line-length=120 --ignore=E402 {} +
   - python manage.py migrate
+  - python manage.py test

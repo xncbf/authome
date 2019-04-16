@@ -1,0 +1,11 @@
+{% extends 'left_ad_layout.html' %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block contents %}
+    <h4 class="teal-text text-lighten-1 board-title" style="display: inline-block;">{% trans "Password Reset" %}</h4><br><h4 class="teal-text text-lighten-1 board-title" style="display: inline-block;">{% trans "Verify Your E-mail Address" %}</h4><br>
+    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+
+{% endblock %}

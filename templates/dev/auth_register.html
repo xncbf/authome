@@ -1,0 +1,65 @@
+{% extends 'left_ad_layout.html' %}
+{% load humanize %}
+{% block script %}
+    <script>
+        $(function(){
+            $("#user_email").change(function (e) {
+                if($(this).val().length<1){return false}
+                $.ajax({
+                    type: "POST",
+                    url: '.',
+                    data: $('form').serialize(),
+                    success: function (args) {
+                        var result = JSON.parse(args);
+                        if(result.result){
+                            $(".material-icons.prefix:first").html('done');
+                            $(".input-field .prefix:first").css('color','#26a69a');
+                        }else{
+                            $(".material-icons.prefix:first").html('error_outline');
+                            $(".input-field .prefix:first").css('color','#f44336');
+                        }
+                    }
+                });
+            });
+        });
+        function addDate(date){
+            var $input = $('.datepicker').pickadate();
+            // Use the picker object directly.
+            var picker = $input.pickadate('picker');
+            var _date = new Date($input.val());
+            picker.set('select', _date.setDate(_date.getDate()+date));
+        }
+    </script>
+{% endblock %}
+{% block contents %}
+    <h4 class="teal-text text-lighten-1">유저 등록</h4>
+    <form method="post" action="{% url 'auth_register' macro_id=macro.id %}" class="col s12">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">error_outline</i>
+                <input id="user_email" name="user_email" type="text">
+                <label for="user_email">유저 이메일</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 l6">
+                <i class="material-icons prefix">done</i>
+                <input id="end_date" name="end_date" type="date" class="datepicker" value="{% now "Y-m-d" %}">
+                <label for="end_date">인증 종료일</label>
+            </div>
+            <div class="input-field col s12 l6">
+                <a href="#" onclick="addDate(1)">
+                    <i class="material-icons">add</i> 1일&nbsp;
+                </a>
+
+                <a href="#"onclick="addDate(30)">
+                    <i class="material-icons">add</i> 30일
+                </a>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light btn-large" type="submit" name="action">등록
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+{% endblock %}
