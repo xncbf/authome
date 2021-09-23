@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/xncbf/authome.svg?branch=django1.11)](https://travis-ci.org/xncbf/authome)
 
 [![alt text](https://authome.s3.amazonaws.com/images/logo/facebook_cover.png)](https://autho.me) 
-# 매크로 사용자 관리 사이트
+# DEPRECATED!! 매크로 사용자 관리 사이트
 프로젝트에 대한 전체 문서는 다음 링크에서 확인할 수 있습니다. https://docs.autho.me
 
 ## Requirements
